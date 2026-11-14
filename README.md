@@ -70,7 +70,23 @@ Secara lokal data tersimpan di `instance/lyznart.db` (SQLite) dan **tidak hilang
 python -m unittest discover -s tests -v
 ```
 
-## 🌐 Deployment Online (Render, satu klik)
+## 🌐 Website Online (GitHub Pages)
+
+LYZNART online di **https://nurainilyzna.github.io/LYZNART-sistemkoordinatkartesius/**, gratis dengan HTTPS dari GitHub Pages (branch `gh-pages`).
+
+Versi GitHub Pages adalah hasil build statis dari aplikasi Flask yang sama (`tools/build_static.py`). Karena tidak ada server Python di GitHub Pages:
+- profil siswa dibuat tanpa kata sandi dan **disimpan di browser perangkat itu** (localStorage); data tetap ada saat halaman ditutup/dibuka ulang, tetapi tidak berpindah ke perangkat/browser lain;
+- penilaian, XP, level, badge, dan grafik dihitung langsung di browser (`static/js/local.js`).
+
+**Memperbarui website online** setelah mengubah kode:
+```powershell
+.\.venv\Scripts\Activate.ps1
+python -m unittest discover -s tests          # pastikan semua tes lolos
+python tools/git_sync.py "Pesan perubahan"     # simpan kode ke branch main
+python tools/build_static.py --deploy          # build + publish ke GitHub Pages (±1 menit)
+```
+
+## 🌐 Alternatif: Deployment dengan Server Flask (Render)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/NurainiLyzna/LYZNART-sistemkoordinatkartesius)
 
