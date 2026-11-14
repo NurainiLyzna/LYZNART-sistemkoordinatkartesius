@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% block title %}Materi{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <span class="pill">📘 Bab Sistem Koordinat Kartesius</span>
+    <h1>Materi Sistem Koordinat Kartesius</h1>
+    <p class="lead">Baca setiap bagian, lalu tekan <b>“Tandai selesai”</b> untuk mendapatkan XP. Selesaikan keenamnya untuk badge <b>Pembaca Rajin 📘</b>.</p>
+  </div>
+  {{ mascot(120, "bob") }}
+</section>
+
+<div class="materi-layout">
+  <aside class="toc card">
+    <b>Daftar Isi</b>
+    <a href="#tujuan">🎯 Tujuan Pembelajaran</a>
+    <a href="#m1">1. Bidang Kartesius</a>
+    <a href="#m2">2. Kuadran</a>
+    <a href="#m3">3. Posisi terhadap Sumbu</a>
+    <a href="#m4">4. Posisi terhadap Titik Acuan</a>
+    <a href="#m5">5. Garis Sejajar &amp; Tegak Lurus Sumbu</a>
+    <a href="#m6">6. Jarak &amp; Bangun Datar</a>
+    <a href="#rangkuman">📌 Rangkuman</a>
+  </aside>
+
+  <div class="materi-body">
+    <article id="tujuan" class="card lesson goal">
+      <h2>🎯 Tujuan Pembelajaran</h2>
+      <p>Setelah mempelajari bab ini, kamu diharapkan mampu:</p>
+      <ol>
+        <li>Menjelaskan unsur-unsur bidang koordinat Kartesius: sumbu-x, sumbu-y, titik asal, absis, dan ordinat.</li>
+        <li>Menentukan dan menggambar letak titik pada bidang koordinat Kartesius.</li>
+        <li>Menentukan kuadran tempat suatu titik berada berdasarkan tanda absis dan ordinatnya.</li>
+        <li>Menentukan posisi (jarak) titik terhadap sumbu-x dan sumbu-y.</li>
+        <li>Menentukan koordinat titik terhadap titik asal dan terhadap titik acuan tertentu.</li>
+        <li>Menentukan posisi garis yang sejajar, tegak lurus, atau memotong sumbu koordinat.</li>
+        <li>Menyelesaikan masalah sehari-hari (peta, denah, permainan) menggunakan koordinat Kartesius.</li>
+      </ol>
+      <div class="tip">💬 <b>Tahukah kamu?</b> Sistem koordinat ini dinamai dari <b>René Descartes</b> (1596–1650), matematikawan Prancis. Konon, ia mendapat ide ini saat mengamati seekor lalat yang hinggap di langit-langit kamarnya!</div>
+    </article>
+
+    <article id="m1" class="card lesson">
+      <h2>1. Mengenal Bidang Kartesius</h2>
+      <div class="lesson-split">
+        <div>
+          <p><b>Bidang koordinat Kartesius</b> dibentuk oleh dua garis bilangan yang saling <b>tegak lurus</b>:</p>
+          <ul>
+            <li><b>Sumbu-x</b> (mendatar/horizontal). Ke kanan bernilai positif, ke kiri bernilai negatif.</li>
+            <li><b>Sumbu-y</b> (tegak/vertikal). Ke atas bernilai positif, ke bawah bernilai negatif.</li>
+            <li>Kedua sumbu berpotongan di <b>titik asal O(0, 0)</b>.</li>
+          </ul>
+          <p>Letak sebuah titik ditulis sebagai <b>pasangan berurutan (x, y)</b>:</p>
+          <ul>
+            <li><b>x</b> disebut <b>absis</b>: jarak mendatar dari sumbu-y.</li>
+            <li><b>y</b> disebut <b>ordinat</b>: jarak tegak dari sumbu-x.</li>
+          </ul>
+          <div class="formula">Titik A(x, y) → absis = x, ordinat = y</div>
+          <p><b>Cara menggambar titik A(2, 3):</b> mulai dari O, bergerak <b>2 satuan ke kanan</b>, lalu <b>3 satuan ke atas</b>. Ingat: <i>“jalan dulu (x), baru naik/turun (y)”</i>.</p>
+          <div class="warn">⚠️ Urutan itu penting! (2, 3) dan (3, 2) adalah dua titik yang <b>berbeda</b>.</div>
+        </div>
+        <figure>{{ plot_svg([[2,3,"A(2,3)"],[3,2,"B(3,2)"],[-4,1,"C"],[0,0,"O"]], 260) }}<figcaption>Titik A(2, 3) dan B(3, 2) letaknya berbeda.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm1' in done }}" data-item="m1">{{ '✓ Sudah selesai' if 'm1' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="m2" class="card lesson">
+      <h2>2. Kuadran pada Bidang Kartesius</h2>
+      <div class="lesson-split">
+        <div>
+          <p>Sumbu-x dan sumbu-y membagi bidang menjadi <b>empat daerah</b> yang disebut <b>kuadran</b>. Penomorannya berlawanan arah jarum jam, dimulai dari kanan atas.</p>
+          <div class="table-scroll"><table class="tbl">
+            <thead><tr><th>Kuadran</th><th>Letak</th><th>Tanda x</th><th>Tanda y</th><th>Contoh</th></tr></thead>
+            <tbody>
+              <tr><td><b>I</b></td><td>kanan atas</td><td>+</td><td>+</td><td>(3, 5)</td></tr>
+              <tr><td><b>II</b></td><td>kiri atas</td><td>−</td><td>+</td><td>(−3, 5)</td></tr>
+              <tr><td><b>III</b></td><td>kiri bawah</td><td>−</td><td>−</td><td>(−3, −5)</td></tr>
+              <tr><td><b>IV</b></td><td>kanan bawah</td><td>+</td><td>−</td><td>(3, −5)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="warn">⚠️ Titik yang terletak <b>tepat pada sumbu</b>, misalnya (0, 4) atau (−2, 0), <b>tidak termasuk kuadran mana pun</b>.</div>
+          <ul>
+            <li>Titik pada <b>sumbu-x</b> selalu berordinat 0 → (x, 0).</li>
+            <li>Titik pada <b>sumbu-y</b> selalu berabsis 0 → (0, y).</li>
+          </ul>
+        </div>
+        <figure class="quadrant-fig">
+          <div class="qgrid"><span class="q2">II<br><small>(−, +)</small></span><span class="q1">I<br><small>(+, +)</small></span><span class="q3">III<br><small>(−, −)</small></span><span class="q4">IV<br><small>(+, −)</small></span></div>
+          <figcaption>Ingat urutannya: I → II → III → IV berlawanan arah jarum jam.</figcaption>
+        </figure>
+      </div>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm2' in done }}" data-item="m2">{{ '✓ Sudah selesai' if 'm2' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="m3" class="card lesson">
+      <h2>3. Posisi Titik terhadap Sumbu-x dan Sumbu-y</h2>
+      <div class="lesson-split">
+        <div>
+          <p>Jarak sebuah titik ke sumbu diukur <b>tegak lurus</b> terhadap sumbu tersebut. Karena jarak tidak pernah negatif, kita memakai nilai mutlak.</p>
+          <div class="formula">Titik P(x, y):<br>jarak P ke sumbu-x = |y|<br>jarak P ke sumbu-y = |x|</div>
+          <p><b>Contoh:</b> titik P(−4, 3)</p>
+          <ul>
+            <li>berjarak <b>|3| = 3 satuan</b> dari sumbu-x (di <b>atas</b> sumbu-x),</li>
+            <li>berjarak <b>|−4| = 4 satuan</b> dari sumbu-y (di <b>kiri</b> sumbu-y).</li>
+          </ul>
+          <div class="tip">💡 Trik: jarak ke sumbu-<b>x</b> dilihat dari nilai <b>y</b>, jarak ke sumbu-<b>y</b> dilihat dari nilai <b>x</b>. Kebalikannya!</div>
+          <p><b>Kebalikannya:</b> jika titik Q di kuadran IV berjarak 2 satuan dari sumbu-x dan 5 satuan dari sumbu-y, maka |y| = 2 dan |x| = 5. Di kuadran IV x positif dan y negatif, sehingga <b>Q(5, −2)</b>.</p>
+        </div>
+        <figure>{{ plot_svg([[-4,3,"P(−4,3)"],[5,-2,"Q(5,−2)"]], 260) }}<figcaption>P berjarak 3 dari sumbu-x dan 4 dari sumbu-y.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm3' in done }}" data-item="m3">{{ '✓ Sudah selesai' if 'm3' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="m4" class="card lesson">
+      <h2>4. Posisi Titik terhadap Titik Asal dan Titik Acuan</h2>
+      <p>Koordinat (x, y) yang biasa kita tulis adalah posisi titik <b>terhadap titik asal O(0, 0)</b>. Kita juga bisa menentukan posisi titik terhadap <b>titik acuan lain</b>, misalnya P(p, q).</p>
+      <div class="formula">Koordinat A(x, y) terhadap titik acuan P(p, q) adalah (x − p, y − q)</div>
+      <div class="lesson-split">
+        <div>
+          <p><b>Contoh:</b> Taman berada di A(5, 4) dan rumah Lyzy di P(2, 1). Posisi taman terhadap rumah Lyzy:</p>
+          <div class="steps"><span>(5 − 2, 4 − 1)</span><span>= (3, 3)</span></div>
+          <p>Artinya dari rumah Lyzy, taman berada <b>3 satuan ke kanan</b> dan <b>3 satuan ke atas</b>.</p>
+          <p><b>Menggeser titik:</b> digeser <b>a</b> satuan ke kanan (atau ke kiri, berarti a negatif) dan <b>b</b> satuan ke atas (atau ke bawah, berarti b negatif), maka</p>
+          <div class="formula">(x, y) → (x + a, y + b)</div>
+          <p>Contoh: T(4, −2) digeser 3 ke kiri dan 5 ke atas → (4 − 3, −2 + 5) = <b>(1, 3)</b>.</p>
+        </div>
+        <figure>{{ plot_svg([[5,4,"A taman"],[2,1,"P rumah"]], 260) }}<figcaption>Dari P ke A: 3 ke kanan, 3 ke atas.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm4' in done }}" data-item="m4">{{ '✓ Sudah selesai' if 'm4' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="m5" class="card lesson">
+      <h2>5. Garis Sejajar, Tegak Lurus, dan Memotong Sumbu</h2>
+      <div class="cards-3">
+        <div class="mini card c-violet"><h3>Sejajar sumbu-x</h3><p>Semua titiknya memiliki <b>ordinat (y) sama</b>. Garisnya mendatar dan <b>tegak lurus sumbu-y</b>.</p><p class="ex">Contoh: A(−3, 2) dan B(4, 2)</p></div>
+        <div class="mini card c-cyan"><h3>Sejajar sumbu-y</h3><p>Semua titiknya memiliki <b>absis (x) sama</b>. Garisnya tegak dan <b>tegak lurus sumbu-x</b>.</p><p class="ex">Contoh: C(3, −4) dan D(3, 5)</p></div>
+        <div class="mini card c-sky"><h3>Memotong sumbu</h3><p>Absis berbeda <b>dan</b> ordinat berbeda. Garisnya miring dan memotong sumbu-x maupun sumbu-y.</p><p class="ex">Contoh: E(1, 2) dan F(3, 4)</p></div>
+      </div>
+      <figure class="center">
+        <svg viewBox="0 0 280 200" class="lines-fig" role="img" aria-label="Contoh garis sejajar sumbu-x, sejajar sumbu-y, dan garis miring">
+          <rect width="280" height="200" rx="14" fill="#fff"/>
+          <line x1="20" y1="120" x2="260" y2="120" stroke="#4c1d95" stroke-width="1.6"/><line x1="140" y1="190" x2="140" y2="10" stroke="#4c1d95" stroke-width="1.6"/>
+          <line x1="30" y1="70" x2="250" y2="70" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>
+          <line x1="210" y1="20" x2="210" y2="185" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+          <line x1="60" y1="180" x2="200" y2="40" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>
+          <text x="34" y="62" font-size="11" fill="#5b21b6" font-weight="700">sejajar sumbu-x</text>
+          <text x="216" y="30" font-size="11" fill="#0e7490" font-weight="700">sejajar</text><text x="216" y="43" font-size="11" fill="#0e7490" font-weight="700">sumbu-y</text>
+          <text x="60" y="165" font-size="11" fill="#0369a1" font-weight="700">memotong</text>
+        </svg>
+      </figure>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm5' in done }}" data-item="m5">{{ '✓ Sudah selesai' if 'm5' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="m6" class="card lesson">
+      <h2>6. Jarak Dua Titik dan Bangun Datar</h2>
+      <div class="lesson-split">
+        <div>
+          <p><b>Dua titik segaris mendatar</b> (ordinat sama): jarak = |x₂ − x₁|.</p>
+          <p><b>Dua titik segaris tegak</b> (absis sama): jarak = |y₂ − y₁|.</p>
+          <div class="formula">A(1, 2) dan B(7, 2) → AB = |7 − 1| = 6 satuan</div>
+          <p><b>Pengayaan (Teorema Pythagoras, kelas VIII):</b> untuk dua titik sembarang,</p>
+          <div class="formula">jarak = √((x₂ − x₁)² + (y₂ − y₁)²)</div>
+          <p>Contoh: O(0, 0) ke Q(3, 4) → √(3² + 4²) = √25 = <b>5 satuan</b>.</p>
+          <p><b>Bangun datar:</b> titik-titik pada bidang Kartesius dapat dihubungkan menjadi bangun datar. Persegi panjang dengan titik sudut (1, 1), (6, 1), (6, 4), (1, 4) memiliki panjang 5, lebar 3, dan <b>luas 15 satuan luas</b>.</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Persegi panjang ABCD pada bidang koordinat">
+            <rect width="260" height="260" rx="14" fill="#fff"/>
+            <g stroke="#ede9fe">{% for i in range(0, 9) %}<line x1="{{ 30 + i*26 }}" y1="20" x2="{{ 30 + i*26 }}" y2="230"/><line x1="30" y1="{{ 22 + i*26 }}" x2="238" y2="{{ 22 + i*26 }}"/>{% endfor %}</g>
+            <line x1="30" y1="230" x2="245" y2="230" stroke="#4c1d95" stroke-width="1.6"/><line x1="30" y1="230" x2="30" y2="15" stroke="#4c1d95" stroke-width="1.6"/>
+            <polygon points="56,204 186,204 186,126 56,126" fill="#c4b5fd" fill-opacity=".45" stroke="#7c3aed" stroke-width="2.5"/>
+            {% for x,y,l in [(56,204,'A(1,1)'),(186,204,'B(6,1)'),(186,126,'C(6,4)'),(56,126,'D(1,4)')] %}<circle cx="{{x}}" cy="{{y}}" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/><text x="{{x+4}}" y="{{y-8}}" font-size="10" font-weight="800" fill="#1e1b4b">{{l}}</text>{% endfor %}
+            <text x="105" y="222" font-size="11" fill="#5b21b6" font-weight="700">panjang 5</text><text x="192" y="168" font-size="11" fill="#5b21b6" font-weight="700">lebar 3</text>
+          </svg>
+          <figcaption>Luas = 5 × 3 = 15 satuan luas.</figcaption>
+        </figure>
+      </div>
+      <button class="btn btn-primary mark-done {{ 'is-done' if 'm6' in done }}" data-item="m6">{{ '✓ Sudah selesai' if 'm6' in done else 'Tandai selesai (+15 XP)' }}</button>
+    </article>
+
+    <article id="rangkuman" class="card lesson summary">
+      <h2>📌 Rangkuman</h2>
+      <ul class="sum-list">
+        <li>Bidang Kartesius terdiri atas <b>sumbu-x</b> (mendatar) dan <b>sumbu-y</b> (tegak) yang berpotongan tegak lurus di <b>O(0, 0)</b>.</li>
+        <li>Titik ditulis <b>(x, y)</b>: x = <b>absis</b>, y = <b>ordinat</b>. Urutan tidak boleh tertukar.</li>
+        <li>Kuadran I (+, +), II (−, +), III (−, −), IV (+, −). Titik pada sumbu tidak termasuk kuadran mana pun.</li>
+        <li>Jarak titik (x, y) ke sumbu-x = <b>|y|</b>, ke sumbu-y = <b>|x|</b>.</li>
+        <li>Koordinat A(x, y) terhadap titik acuan P(p, q) = <b>(x − p, y − q)</b>.</li>
+        <li>Ordinat sama → garis <b>sejajar sumbu-x</b>; absis sama → garis <b>sejajar sumbu-y</b>.</li>
+        <li>Jarak mendatar = |x₂ − x₁|, jarak tegak = |y₂ − y₁|, jarak miring memakai teorema Pythagoras.</li>
+      </ul>
+      <div class="next-actions">
+        <a class="btn btn-primary" href="{{ url_for('contoh') }}">💡 Lanjut ke Contoh Soal</a>
+        <a class="btn btn-cyan" href="{{ url_for('visualisasi') }}">🧭 Coba Visualisasi</a>
+        <a class="btn btn-ghost" href="{{ url_for('quiz', kind='latihan') }}">✏️ Latihan 40 Soal</a>
+      </div>
+    </article>
+  </div>
+</div>
+{% endblock %}

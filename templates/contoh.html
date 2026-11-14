@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% block title %}Contoh Soal{% endblock %}
+{% block content %}
+{% set examples = [
+  {"t": "Menentukan absis & ordinat", "q": "Tentukan absis dan ordinat dari titik K(−6, 4).",
+   "s": ["Ingat bentuk umum titik: (x, y) = (absis, ordinat).", "Pada K(−6, 4): x = −6 dan y = 4."],
+   "a": "Absis K = −6, ordinat K = 4.", "plot": [[-6,4,"K"]]},
+  {"t": "Menentukan kuadran", "q": "Tentukan letak kuadran titik A(3, −5), B(−2, −7), C(−4, 1), dan D(0, 6).",
+   "s": ["A(3, −5): x positif, y negatif → kuadran IV.", "B(−2, −7): x negatif, y negatif → kuadran III.", "C(−4, 1): x negatif, y positif → kuadran II.", "D(0, 6): absis 0 → terletak pada sumbu-y, bukan di kuadran mana pun."],
+   "a": "A di kuadran IV, B di kuadran III, C di kuadran II, D pada sumbu-y.", "plot": [[3,-5,"A"],[-2,-7,"B"],[-4,1,"C"],[0,6,"D"]]},
+  {"t": "Jarak titik ke sumbu", "q": "Tentukan jarak titik M(−5, −3) terhadap sumbu-x dan sumbu-y.",
+   "s": ["Jarak ke sumbu-x = |y| = |−3| = 3 satuan (di bawah sumbu-x).", "Jarak ke sumbu-y = |x| = |−5| = 5 satuan (di kiri sumbu-y)."],
+   "a": "M berjarak 3 satuan dari sumbu-x dan 5 satuan dari sumbu-y.", "plot": [[-5,-3,"M"]]},
+  {"t": "Menentukan titik dari jaraknya", "q": "Titik N terletak di kuadran II, berjarak 6 satuan dari sumbu-x dan 2 satuan dari sumbu-y. Tentukan koordinat N.",
+   "s": ["Jarak ke sumbu-x = |y| = 6 → y = 6 atau y = −6.", "Jarak ke sumbu-y = |x| = 2 → x = 2 atau x = −2.", "Di kuadran II: x negatif, y positif → x = −2, y = 6."],
+   "a": "N(−2, 6).", "plot": [[-2,6,"N"]]},
+  {"t": "Posisi terhadap titik acuan", "q": "Diketahui titik A(−1, 5) dan B(3, 2). Tentukan koordinat titik A terhadap titik B.",
+   "s": ["Gunakan rumus (x − p, y − q) dengan B(p, q) = (3, 2).", "x − p = −1 − 3 = −4.", "y − q = 5 − 2 = 3."],
+   "a": "Koordinat A terhadap B adalah (−4, 3): 4 satuan ke kiri dan 3 satuan ke atas dari B.", "plot": [[-1,5,"A"],[3,2,"B"]]},
+  {"t": "Masalah sehari-hari: denah", "q": "Pada denah sekolah, gerbang berada di titik asal. Perpustakaan di (4, 3) dan kantin di (−2, 3). Berapa jarak perpustakaan ke kantin jika 1 satuan = 10 meter?",
+   "s": ["Ordinat keduanya sama (y = 3), jadi letaknya segaris mendatar.", "Jarak = |4 − (−2)| = 6 satuan.", "6 satuan × 10 meter = 60 meter."],
+   "a": "Jarak perpustakaan ke kantin adalah 60 meter.", "plot": [[4,3,"Perpus"],[-2,3,"Kantin"],[0,0,"Gerbang"]]},
+  {"t": "Garis sejajar sumbu", "q": "Garis g melalui titik P(2, −3) dan Q(2, 5). Bagaimana posisi garis g terhadap sumbu-x dan sumbu-y?",
+   "s": ["Absis P dan Q sama, yaitu 2.", "Titik-titik dengan absis sama membentuk garis tegak (vertikal).", "Garis tegak sejajar sumbu-y dan tegak lurus sumbu-x."],
+   "a": "Garis g sejajar sumbu-y dan tegak lurus sumbu-x.", "plot": [[2,-3,"P"],[2,5,"Q"]]},
+  {"t": "Luas bangun datar", "q": "Titik A(−3, −2), B(3, −2), dan C(3, 2) adalah tiga titik sudut persegi panjang ABCD. Tentukan titik D dan luas ABCD.",
+   "s": ["AB mendatar (y = −2) dengan panjang |3 − (−3)| = 6.", "BC tegak (x = 3) dengan panjang |2 − (−2)| = 4.", "D harus segaris tegak dengan A (x = −3) dan segaris mendatar dengan C (y = 2) → D(−3, 2).", "Luas = 6 × 4 = 24 satuan luas."],
+   "a": "D(−3, 2) dan luas ABCD = 24 satuan luas.", "plot": [[-3,-2,"A"],[3,-2,"B"],[3,2,"C"],[-3,2,"D"]]},
+] %}
+<section class="page-head">
+  <div>
+    <span class="pill">💡 Contoh Soal &amp; Pembahasan</span>
+    <h1>Contoh Soal dan Pembahasan</h1>
+    <p class="lead">Coba pikirkan jawabannya dulu, lalu tekan <b>“Lihat pembahasan”</b> untuk mengecek langkah-langkahnya.</p>
+  </div>
+  {{ mascot(110, "bob") }}
+</section>
+
+<div class="examples">
+  {% for e in examples %}
+  <article class="card example">
+    <div class="ex-head"><span class="ex-no">{{ loop.index }}</span><h2>{{ e.t }}</h2></div>
+    <div class="lesson-split">
+      <div>
+        <p class="ex-q">{{ e.q }}</p>
+        <button class="btn btn-ghost btn-sm reveal" aria-expanded="false">👀 Lihat pembahasan</button>
+        <div class="solution" hidden>
+          <ol>{% for s in e.s %}<li>{{ s }}</li>{% endfor %}</ol>
+          <p class="answer">✅ <b>Jawaban:</b> {{ e.a }}</p>
+        </div>
+      </div>
+      <figure>{{ plot_svg(e.plot, 220) }}</figure>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<div class="card center done-box">
+  <p>Sudah memahami semua contoh?</p>
+  <button class="btn btn-primary mark-done" data-item="contoh">Tandai selesai (+10 XP)</button>
+  <a class="btn btn-cyan" href="{{ url_for('quiz', kind='latihan') }}">✏️ Lanjut Latihan</a>
+</div>
+{% endblock %}

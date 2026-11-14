@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="dash-hero card">
+  <div class="dash-hello">
+    <span class="big-avatar">{{ avatar_emoji(user.avatar) }}</span>
+    <div>
+      <h1>Hai, {{ user.name.split(' ')[0] }}! 👋</h1>
+      <p class="muted">{{ user.kelas or 'Kelas VIII' }}{% if user.sekolah %} · {{ user.sekolah }}{% endif %}</p>
+    </div>
+  </div>
+  <div class="level-box">
+    <div class="level-badge">Lv {{ lvl.level }}</div>
+    <div class="level-info">
+      <b>{{ lvl.name }}</b>
+      <div class="xpbar" role="progressbar" aria-valuenow="{{ lvl.pct }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lvl.pct }}%"></span></div>
+      <small>{{ user.xp }} XP{% if lvl.next %} · {{ lvl.next - user.xp }} XP lagi ke level berikutnya{% else %} · Level maksimum!{% endif %}</small>
+    </div>
+  </div>
+</section>
+
+<section class="dash-grid">
+  <div class="card">
+    <h2>🗺️ Peta Belajarmu</h2>
+    <ol class="path">
+      {% for label, href, ok in steps %}
+        <li class="{{ 'done' if ok }}"><a href="{{ href }}"><span class="dot">{{ '✓' if ok else loop.index }}</span>{{ label }}</a></li>
+      {% endfor %}
+    </ol>
+    {% set doneCount = steps|selectattr(2)|list|length %}
+    <p class="muted">Selesai {{ doneCount }} dari {{ steps|length }} langkah.</p>
+  </div>
+
+  <div class="card stat-cards">
+    <h2>📌 Ringkasan</h2>
+    <div class="mini-stats">
+      <div><span>Pre-test</span><b>{{ status.pretest.score if status.pretest else '–' }}</b></div>
+      <div><span>Post-test</span><b>{{ status.posttest.score if status.posttest else '–' }}</b></div>
+      <div><span>Latihan</span><b>{{ status.latihan.score if status.latihan else '–' }}</b></div>
+      <div><span>Badge</span><b>{{ badge_count }}/{{ total_badges }}</b></div>
+      <div><span>Materi</span><b>{{ (done|select('in', ['m1','m2','m3','m4','m5','m6'])|list|length) }}/6</b></div>
+      <div><span>Game</span><b>{{ played|length }}/4</b></div>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="{{ url_for('profil') }}">Lihat profil &amp; badge →</a>
+  </div>
+</section>
+
+<section class="dash-grid charts">
+  <div class="card chart-card">
+    <h2>📊 Pre-test vs Post-test</h2>
+    <div class="chart" id="chartPrePost" data-empty="Kerjakan pre-test dan post-test untuk melihat perbandingannya."></div>
+  </div>
+  <div class="card chart-card">
+    <h2>📈 Riwayat Nilai Latihan</h2>
+    <div class="chart" id="chartLatihan" data-empty="Belum ada nilai latihan. Ayo kerjakan 40 soal latihan!"></div>
+  </div>
+  <div class="card chart-card wide">
+    <h2>🎮 Skor Terbaik Game</h2>
+    <div class="chart" id="chartGames" data-empty="Mainkan game untuk melihat skormu di sini."></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>🏆 Papan Peringkat XP</h2>
+  <ol class="leaderboard">
+    {% for l in leaders %}
+      <li><span class="rank">{{ loop.index }}</span><span class="lb-av">{{ avatar_emoji(l.avatar) }}</span><span class="lb-name">{{ l.name }}<small>{{ l.kelas }}</small></span><b>{{ l.xp }} XP</b></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/charts.js') }}?v={{ app_version }}"></script>{% endblock %}

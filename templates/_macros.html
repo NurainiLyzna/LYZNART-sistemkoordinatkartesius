@@ -1,0 +1,68 @@
+{% macro mascot(size=140, cls="") -%}
+<svg class="mascot {{ cls }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 200 200" role="img" aria-label="Lyzy, maskot LYZNART">
+  <defs>
+    <linearGradient id="lyzyBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="lyzyBelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ecfeff"/><stop offset="1" stop-color="#cffafe"/>
+    </linearGradient>
+  </defs>
+  <!-- antena berbentuk sumbu koordinat -->
+  <line x1="100" y1="38" x2="100" y2="10" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+  <line x1="86" y1="24" x2="114" y2="24" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="100" cy="10" r="7" fill="#38bdf8"/>
+  <!-- telinga -->
+  <path d="M48 62 L40 28 L74 46 Z" fill="#8b5cf6"/>
+  <path d="M152 62 L160 28 L126 46 Z" fill="#8b5cf6"/>
+  <!-- badan -->
+  <ellipse cx="100" cy="112" rx="66" ry="72" fill="url(#lyzyBody)"/>
+  <ellipse cx="100" cy="136" rx="40" ry="38" fill="url(#lyzyBelly)"/>
+  <!-- grid kecil di perut -->
+  <g stroke="#67e8f9" stroke-width="2" opacity=".9">
+    <line x1="100" y1="108" x2="100" y2="166"/><line x1="70" y1="137" x2="130" y2="137"/>
+  </g>
+  <circle cx="114" cy="124" r="5" fill="#ec4899"/>
+  <!-- mata -->
+  <circle cx="74" cy="86" r="22" fill="#fff"/><circle cx="126" cy="86" r="22" fill="#fff"/>
+  <circle class="eye" cx="78" cy="88" r="10" fill="#1e1b4b"/><circle class="eye" cx="122" cy="88" r="10" fill="#1e1b4b"/>
+  <circle cx="82" cy="83" r="3.5" fill="#fff"/><circle cx="126" cy="83" r="3.5" fill="#fff"/>
+  <!-- paruh & pipi -->
+  <path d="M92 104 L108 104 L100 116 Z" fill="#fbbf24"/>
+  <ellipse cx="56" cy="110" rx="9" ry="5" fill="#f9a8d4" opacity=".8"/>
+  <ellipse cx="144" cy="110" rx="9" ry="5" fill="#f9a8d4" opacity=".8"/>
+  <!-- sayap -->
+  <path class="wing-l" d="M36 116 Q16 138 38 160 Q44 138 50 126 Z" fill="#6d28d9"/>
+  <path class="wing-r" d="M164 116 Q184 138 162 160 Q156 138 150 126 Z" fill="#6d28d9"/>
+  <!-- kaki -->
+  <path d="M80 182 l-8 10 h18 Z M120 182 l-8 10 h18 Z" fill="#fbbf24"/>
+</svg>
+{%- endmacro %}
+
+{% macro avatar_emoji(a) -%}
+{{ {"robot": "🤖", "astronot": "🧑‍🚀", "kucing": "🐱", "burung": "🦉"}.get(a, "🤖") }}
+{%- endmacro %}
+
+{% macro plot_svg(points, size=220) -%}
+{# bidang koordinat kecil (−7..7) untuk soal #}
+{% set r = 7 %}{% set s = size / (2*r + 2) %}{% set c = size / 2 %}
+<svg class="mini-plane" viewBox="0 0 {{ size }} {{ size }}" width="{{ size }}" height="{{ size }}" role="img" aria-label="Gambar bidang koordinat">
+  <rect width="{{ size }}" height="{{ size }}" rx="14" fill="#fff"/>
+  {% for i in range(-r, r+1) %}
+    <line x1="{{ c + i*s }}" y1="{{ c - r*s }}" x2="{{ c + i*s }}" y2="{{ c + r*s }}" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="{{ c - r*s }}" y1="{{ c + i*s }}" x2="{{ c + r*s }}" y2="{{ c + i*s }}" stroke="#ede9fe" stroke-width="1"/>
+    {% if i != 0 and i % 2 == 0 %}
+      <text x="{{ c + i*s }}" y="{{ c + 11 }}" font-size="8" text-anchor="middle" fill="#6b7280">{{ i }}</text>
+      <text x="{{ c - 4 }}" y="{{ c - i*s + 3 }}" font-size="8" text-anchor="end" fill="#6b7280">{{ i }}</text>
+    {% endif %}
+  {% endfor %}
+  <line x1="{{ c - r*s - 4 }}" y1="{{ c }}" x2="{{ c + r*s + 4 }}" y2="{{ c }}" stroke="#4c1d95" stroke-width="1.6"/>
+  <line x1="{{ c }}" y1="{{ c + r*s + 4 }}" x2="{{ c }}" y2="{{ c - r*s - 4 }}" stroke="#4c1d95" stroke-width="1.6"/>
+  <text x="{{ c + r*s + 2 }}" y="{{ c - 5 }}" font-size="9" fill="#4c1d95" font-weight="700">x</text>
+  <text x="{{ c + 5 }}" y="{{ c - r*s }}" font-size="9" fill="#4c1d95" font-weight="700">y</text>
+  {% for p in points %}
+    <circle cx="{{ c + p[0]*s }}" cy="{{ c - p[1]*s }}" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="{{ c + p[0]*s + 6 }}" y="{{ c - p[1]*s - 6 }}" font-size="10" font-weight="800" fill="#1e1b4b">{{ p[2] }}</text>
+  {% endfor %}
+</svg>
+{%- endmacro %}

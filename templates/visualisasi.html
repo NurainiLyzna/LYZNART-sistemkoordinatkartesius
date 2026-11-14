@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}Visualisasi Koordinat{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <span class="pill">🧭 Laboratorium Koordinat</span>
+    <h1>Visualisasi Koordinat Interaktif</h1>
+    <p class="lead">Ketuk bidang untuk menaruh titik, lalu <b>geser</b> titiknya. Amati koordinat, kuadran, dan jaraknya berubah secara langsung!</p>
+  </div>
+  {{ mascot(110, "bob") }}
+</section>
+
+<div class="viz-layout">
+  <div class="card viz-canvas-card">
+    <div class="viz-toolbar" role="toolbar" aria-label="Mode visualisasi">
+      <button class="chip active" data-mode="titik">📍 Titik</button>
+      <button class="chip" data-mode="acuan">🎯 Titik Acuan</button>
+      <button class="chip" data-mode="jarak">📏 Jarak 2 Titik</button>
+      <button class="chip" data-mode="tantangan">🏁 Tantangan</button>
+      <button class="chip chip-ghost" id="vizReset">↺ Reset</button>
+    </div>
+    <canvas id="vizCanvas" class="viz-canvas" width="640" height="640" aria-label="Bidang koordinat interaktif"></canvas>
+    <label class="viz-toggle"><input type="checkbox" id="vizShade" checked> Warnai kuadran</label>
+    <label class="viz-toggle"><input type="checkbox" id="vizGuides" checked> Tampilkan garis bantu</label>
+  </div>
+
+  <aside class="card viz-info" aria-live="polite">
+    <div id="vizHelp" class="viz-help"></div>
+    <div id="vizReadout" class="viz-readout"></div>
+    <form id="vizInput" class="viz-input">
+      <b>Atau ketik koordinat:</b>
+      <div class="row3">
+        <label>x<input type="number" id="vizX" min="-10" max="10" step="1" value="3" required></label>
+        <label>y<input type="number" id="vizY" min="-10" max="10" step="1" value="-2" required></label>
+        <button class="btn btn-primary btn-sm" type="submit">Tampilkan</button>
+      </div>
+    </form>
+  </aside>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/plane.js') }}?v={{ app_version }}"></script>
+<script src="{{ url_for('static', filename='js/visualisasi.js') }}?v={{ app_version }}"></script>
+{% endblock %}

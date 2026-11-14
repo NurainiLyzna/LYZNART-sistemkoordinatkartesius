@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}Game Edukasi{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <span class="pill">🎮 Arena Game</span>
+    <h1>Game Edukasi Koordinat</h1>
+    <p class="lead">Belajar sambil bermain! Setiap permainan memberi XP (maksimal 40 XP per permainan). Mainkan keempatnya untuk badge <b>Gamer Koordinat 🎮</b>.</p>
+  </div>
+  {{ mascot(110, "bob") }}
+</section>
+<div class="game-grid big">
+  {% for gid, gm in games.items() %}
+    <a class="game-card card c-{{ gm.color }}" href="{{ url_for('game', gid=gid) }}">
+      <span class="g-icon">{{ gm.icon }}</span>
+      <h2>{{ gm.name }}</h2>
+      <p>{{ gm.desc }}</p>
+      <span class="btn btn-primary">▶ Main Sekarang</span>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

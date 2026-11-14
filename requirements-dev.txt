@@ -1,0 +1,3 @@
+-r requirements.txt
+# Git berbasis Python murni untuk komputer yang memblokir git.exe (dipakai oleh tools/git_sync.py)
+dulwich==1.2.21

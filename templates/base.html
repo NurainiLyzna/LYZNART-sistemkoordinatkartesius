@@ -1,0 +1,78 @@
+{% from "_macros.html" import mascot, avatar_emoji %}<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}LYZNART{% endblock %} · Explore. Learn. Play. Master!</title>
+  <meta name="description" content="LYZNART: media belajar interaktif Sistem Koordinat Kartesius untuk siswa kelas VIII SMP/MTs. Materi, latihan, pre-test, post-test, dan game edukasi.">
+  <meta name="theme-color" content="#7c3aed">
+  <link rel="manifest" href="{{ url_for('manifest') }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/apple-touch-icon.png') }}">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="LYZNART">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v={{ app_version }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <div class="bg-shapes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}" aria-label="LYZNART beranda">
+      <img src="{{ url_for('static', filename='icons/icon-192.png') }}" alt="" width="38" height="38">
+      <span>LYZN<b>ART</b></span>
+    </a>
+    <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="mainnav">☰</button>
+    <nav id="mainnav" class="mainnav">
+      <a href="{{ url_for('materi') }}" class="{{ 'active' if request.endpoint == 'materi' }}">📘 Materi</a>
+      <a href="{{ url_for('visualisasi') }}" class="{{ 'active' if request.endpoint == 'visualisasi' }}">🧭 Visualisasi</a>
+      <a href="{{ url_for('quiz', kind='latihan') }}" class="{{ 'active' if request.endpoint == 'quiz' }}">✏️ Latihan</a>
+      <a href="{{ url_for('games') }}" class="{{ 'active' if request.endpoint in ('games','game') }}">🎮 Game</a>
+      {% if user %}
+        <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">🏠 Dashboard</a>
+        <a href="{{ url_for('profil') }}" class="nav-user {{ 'active' if request.endpoint == 'profil' }}">
+          <span class="nav-avatar">{{ avatar_emoji(user.avatar) }}</span>
+          <span class="nav-meta"><b>{{ user.name.split(' ')[0] }}</b><small>Lv {{ lvl.level }} · {{ user.xp }} XP</small></span>
+        </a>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-ghost btn-sm">Masuk</a>
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Daftar</a>
+      {% endif %}
+      <button class="btn btn-cyan btn-sm install-btn" hidden>📲 Install LYZNART</button>
+    </nav>
+  </header>
+
+  <div class="flash-wrap">
+    {% for cat, msg in get_flashed_messages(with_categories=true) %}
+      <div class="flash flash-{{ cat }}" role="status">{{ msg }}<button aria-label="Tutup" onclick="this.parentElement.remove()">×</button></div>
+    {% endfor %}
+  </div>
+
+  <main id="main">{% block content %}{% endblock %}</main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="brand brand-foot"><img src="{{ url_for('static', filename='icons/icon-192.png') }}" alt="" width="30" height="30"><span>LYZN<b>ART</b></span></div>
+        <p>Explore. Learn. Play. Master!<br>Media belajar Sistem Koordinat Kartesius untuk kelas VIII SMP/MTs.</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{ url_for('materi') }}">Materi</a>
+        <a href="{{ url_for('contoh') }}">Contoh Soal</a>
+        <a href="{{ url_for('quiz', kind='pretest') }}">Pre-test</a>
+        <a href="{{ url_for('quiz', kind='posttest') }}">Post-test</a>
+        <a href="{{ url_for('install') }}">Cara Instal</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 LYZNART · v{{ app_version }} · Bisa dipakai langsung di browser, tanpa instal.</p>
+  </footer>
+
+  <div id="toast-zone" class="toast-zone" aria-live="polite"></div>
+  <script>window.LYZ = { loggedIn: {{ 'true' if user else 'false' }} };</script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v={{ app_version }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

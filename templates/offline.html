@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}Offline{% endblock %}
+{% block content %}
+<section class="card center error-box">
+  {{ mascot(150, "bob") }}
+  <h1>Ups, kamu sedang offline 📡</h1>
+  <p>Halaman ini belum tersimpan di perangkatmu. Periksa koneksi internet, lalu coba lagi. Halaman yang pernah kamu buka sebelumnya tetap bisa diakses.</p>
+  <button class="btn btn-primary" onclick="location.reload()">↻ Coba lagi</button>
+  <a class="btn btn-ghost" href="/">🏠 Beranda</a>
+</section>
+{% endblock %}

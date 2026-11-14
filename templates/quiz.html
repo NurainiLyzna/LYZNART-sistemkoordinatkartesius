@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <span class="pill">{{ {'latihan': '✏️ Latihan', 'pretest': '📝 Pre-test', 'posttest': '🎓 Post-test'}[kind] }} · {{ items|length }} soal</span>
+    <h1>{{ title }} Sistem Koordinat Kartesius</h1>
+    <p class="lead">
+      {% if kind == 'pretest' %}Kerjakan <b>sebelum</b> belajar materi untuk mengukur kemampuan awalmu. Santai saja, jawab sejujurnya ya!
+      {% elif kind == 'posttest' %}Kerjakan <b>setelah</b> mempelajari materi dan latihan. Nilai minimal 75 akan memberimu badge <b>Lulus Post-test 🎓</b>.
+      {% else %}40 soal pilihan ganda dari 6 topik. Jawaban dinilai otomatis dan dilengkapi pembahasan.{% endif %}
+      Setiap jawaban benar bernilai hingga <b>{{ xp_rate }} XP</b>.
+    </p>
+    {% if not user %}<div class="warn">🔒 Kamu belum masuk. Kuis tetap bisa dikerjakan, tetapi nilai &amp; XP tidak tersimpan. <a href="{{ url_for('login', next=request.path) }}">Masuk</a> atau <a href="{{ url_for('register') }}">daftar</a>.</div>{% endif %}
+  </div>
+  {{ mascot(110, "bob") }}
+</section>
+
+<nav class="quiz-tabs">
+  <a href="{{ url_for('quiz', kind='pretest') }}" class="{{ 'active' if kind == 'pretest' }}">📝 Pre-test</a>
+  <a href="{{ url_for('quiz', kind='latihan') }}" class="{{ 'active' if kind == 'latihan' }}">✏️ Latihan</a>
+  <a href="{{ url_for('quiz', kind='posttest') }}" class="{{ 'active' if kind == 'posttest' }}">🎓 Post-test</a>
+</nav>
+
+<div class="quiz-sticky card">
+  <div class="quiz-progress"><span id="qAnswered">0</span>/{{ items|length }} terjawab</div>
+  <div class="xpbar"><span id="qBar" style="width:0%"></span></div>
+  {% if kind != 'latihan' %}<div class="quiz-timer" title="Waktu berjalan">⏱️ <span id="qTimer">00:00</span></div>{% endif %}
+</div>
+
+<form id="quizForm" class="quiz" data-kind="{{ kind }}" data-total="{{ items|length }}">
+  {% set ns = namespace(topic='') %}
+  {% for q in items %}
+    {% if kind == 'latihan' and q.topic != ns.topic %}{% set ns.topic = q.topic %}<h2 class="topic-head">📂 {{ q.topic }}</h2>{% endif %}
+    <fieldset class="card question" id="{{ q.id }}" data-qid="{{ q.id }}">
+      <legend><span class="q-no">{{ q.no }}</span><span class="q-text">{{ q.text }}</span></legend>
+      {% if q.plot %}<div class="q-plot">{{ plot_svg(q.plot, 220) }}</div>{% endif %}
+      <div class="options">
+        {% for opt in q.options %}
+          <label class="option"><input type="radio" name="{{ q.id }}" value="{{ loop.index0 }}"><span class="opt-letter">{{ 'ABCD'[loop.index0] }}</span><span class="opt-text">{{ opt }}</span></label>
+        {% endfor %}
+      </div>
+      <div class="feedback" hidden></div>
+    </fieldset>
+  {% endfor %}
+  <div class="quiz-actions">
+    <button type="submit" class="btn btn-primary btn-lg" id="quizSubmit">✅ Kirim Jawaban</button>
+  </div>
+</form>
+
+<dialog id="resultDialog" class="result-dialog">
+  <div class="result-inner">
+    {{ mascot(110, "bob") }}
+    <h2 id="rTitle">Hasil</h2>
+    <div class="score-ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" id="rRing"/></svg><b id="rScore">0</b></div>
+    <p id="rDetail"></p>
+    <p id="rXp" class="xp-pop"></p>
+    <div id="rBadges" class="new-badges"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="rReview">🔍 Lihat Pembahasan</button>
+      <a class="btn btn-cyan" href="{{ url_for('dashboard') if user else url_for('register') }}">{{ '📊 Dashboard' if user else '📝 Daftar untuk menyimpan' }}</a>
+      <button class="btn btn-ghost" id="rRetry">↺ Ulangi</button>
+    </div>
+  </div>
+</dialog>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/quiz.js') }}?v={{ app_version }}"></script>{% endblock %}

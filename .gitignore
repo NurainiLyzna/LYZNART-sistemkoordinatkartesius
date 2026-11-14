@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Rahasia & konfigurasi lokal
+.env
+.github_token
+
+# Database lokal
+instance/
+*.db
+*.sqlite3
+
+# Editor / OS
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db

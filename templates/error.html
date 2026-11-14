@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}{{ code }}{% endblock %}
+{% block content %}
+<section class="card center error-box">
+  {{ mascot(150, "bob") }}
+  <h1>{{ code }}</h1>
+  <p>{{ message }}</p>
+  <a class="btn btn-primary" href="/">🏠 Kembali ke Beranda</a>
+</section>
+{% endblock %}
