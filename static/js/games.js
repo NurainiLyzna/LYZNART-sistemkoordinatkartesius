@@ -171,9 +171,9 @@
       const draw = () => {
         plane.draw();
         trail.forEach((t) => plane.point(t.x, t.y, { color: "rgba(124,58,237,.35)", r: 4, ring: false }));
-        rocks.forEach((r) => plane.sprite("rock", r.x, r.y, 1.05));
-        if (found) plane.sprite("gem", treasure.x, treasure.y, 1.2);
-        plane.sprite("robot", pos.x, pos.y, 1.25);
+        rocks.forEach((r) => plane.sprite("obj-rock", r.x, r.y, 1.05));
+        if (found) plane.sprite("obj-gem", treasure.x, treasure.y, 1.2);
+        plane.sprite("av-robot", pos.x, pos.y, 1.25);
         plane.text(`(${fmt(pos.x)}, ${fmt(pos.y)})`, pos.x, pos.y + 0.85, { size: 12, color: "#5b21b6" });
         midEl.innerHTML = `${I("gem")} Harta di <b>(${fmt(treasure.x)}, ${fmt(treasure.y)})</b>`;
         rightEl.innerHTML = `Level <b>${Math.min(level + 1, 5)}</b>/5`;
@@ -257,8 +257,8 @@
       const sunk = (s) => s.cells.every((c) => shots.get(key(c.x, c.y)) === "hit");
       const draw = () => {
         plane.draw();
-        if (over) ships.forEach((s) => s.cells.forEach((c) => { if (!shots.has(key(c.x, c.y))) plane.sprite("ship", c.x, c.y, 0.95); }));
-        shots.forEach((v, k) => { const [x, y] = k.split(",").map(Number); plane.sprite(v === "hit" ? "fire" : "drop", x, y, 0.95); });
+        if (over) ships.forEach((s) => s.cells.forEach((c) => { if (!shots.has(key(c.x, c.y))) plane.sprite("obj-ship", c.x, c.y, 0.95); }));
+        shots.forEach((v, k) => { const [x, y] = k.split(",").map(Number); plane.sprite(v === "hit" ? "obj-fire" : "obj-drop", x, y, 0.95); });
         if (aim && !over) plane.point(aim.x, aim.y, { color: "rgba(124,58,237,.5)", r: 12, ring: false });
         const left = ships.filter((s) => !sunk(s)).length;
         midEl.innerHTML = `${I("ship")} Sisa kapal <b>${left}</b>/3`;

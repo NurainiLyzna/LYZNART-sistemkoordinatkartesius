@@ -20,7 +20,7 @@ import db  # noqa: E402
 from content.gamify import BADGES, GAMES, LEVELS, MATERI_SECTIONS, game_xp, level_info  # noqa: E402
 from content.questions import QUIZZES, grade, public_items  # noqa: E402
 
-APP_VERSION = "1.3.0"
+APP_VERSION = "1.4.0"
 IS_PRODUCTION = os.environ.get("FLASK_ENV") == "production" or bool(os.environ.get("RENDER"))
 # STATIC_SITE=1 dipakai tools/build_static.py untuk membuat versi GitHub Pages
 # (tanpa server: profil & progres disimpan di browser lewat static/js/local.js)
