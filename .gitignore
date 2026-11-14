@@ -25,3 +25,6 @@ instance/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Hasil build GitHub Pages
+_site/

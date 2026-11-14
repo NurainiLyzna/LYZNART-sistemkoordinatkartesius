@@ -71,7 +71,9 @@
   </footer>
 
   <div id="toast-zone" class="toast-zone" aria-live="polite"></div>
-  <script>window.LYZ = { loggedIn: {{ 'true' if user else 'false' }} };</script>
+  <script>window.LYZ = { loggedIn: {{ 'true' if user else 'false' }}, base: "{{ base }}", isStatic: {{ 'true' if static_site else 'false' }} };</script>
+  {% if static_site %}<script src="{{ base }}/kunci.js?v={{ app_version }}"></script>
+  <script src="{{ url_for('static', filename='js/local.js') }}?v={{ app_version }}"></script>{% endif %}
   <script src="{{ url_for('static', filename='js/main.js') }}?v={{ app_version }}"></script>
   {% block scripts %}{% endblock %}
 </body>

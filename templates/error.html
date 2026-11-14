@@ -6,6 +6,6 @@
   {{ mascot(150, "bob") }}
   <h1>{{ code }}</h1>
   <p>{{ message }}</p>
-  <a class="btn btn-primary" href="/">🏠 Kembali ke Beranda</a>
+  <a class="btn btn-primary" href="{{ url_for('index') }}">🏠 Kembali ke Beranda</a>
 </section>
 {% endblock %}

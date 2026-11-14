@@ -26,7 +26,8 @@
   }
 
   async function api(url, data) {
-    const res = await fetch(url, {
+    if (window.LYZ.isStatic && window.LYZ.localApi) return window.LYZ.localApi(url, data);
+    const res = await fetch((window.LYZ.base || "") + url, {
       method: data === undefined ? "GET" : "POST",
       headers: { "Content-Type": "application/json", "X-Requested-With": "LYZNART" },
       credentials: "same-origin",
@@ -79,7 +80,7 @@
   // ---------- PWA: service worker ----------
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
+      navigator.serviceWorker.register((window.LYZ.base || "") + "/sw.js", { scope: (window.LYZ.base || "") + "/" }).catch(() => {});
     });
   }
 
@@ -104,7 +105,7 @@
   });
 
   installBtns.forEach((b) => b.addEventListener("click", async () => {
-    if (!deferredPrompt) { location.href = "/instal"; return; }
+    if (!deferredPrompt) { location.href = (window.LYZ.base || "") + "/instal" + (window.LYZ.isStatic ? "/" : ""); return; }
     deferredPrompt.prompt();
     const choice = await deferredPrompt.userChoice;
     deferredPrompt = null;

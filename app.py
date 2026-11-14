@@ -1,6 +1,7 @@
 """LYZNART - Explore. Learn. Play. Master!
 Media pembelajaran Sistem Koordinat Kartesius untuk siswa kelas VIII SMP/MTs.
 """
+import json
 import os
 import re
 from datetime import datetime, timezone
@@ -19,8 +20,11 @@ import db  # noqa: E402
 from content.gamify import BADGES, GAMES, LEVELS, MATERI_SECTIONS, game_xp, level_info  # noqa: E402
 from content.questions import QUIZZES, grade, public_items  # noqa: E402
 
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.1.0"
 IS_PRODUCTION = os.environ.get("FLASK_ENV") == "production" or bool(os.environ.get("RENDER"))
+# STATIC_SITE=1 dipakai tools/build_static.py untuk membuat versi GitHub Pages
+# (tanpa server: profil & progres disimpan di browser lewat static/js/local.js)
+STATIC_SITE = os.environ.get("STATIC_SITE") == "1"
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
@@ -45,6 +49,8 @@ def now_iso():
 
 # ---------------------------------------------------------------- helpers
 def current_user():
+    if STATIC_SITE:
+        return None
     if "user" not in g:
         uid = session.get("uid")
         g.user = db.query("SELECT * FROM users WHERE id = ?", (uid,), one=True) if uid else None
@@ -54,6 +60,8 @@ def current_user():
 def login_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
+        if STATIC_SITE:
+            return view(*args, **kwargs)
         if not current_user():
             if request.path.startswith("/api/"):
                 return jsonify({"error": "Silakan masuk terlebih dahulu."}), 401
@@ -105,7 +113,24 @@ def inject_globals():
         "lvl": level_info(user["xp"]) if user else None,
         "app_version": APP_VERSION,
         "GAMES": GAMES,
+        "static_site": STATIC_SITE,
+        "base": request.script_root,
     }
+
+
+@app.route("/kunci.js")
+def static_keys():
+    """Data untuk versi statis (GitHub Pages): kunci jawaban, badge, level, game."""
+    if not STATIC_SITE:
+        abort(404)
+    data = {
+        "quizzes": {k: {"rate": v["xp_per_correct"],
+                        "items": [{"id": q["id"], "answer": q["answer"], "explanation": q["explanation"],
+                                   "topic": q["topic"]} for q in v["items"]]} for k, v in QUIZZES.items()},
+        "badges": BADGES, "levels": LEVELS, "games": GAMES, "materi": MATERI_SECTIONS,
+    }
+    body = "window.LYZ_DATA = " + json.dumps(data, ensure_ascii=False) + ";"
+    return app.response_class(body, mimetype="application/javascript")
 
 
 # ---------------------------------------------------------------- pages
@@ -116,6 +141,8 @@ def index():
 
 @app.route("/daftar", methods=["GET", "POST"])
 def register():
+    if STATIC_SITE:
+        return render_template("local_auth.html")
     if current_user():
         return redirect(url_for("dashboard"))
     form = {}
@@ -154,6 +181,8 @@ def register():
 
 @app.route("/masuk", methods=["GET", "POST"])
 def login():
+    if STATIC_SITE:
+        return render_template("local_auth.html")
     if current_user():
         return redirect(url_for("dashboard"))
     form = {}
@@ -181,6 +210,8 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
+    if STATIC_SITE:
+        return render_template("local_dashboard.html")
     uid = current_user()["id"]
     done = {r["item"] for r in db.query("SELECT item FROM progress WHERE user_id = ?", (uid,))}
     played = {r["kind"][5:] for r in db.query(
@@ -247,6 +278,8 @@ def game(gid):
 @app.route("/profil", methods=["GET", "POST"])
 @login_required
 def profil():
+    if STATIC_SITE:
+        return render_template("local_profil.html", badges=BADGES, levels=LEVELS)
     user = current_user()
     uid = user["id"]
     if request.method == "POST":
@@ -416,7 +449,11 @@ def service_worker():
 
 @app.route("/manifest.webmanifest")
 def manifest():
-    resp = send_from_directory(app.static_folder, "manifest.webmanifest", mimetype="application/manifest+json")
+    with open(os.path.join(app.static_folder, "manifest.webmanifest"), encoding="utf-8") as fh:
+        body = fh.read()
+    if request.script_root:  # mis. GitHub Pages: /LYZNART-sistemkoordinatkartesius
+        body = body.replace('"/', '"' + request.script_root + '/')
+    resp = app.response_class(body, mimetype="application/manifest+json")
     resp.headers["Cache-Control"] = "no-cache"
     return resp
 

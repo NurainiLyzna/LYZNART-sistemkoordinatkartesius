@@ -12,7 +12,7 @@
       {% else %}40 soal pilihan ganda dari 6 topik. Jawaban dinilai otomatis dan dilengkapi pembahasan.{% endif %}
       Setiap jawaban benar bernilai hingga <b>{{ xp_rate }} XP</b>.
     </p>
-    {% if not user %}<div class="warn">🔒 Kamu belum masuk. Kuis tetap bisa dikerjakan, tetapi nilai &amp; XP tidak tersimpan. <a href="{{ url_for('login', next=request.path) }}">Masuk</a> atau <a href="{{ url_for('register') }}">daftar</a>.</div>{% endif %}
+    {% if not user %}<div class="warn guest-only">🔒 Kamu belum masuk. Kuis tetap bisa dikerjakan, tetapi nilai &amp; XP tidak tersimpan. <a href="{{ url_for('login', next=request.path) }}">Masuk</a> atau <a href="{{ url_for('register') }}">daftar</a>.</div>{% endif %}
   </div>
   {{ mascot(110, "bob") }}
 </section>
@@ -59,7 +59,7 @@
     <div id="rBadges" class="new-badges"></div>
     <div class="result-actions">
       <button class="btn btn-primary" id="rReview">🔍 Lihat Pembahasan</button>
-      <a class="btn btn-cyan" href="{{ url_for('dashboard') if user else url_for('register') }}">{{ '📊 Dashboard' if user else '📝 Daftar untuk menyimpan' }}</a>
+      <a class="btn btn-cyan" href="{{ url_for('dashboard') if (user or static_site) else url_for('register') }}">{{ '📊 Dashboard' if (user or static_site) else '📝 Daftar untuk menyimpan' }}</a>
       <button class="btn btn-ghost" id="rRetry">↺ Ulangi</button>
     </div>
   </div>

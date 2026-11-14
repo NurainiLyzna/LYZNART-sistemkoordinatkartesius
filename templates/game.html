@@ -26,7 +26,7 @@
   <div class="game-controls" id="gControls"></div>
   <p class="game-msg" id="gMsg" aria-live="polite"></p>
 </div>
-{% if not user %}<p class="warn center">🔒 Kamu bisa bermain tanpa akun, tetapi skor dan XP hanya tersimpan jika kamu <a href="{{ url_for('login', next=request.path) }}">masuk</a>.</p>{% endif %}
+{% if not user %}<p class="warn center guest-only">🔒 Kamu bisa bermain tanpa akun, tetapi skor dan XP hanya tersimpan jika kamu <a href="{{ url_for('login', next=request.path) }}">masuk</a>.</p>{% endif %}
 {% endblock %}
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/plane.js') }}?v={{ app_version }}"></script>

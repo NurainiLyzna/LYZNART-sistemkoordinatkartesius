@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}Mulai Belajar{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-side">
+    {{ mascot(170, "bob") }}
+    <h2>Ayo bergabung!</h2>
+    <p>Isi namamu sekali saja. XP, badge, dan progres belajarmu otomatis tersimpan di perangkat ini, tanpa kata sandi.</p>
+  </div>
+  <form class="auth-card card" id="localAuth">
+    <h1>📝 Buat Profil Siswa</h1>
+    <label>Nama lengkap<input name="name" required minlength="2" maxlength="60" placeholder="contoh: Nuraini Lyzna"></label>
+    <div class="row2">
+      <label>Kelas<input name="kelas" maxlength="20" placeholder="VIII A"></label>
+      <label>Sekolah<input name="sekolah" maxlength="80" placeholder="SMP ..."></label>
+    </div>
+    <fieldset class="avatar-pick">
+      <legend>Pilih avatar</legend>
+      {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
+        <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if key == 'robot' }}><span>{{ emo }}</span></label>
+      {% endfor %}
+    </fieldset>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Mulai Belajar 🚀</button>
+    <p class="muted center" style="margin-top:12px">💾 Progres disimpan di browser perangkat ini. Gunakan perangkat &amp; browser yang sama agar progresmu tetap ada.</p>
+  </form>
+</section>
+{% endblock %}

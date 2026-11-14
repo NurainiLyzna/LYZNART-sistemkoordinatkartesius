@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "_macros.html" import mascot, avatar_emoji %}
+{% block title %}Profil{% endblock %}
+{% block content %}
+<div data-need-profile>
+<section class="profile-grid">
+  <div class="card profile-card">
+    <span class="big-avatar xl" data-fill="avatar">🤖</span>
+    <h1 data-fill="name">Siswa</h1>
+    <p class="muted" data-fill="kelasline">Kelas VIII</p>
+    <div class="level-box">
+      <div class="level-badge" data-fill="lv">Lv 1</div>
+      <div class="level-info">
+        <b data-fill="lvname">Penjelajah Pemula</b>
+        <div class="xpbar"><span data-fill="lvbar" style="width:0%"></span></div>
+        <small data-fill="lvtext">0 XP</small>
+      </div>
+    </div>
+    <button class="btn btn-ghost btn-sm" id="lpReset">🗑️ Hapus profil &amp; progres</button>
+  </div>
+
+  <form class="card" id="lpForm">
+    <h2>✏️ Ubah Profil</h2>
+    <label>Nama lengkap<input name="name" required minlength="2" maxlength="60"></label>
+    <div class="row2">
+      <label>Kelas<input name="kelas" maxlength="20"></label>
+      <label>Sekolah<input name="sekolah" maxlength="80"></label>
+    </div>
+    <fieldset class="avatar-pick">
+      <legend>Avatar</legend>
+      {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
+        <label><input type="radio" name="avatar" value="{{ key }}"><span>{{ emo }}</span></label>
+      {% endfor %}
+    </fieldset>
+    <button class="btn btn-primary" type="submit">Simpan</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>🏅 Koleksi Badge (<span id="lpBadgeCount">0</span>/{{ badges|length }})</h2>
+  <div class="badge-grid" id="lpBadges"></div>
+</section>
+
+<section class="card">
+  <h2>🪜 Tangga Level</h2>
+  <ol class="level-ladder" id="lpLadder"></ol>
+</section>
+
+<section class="card">
+  <h2>📜 Riwayat Aktivitas</h2>
+  <div id="lpHistory"></div>
+</section>
+</div>
+{% endblock %}

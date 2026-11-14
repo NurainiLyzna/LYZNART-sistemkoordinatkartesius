@@ -7,6 +7,6 @@
   <h1>Ups, kamu sedang offline 📡</h1>
   <p>Halaman ini belum tersimpan di perangkatmu. Periksa koneksi internet, lalu coba lagi. Halaman yang pernah kamu buka sebelumnya tetap bisa diakses.</p>
   <button class="btn btn-primary" onclick="location.reload()">↻ Coba lagi</button>
-  <a class="btn btn-ghost" href="/">🏠 Beranda</a>
+  <a class="btn btn-ghost" href="{{ url_for('index') }}">🏠 Beranda</a>
 </section>
 {% endblock %}
