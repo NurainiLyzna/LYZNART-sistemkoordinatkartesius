@@ -47,14 +47,34 @@ class LyznartTest(unittest.TestCase):
         self.assertEqual(level_info(5000)["pct"], 100)
 
     # ------------------------------------------------------------ halaman publik
-    def test_public_pages(self):
-        for url in ["/", "/materi", "/contoh-soal", "/visualisasi", "/kuis/latihan", "/kuis/pretest",
-                    "/kuis/posttest", "/game", "/game/titik", "/game/kuadran", "/game/robot", "/game/kapal",
-                    "/instal", "/offline", "/masuk", "/daftar", "/healthz"]:
+    def test_open_pages_for_guest(self):
+        for url in ["/masuk", "/daftar", "/instal", "/offline", "/healthz"]:
             r = self.c.get(url)
             self.assertEqual(r.status_code, 200, url)
 
+    def test_first_open_shows_login(self):
+        r = self.c.get("/")
+        self.assertEqual(r.status_code, 302)
+        self.assertTrue(r.headers["Location"].endswith("/masuk"))
+        html = self.c.get("/", follow_redirects=True).get_data(as_text=True)
+        self.assertIn("auth-tabs", html)
+        self.assertIn("Selamat datang kembali", html)
+        for url in ["/materi", "/kuis/latihan", "/game/robot", "/visualisasi"]:
+            r = self.c.get(url)
+            self.assertEqual(r.status_code, 302, url)
+            self.assertIn("/masuk?next=", r.headers["Location"])
+
+    def test_pages_after_login(self):
+        self.register("halaman1")
+        for url in ["/", "/materi", "/contoh-soal", "/visualisasi", "/kuis/latihan", "/kuis/pretest",
+                    "/kuis/posttest", "/game", "/game/titik", "/game/kuadran", "/game/robot", "/game/kapal",
+                    "/instal", "/dashboard", "/profil"]:
+            r = self.c.get(url)
+            self.assertEqual(r.status_code, 200, url)
+        self.assertIn("Keluar", self.c.get("/").get_data(as_text=True))
+
     def test_quiz_pages_hide_answers(self):
+        self.register("kunci1")
         html = self.c.get("/kuis/latihan").get_data(as_text=True)
         self.assertNotIn("Pembahasan", html.split("quizForm")[1].split("resultDialog")[0][:200])
         self.assertEqual(html.count('class="card question"'), 40)
@@ -77,6 +97,7 @@ class LyznartTest(unittest.TestCase):
             r.close()
 
     def test_404(self):
+        self.register("nf404")
         self.assertEqual(self.c.get("/tidak-ada").status_code, 404)
         self.assertEqual(self.c.get("/kuis/xyz").status_code, 404)
         self.assertEqual(self.c.get("/game/xyz").status_code, 404)
@@ -166,9 +187,11 @@ class LyznartTest(unittest.TestCase):
         r = self.register("dup1")
         self.assertIn("sudah dipakai", r.get_data(as_text=True))
 
-    def test_guest_quiz_not_saved(self):
+    def test_guest_api_blocked(self):
+        self.assertEqual(self.post_json("/api/quiz/latihan", {"answers": {}}).status_code, 401)
+        self.assertEqual(self.post_json("/api/game/titik", {"score": 10}).status_code, 401)
+        self.register("api1")
         d = self.post_json("/api/quiz/latihan", {"answers": {}}).get_json()
-        self.assertFalse(d["saved"])
         self.assertEqual(d["score"], 0)
         self.assertEqual(self.post_json("/api/quiz/latihan", {"answers": []}).status_code, 400)
 

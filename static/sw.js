@@ -1,9 +1,9 @@
 /* LYZNART service worker (bekerja di root "/" maupun sub-folder GitHub Pages) */
-const VERSION = "lyznart-v1.1.0";
+const VERSION = "lyznart-v1.2.0";
 const STATIC_CACHE = VERSION + "-static";
 const PAGE_CACHE = VERSION + "-pages";
 const BASE = new URL(self.registration.scope).pathname.replace(/\/$/, "");
-const V = "?v=1.1.0";
+const V = "?v=1.2.0";
 const IS_STATIC = self.location.hostname.endsWith("github.io");
 const PRECACHE = [
   IS_STATIC ? "/offline/" : "/offline",

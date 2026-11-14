@@ -20,7 +20,7 @@ import db  # noqa: E402
 from content.gamify import BADGES, GAMES, LEVELS, MATERI_SECTIONS, game_xp, level_info  # noqa: E402
 from content.questions import QUIZZES, grade, public_items  # noqa: E402
 
-APP_VERSION = "1.1.0"
+APP_VERSION = "1.2.0"
 IS_PRODUCTION = os.environ.get("FLASK_ENV") == "production" or bool(os.environ.get("RENDER"))
 # STATIC_SITE=1 dipakai tools/build_static.py untuk membuat versi GitHub Pages
 # (tanpa server: profil & progres disimpan di browser lewat static/js/local.js)
@@ -105,6 +105,22 @@ def latest_result(uid, kind):
                     (uid, kind), one=True)
 
 
+# Halaman yang boleh dibuka tanpa masuk; selain ini pengunjung diarahkan ke halaman Masuk
+OPEN_ENDPOINTS = {"login", "register", "logout", "static", "service_worker", "manifest", "favicon",
+                  "healthz", "offline", "install", "static_keys"}
+
+
+@app.before_request
+def require_login():
+    if STATIC_SITE or request.endpoint is None or request.endpoint in OPEN_ENDPOINTS or current_user():
+        return None
+    if request.path.startswith("/api/"):
+        return jsonify({"error": "Silakan masuk terlebih dahulu."}), 401
+    if request.path != "/":
+        flash("Masuk dulu yuk, supaya progresmu tersimpan!", "info")
+    return redirect(url_for("login", next=request.path if request.path != "/" else None))
+
+
 @app.context_processor
 def inject_globals():
     user = current_user()
@@ -142,7 +158,7 @@ def index():
 @app.route("/daftar", methods=["GET", "POST"])
 def register():
     if STATIC_SITE:
-        return render_template("local_auth.html")
+        return render_template("local_auth.html", mode="register")
     if current_user():
         return redirect(url_for("dashboard"))
     form = {}
@@ -182,7 +198,7 @@ def register():
 @app.route("/masuk", methods=["GET", "POST"])
 def login():
     if STATIC_SITE:
-        return render_template("local_auth.html")
+        return render_template("local_auth.html", mode="login")
     if current_user():
         return redirect(url_for("dashboard"))
     form = {}

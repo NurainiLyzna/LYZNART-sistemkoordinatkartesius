@@ -1,28 +1,46 @@
 {% extends "base.html" %}
 {% from "_macros.html" import mascot, avatar_emoji %}
-{% block title %}Mulai Belajar{% endblock %}
+{% block title %}{{ 'Daftar' if mode == 'register' else 'Masuk' }}{% endblock %}
+{% block body_class %}gate{% endblock %}
 {% block content %}
-<section class="auth-wrap">
-  <div class="auth-side">
-    {{ mascot(170, "bob") }}
-    <h2>Ayo bergabung!</h2>
-    <p>Isi namamu sekali saja. XP, badge, dan progres belajarmu otomatis tersimpan di perangkat ini, tanpa kata sandi.</p>
+<section class="gate-wrap">
+  {% include "_gate_hero.html" %}
+  <div class="gate-panel">
+    <nav class="auth-tabs" aria-label="Pilih masuk atau daftar">
+      <a href="{{ url_for('login') }}" class="{{ 'active' if mode == 'login' }}">🔑 Masuk</a>
+      <a href="{{ url_for('register') }}" class="{{ 'active' if mode == 'register' }}">📝 Daftar</a>
+    </nav>
+    <form class="auth-card card" id="localAuth" data-mode="{{ mode }}" autocomplete="on" novalidate>
+      {% if mode == 'register' %}
+        <h2>Buat akun siswa ✨</h2>
+        <p class="muted">Gratis! XP, badge, dan progres belajarmu akan tersimpan.</p>
+        <label>Nama lengkap<input name="name" required minlength="2" maxlength="60" placeholder="contoh: Nuraini Lyzna"></label>
+      {% else %}
+        <h2>Selamat datang kembali! 👋</h2>
+        <p class="muted">Masuk untuk melanjutkan petualangan koordinatmu.</p>
+      {% endif %}
+      <label>Username<input name="username" required minlength="3" maxlength="20" autocapitalize="none" placeholder="contoh: lyzna08" autocomplete="username"></label>
+      {% if mode == 'register' %}
+        <div class="row2">
+          <label>Kelas<input name="kelas" maxlength="20" placeholder="VIII A"></label>
+          <label>Sekolah<input name="sekolah" maxlength="80" placeholder="SMP ..."></label>
+        </div>
+        <fieldset class="avatar-pick">
+          <legend>Pilih avatar</legend>
+          {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
+            <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if key == 'robot' }}><span>{{ emo }}</span></label>
+          {% endfor %}
+        </fieldset>
+      {% endif %}
+      <label>Kata sandi<input type="password" name="password" required minlength="6" autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}" placeholder="minimal 6 karakter"></label>
+      <p class="form-error" id="authErr" role="alert" hidden></p>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">{{ 'Daftar & Mulai 🚀' if mode == 'register' else '🔑 Masuk' }}</button>
+      <p class="muted center switch-line">
+        {% if mode == 'register' %}Sudah punya akun? <a href="{{ url_for('login') }}">Masuk di sini</a>
+        {% else %}Belum punya akun? <a href="{{ url_for('register') }}">Daftar gratis</a>{% endif %}
+      </p>
+      <p class="muted center tiny">💾 Akun &amp; progres tersimpan di browser perangkat ini.</p>
+    </form>
   </div>
-  <form class="auth-card card" id="localAuth">
-    <h1>📝 Buat Profil Siswa</h1>
-    <label>Nama lengkap<input name="name" required minlength="2" maxlength="60" placeholder="contoh: Nuraini Lyzna"></label>
-    <div class="row2">
-      <label>Kelas<input name="kelas" maxlength="20" placeholder="VIII A"></label>
-      <label>Sekolah<input name="sekolah" maxlength="80" placeholder="SMP ..."></label>
-    </div>
-    <fieldset class="avatar-pick">
-      <legend>Pilih avatar</legend>
-      {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
-        <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if key == 'robot' }}><span>{{ emo }}</span></label>
-      {% endfor %}
-    </fieldset>
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Mulai Belajar 🚀</button>
-    <p class="muted center" style="margin-top:12px">💾 Progres disimpan di browser perangkat ini. Gunakan perangkat &amp; browser yang sama agar progresmu tetap ada.</p>
-  </form>
 </section>
 {% endblock %}

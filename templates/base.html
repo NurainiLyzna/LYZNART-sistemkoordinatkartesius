@@ -15,6 +15,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v={{ app_version }}">
+  {% if static_site %}<script>
+    /* gerbang masuk versi statis: tanpa akun aktif → halaman Masuk */
+    (function () { try {
+      var b = "{{ base }}", p = location.pathname.slice(b.length).replace(/\/$/, "") || "/";
+      var open = ["/masuk", "/daftar", "/instal", "/offline"];
+      var s = JSON.parse(localStorage.getItem("lyznart:v2") || "null");
+      var ok = s && s.current && s.accounts && s.accounts[s.current];
+      if (!ok && open.indexOf(p) < 0) { document.documentElement.style.visibility = "hidden"; location.replace(b + "/masuk/"); }
+    } catch (e) {} })();
+  </script>{% endif %}
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -37,6 +47,7 @@
           <span class="nav-avatar">{{ avatar_emoji(user.avatar) }}</span>
           <span class="nav-meta"><b>{{ user.name.split(' ')[0] }}</b><small>Lv {{ lvl.level }} · {{ user.xp }} XP</small></span>
         </a>
+        <a href="{{ url_for('logout') }}" class="nav-logout">🚪 Keluar</a>
       {% else %}
         <a href="{{ url_for('login') }}" class="btn btn-ghost btn-sm">Masuk</a>
         <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Daftar</a>

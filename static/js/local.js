@@ -6,12 +6,28 @@
   if (!D) return;
   const LYZ = window.LYZ;
   const BASE = LYZ.base || "";
-  const KEY = "lyznart:v1";
+  const KEY = "lyznart:v2";   // { accounts: { username: {user, pw, salt, results, badges, progress} }, current }
   const AVA = { robot: "🤖", astronot: "🧑‍🚀", kucing: "🐱", burung: "🦉" };
 
-  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* mode privat */ } }
-  let S = load();
+  function loadAll() {
+    try { const a = JSON.parse(localStorage.getItem(KEY)); if (a && a.accounts) return a; } catch (e) { /* abaikan */ }
+    return { accounts: {}, current: null };
+  }
+  let ALL = loadAll();
+  let S = ALL.current ? ALL.accounts[ALL.current] || null : null;
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(ALL)); return true; } catch (e) { return false; } }
+
+  async function hashPw(pw, salt) {
+    const text = salt + ":" + pw;
+    if (window.crypto && crypto.subtle) {
+      const h = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return [...new Uint8Array(h)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+    let h = 2166136261;  // cadangan FNV-1a bila Web Crypto tidak tersedia
+    for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return "fnv" + (h >>> 0).toString(16);
+  }
+  function logout() { ALL.current = null; save(); location.href = page("/masuk"); }
   const hasUser = () => !!(S && S.user);
   LYZ.loggedIn = hasUser();
   const now = () => new Date().toISOString().slice(0, 19);
@@ -150,6 +166,7 @@
     set("avatar", AVA[u.avatar] || "🤖");
     set("first", u.name.split(" ")[0]);
     set("name", u.name);
+    set("handle", "@" + (u.username || ALL.current));
     set("kelasline", (u.kelas || "Kelas VIII") + (u.sekolah ? " · " + u.sekolah : ""));
     set("lv", "Lv " + lv.level);
     set("lvname", lv.name);
@@ -173,8 +190,11 @@
     me.querySelector(".nav-avatar").textContent = AVA[u.avatar] || "🤖";
     me.querySelector("b").textContent = u.name.split(" ")[0];
     me.querySelector("small").textContent = `Lv ${lv.level} · ${u.xp} XP`;
+    const out = document.createElement("a");
+    out.href = page("/masuk"); out.className = "nav-logout"; out.textContent = "🚪 Keluar";
+    out.addEventListener("click", (e) => { e.preventDefault(); logout(); });
     const install = $(".install-btn", navEl);
-    navEl.insertBefore(dash, install); navEl.insertBefore(me, install);
+    navEl.insertBefore(dash, install); navEl.insertBefore(me, install); navEl.insertBefore(out, install);
   }
 
   function markDone() {
@@ -188,18 +208,37 @@
     const form = $("#localAuth");
     if (!form) return;
     if (hasUser()) { location.replace(page("/dashboard")); return; }
-    form.addEventListener("submit", (e) => {
+    const err = $("#authErr");
+    const fail = (m) => { err.textContent = m; err.hidden = false; };
+    const mode = form.dataset.mode;
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      err.hidden = true;
       const f = new FormData(form);
+      const username = String(f.get("username") || "").trim().toLowerCase();
+      const password = String(f.get("password") || "");
+      if (mode === "login") {
+        const acc = ALL.accounts[username];
+        if (!acc || acc.pw !== await hashPw(password, acc.salt)) return fail("Username atau kata sandi salah.");
+        ALL.current = username;
+        if (!save()) return fail("Browser ini tidak mengizinkan penyimpanan data (mode privat?).");
+        location.href = page("/dashboard");
+        return;
+      }
       const name = String(f.get("name") || "").trim().slice(0, 60);
-      if (name.length < 2) { LYZ.toast && LYZ.toast("Nama minimal 2 karakter."); return; }
-      S = {
-        user: { name, kelas: String(f.get("kelas") || "").trim().slice(0, 20), sekolah: String(f.get("sekolah") || "").trim().slice(0, 80),
+      if (name.length < 2) return fail("Nama lengkap minimal 2 karakter.");
+      if (!/^[a-z0-9_.]{3,20}$/.test(username)) return fail("Username 3–20 karakter: huruf kecil, angka, titik, atau garis bawah.");
+      if (password.length < 6) return fail("Kata sandi minimal 6 karakter.");
+      if (ALL.accounts[username]) return fail("Username sudah dipakai di perangkat ini, coba yang lain ya.");
+      const salt = [...crypto.getRandomValues(new Uint8Array(8))].map((b) => b.toString(16).padStart(2, "0")).join("");
+      ALL.accounts[username] = {
+        user: { username, name, kelas: String(f.get("kelas") || "").trim().slice(0, 20), sekolah: String(f.get("sekolah") || "").trim().slice(0, 80),
                 avatar: AVA[f.get("avatar")] ? f.get("avatar") : "robot", xp: 10, created_at: now() },
+        pw: await hashPw(password, salt), salt,
         results: [], badges: { welcome: now() }, progress: {},
       };
-      save();
-      if (!load()) { alert("Browser ini tidak mengizinkan penyimpanan data (mode privat?). Progres tidak akan tersimpan."); }
+      ALL.current = username;
+      if (!save()) return fail("Browser ini tidak mengizinkan penyimpanan data (mode privat?). Progres tidak akan tersimpan.");
       location.href = page("/dashboard");
     });
   }
@@ -250,10 +289,11 @@
       save(); location.reload();
     });
     $("#lpReset").addEventListener("click", () => {
-      if (!confirm("Hapus profil dan semua progres di perangkat ini? Tindakan ini tidak bisa dibatalkan.")) return;
-      try { localStorage.removeItem(KEY); } catch (e) { /* abaikan */ }
-      location.href = page("/");
+      if (!confirm("Hapus akun ini beserta semua progresnya di perangkat ini? Tindakan ini tidak bisa dibatalkan.")) return;
+      delete ALL.accounts[ALL.current];
+      logout();
     });
+    $("#lpLogout").addEventListener("click", logout);
     // badge
     const grid = $("#lpBadges");
     $("#lpBadgeCount").textContent = Object.keys(S.badges).length;
@@ -281,6 +321,6 @@
   }
 
   // halaman yang butuh profil
-  if ($("[data-need-profile]") && !hasUser()) { location.replace(page("/daftar")); return; }
+  if ($("[data-need-profile]") && !hasUser()) { location.replace(page("/masuk")); return; }
   nav(); fillCommon(); markDone(); authPage(); dashboardPage(); profilPage();
 })();
