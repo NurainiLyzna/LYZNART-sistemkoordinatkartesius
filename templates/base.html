@@ -1,4 +1,4 @@
-{% from "_macros.html" import mascot, avatar_emoji %}<!doctype html>
+{% from "_macros.html" import mascot, avatar_emoji, icon %}<!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8">
@@ -28,6 +28,7 @@
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
+  {% include "_icons.html" %}
   <div class="bg-shapes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
   <header class="topbar">
@@ -37,22 +38,22 @@
     </a>
     <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="mainnav">☰</button>
     <nav id="mainnav" class="mainnav">
-      <a href="{{ url_for('materi') }}" class="{{ 'active' if request.endpoint == 'materi' }}">📘 Materi</a>
-      <a href="{{ url_for('visualisasi') }}" class="{{ 'active' if request.endpoint == 'visualisasi' }}">🧭 Visualisasi</a>
-      <a href="{{ url_for('quiz', kind='latihan') }}" class="{{ 'active' if request.endpoint == 'quiz' }}">✏️ Latihan</a>
-      <a href="{{ url_for('games') }}" class="{{ 'active' if request.endpoint in ('games','game') }}">🎮 Game</a>
+      <a href="{{ url_for('materi') }}" class="{{ 'active' if request.endpoint == 'materi' }}">{{ icon('book') }} Materi</a>
+      <a href="{{ url_for('visualisasi') }}" class="{{ 'active' if request.endpoint == 'visualisasi' }}">{{ icon('compass') }} Visualisasi</a>
+      <a href="{{ url_for('quiz', kind='latihan') }}" class="{{ 'active' if request.endpoint == 'quiz' }}">{{ icon('pencil') }} Latihan</a>
+      <a href="{{ url_for('games') }}" class="{{ 'active' if request.endpoint in ('games','game') }}">{{ icon('gamepad') }} Game</a>
       {% if user %}
-        <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">🏠 Dashboard</a>
+        <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">{{ icon('home') }} Dashboard</a>
         <a href="{{ url_for('profil') }}" class="nav-user {{ 'active' if request.endpoint == 'profil' }}">
           <span class="nav-avatar">{{ avatar_emoji(user.avatar) }}</span>
           <span class="nav-meta"><b>{{ user.name.split(' ')[0] }}</b><small>Lv {{ lvl.level }} · {{ user.xp }} XP</small></span>
         </a>
-        <a href="{{ url_for('logout') }}" class="nav-logout">🚪 Keluar</a>
+        <a href="{{ url_for('logout') }}" class="nav-logout">{{ icon('logout') }} Keluar</a>
       {% else %}
         <a href="{{ url_for('login') }}" class="btn btn-ghost btn-sm">Masuk</a>
         <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Daftar</a>
       {% endif %}
-      <button class="btn btn-cyan btn-sm install-btn" hidden>📲 Install LYZNART</button>
+      <button class="btn btn-cyan btn-sm install-btn" hidden>{{ icon('install') }} Install LYZNART</button>
     </nav>
   </header>
 
@@ -82,7 +83,8 @@
   </footer>
 
   <div id="toast-zone" class="toast-zone" aria-live="polite"></div>
-  <script>window.LYZ = { loggedIn: {{ 'true' if user else 'false' }}, base: "{{ base }}", isStatic: {{ 'true' if static_site else 'false' }} };</script>
+  <script>window.LYZ = { loggedIn: {{ 'true' if user else 'false' }}, base: "{{ base }}", isStatic: {{ 'true' if static_site else 'false' }},
+    icon: function (n, c) { return '<svg class="ci ' + (c || '') + '" aria-hidden="true"><use href="#ci-' + n + '"/></svg>'; } };</script>
   {% if static_site %}<script src="{{ base }}/kunci.js?v={{ app_version }}"></script>
   <script src="{{ url_for('static', filename='js/local.js') }}?v={{ app_version }}"></script>{% endif %}
   <script src="{{ url_for('static', filename='js/main.js') }}?v={{ app_version }}"></script>

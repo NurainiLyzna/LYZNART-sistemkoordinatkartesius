@@ -14,12 +14,12 @@
   }
 
   // ---------- toast ----------
-  function toast(msg, cls) {
+  function toast(msg, cls, html) {
     const zone = document.getElementById("toast-zone");
     if (!zone) return;
     const el = document.createElement("div");
     el.className = "toast " + (cls || "");
-    el.textContent = msg;
+    if (html) el.innerHTML = msg; else el.textContent = msg;
     zone.appendChild(el);
     setTimeout(() => { el.style.opacity = "0"; el.style.transition = "opacity .4s"; }, 3200);
     setTimeout(() => el.remove(), 3700);
@@ -39,8 +39,10 @@
 
   function showRewards(r) {
     if (!r) return;
-    if (r.xp_gained > 0) toast("+" + r.xp_gained + " XP ✨");
-    (r.new_badges || []).forEach((b, i) => setTimeout(() => toast("Badge baru: " + b.icon + " " + b.name, "badge-toast"), 600 * (i + 1)));
+    const ic = window.LYZ.icon;
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));
+    if (r.xp_gained > 0) toast(ic("star") + " +" + r.xp_gained + " XP", "", true);
+    (r.new_badges || []).forEach((b, i) => setTimeout(() => toast(ic(b.icon) + " Badge baru: <b>" + esc(b.name) + "</b>", "badge-toast", true), 600 * (i + 1)));
     if (r.level) {
       const meta = document.querySelector(".nav-meta small");
       if (meta) meta.textContent = "Lv " + r.level.level + " · " + r.level.xp + " XP";
@@ -52,7 +54,7 @@
   // ---------- tandai selesai (materi, contoh, visualisasi) ----------
   document.querySelectorAll(".mark-done").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      if (!window.LYZ.loggedIn) { toast("Masuk dulu supaya progresmu tersimpan 🔑"); return; }
+      if (!window.LYZ.loggedIn) { toast(window.LYZ.icon("key") + " Masuk dulu supaya progresmu tersimpan", "", true); return; }
       if (btn.classList.contains("is-done")) return;
       btn.disabled = true;
       try {
@@ -73,7 +75,7 @@
       const show = sol.hidden;
       sol.hidden = !show;
       btn.setAttribute("aria-expanded", String(show));
-      btn.textContent = show ? "🙈 Sembunyikan pembahasan" : "👀 Lihat pembahasan";
+      btn.innerHTML = window.LYZ.icon("eye") + (show ? " Sembunyikan pembahasan" : " Lihat pembahasan");
     });
   });
 
@@ -92,7 +94,7 @@
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
   if (state) {
-    if (standalone) state.textContent = "✅ LYZNART sudah terpasang dan sedang berjalan sebagai aplikasi.";
+    if (standalone) state.innerHTML = window.LYZ.icon("check") + " LYZNART sudah terpasang dan sedang berjalan sebagai aplikasi.";
     else if (isIOS) state.textContent = "Di iPhone/iPad, gunakan Safari → Bagikan → Tambah ke Layar Utama.";
     else state.textContent = "Jika tombol Install tidak muncul, gunakan menu browser sesuai petunjuk di bawah.";
   }
@@ -101,7 +103,7 @@
     e.preventDefault();
     deferredPrompt = e;
     installBtns.forEach((b) => (b.hidden = false));
-    if (state) state.textContent = "Perangkatmu mendukung instalasi. Tekan tombol di atas! 🎉";
+    if (state) state.innerHTML = "Perangkatmu mendukung instalasi. Tekan tombol di atas! " + window.LYZ.icon("sparkle");
   });
 
   installBtns.forEach((b) => b.addEventListener("click", async () => {
@@ -110,11 +112,11 @@
     const choice = await deferredPrompt.userChoice;
     deferredPrompt = null;
     installBtns.forEach((x) => (x.hidden = true));
-    toast(choice.outcome === "accepted" ? "Mantap! LYZNART sedang dipasang 📲" : "Tidak apa-apa, LYZNART tetap bisa dipakai di browser 😊");
+    toast(choice.outcome === "accepted" ? window.LYZ.icon("install") + " Mantap! LYZNART sedang dipasang" : window.LYZ.icon("heart") + " Tidak apa-apa, LYZNART tetap bisa dipakai di browser", "", true);
   }));
 
   window.addEventListener("appinstalled", () => {
     installBtns.forEach((b) => (b.hidden = true));
-    toast("LYZNART berhasil dipasang! 🎉");
+    toast(window.LYZ.icon("sparkle") + " LYZNART berhasil dipasang!", "", true);
   });
 })();

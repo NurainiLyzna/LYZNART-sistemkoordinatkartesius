@@ -15,19 +15,20 @@
   const controls = document.getElementById("gControls");
   const msgEl = document.getElementById("gMsg");
 
+  const I = (n) => window.LYZ.icon(n);
   const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
   let score = 0;
   let timers = [];
   function setScore(v) { score = Math.max(0, v); scoreEl.textContent = score; }
-  function msg(text, cls) { msgEl.textContent = text; msgEl.className = "game-msg " + (cls || ""); }
+  function msg(text, cls) { msgEl.innerHTML = text; msgEl.className = "game-msg " + (cls || ""); }
   function clearTimers() { timers.forEach(clearInterval); timers.forEach(clearTimeout); timers = []; }
 
   async function finish(summary) {
     clearTimers();
     overlay.hidden = false;
-    rulesEl.innerHTML = `<p style="font-size:1.3rem"><b>Permainan selesai!</b></p><p>${summary}</p><p style="font-size:2rem;font-family:'Baloo 2'"><b>⭐ ${score}</b></p><p id="gSave" class="muted">Menyimpan skor...</p>`;
-    overlay.querySelector("h2").textContent = score >= 100 ? "Luar biasa! 🏆" : score >= 50 ? "Hebat! 🎉" : "Ayo coba lagi! 💪";
-    startBtn.textContent = "↺ Main Lagi";
+    rulesEl.innerHTML = `<p style="font-size:1.3rem"><b>Permainan selesai!</b></p><p>${summary}</p><p style="font-size:2rem;font-family:'Baloo 2'"><b>${I("star")} ${score}</b></p><p id="gSave" class="muted">Menyimpan skor...</p>`;
+    overlay.querySelector("h2").innerHTML = score >= 100 ? "Luar biasa! " + I("trophy") : score >= 50 ? "Hebat! " + I("sparkle") : "Ayo coba lagi! " + I("heart");
+    startBtn.innerHTML = I("refresh") + " Main Lagi";
     const save = document.getElementById("gSave");
     try {
       const r = await window.LYZ.api("/api/game/" + gid, { score });
@@ -50,8 +51,8 @@
       const draw = () => {
         plane.draw();
         marks.forEach((m) => plane.point(m.x, m.y, { color: m.ok ? "#059669" : "#dc2626", r: 7 }));
-        midEl.innerHTML = `🎯 Ketuk <b>(${fmt(target.x)}, ${fmt(target.y)})</b>`;
-        rightEl.innerHTML = `⏱️ <b>${time}</b> dtk`;
+        midEl.innerHTML = `${I("target")} Ketuk <b>(${fmt(target.x)}, ${fmt(target.y)})</b>`;
+        rightEl.innerHTML = `${I("clock")} <b>${time}</b> dtk`;
       };
       plane.onResize = draw;
       next(); draw();
@@ -89,7 +90,7 @@
   // 2. KUADRAN KILAT
   // =====================================================================
   const kuadran = {
-    rules: `<ul><li>Sebuah titik muncul di bidang koordinat.</li><li>Pilih letaknya: <b>Kuadran I–IV</b>, <b>sumbu-x</b>, atau <b>sumbu-y</b>.</li><li>15 soal. Benar <b>+10</b>, jawab di bawah 3 detik <b>+5</b> bonus kilat ⚡.</li></ul>`,
+    rules: `<ul><li>Sebuah titik muncul di bidang koordinat.</li><li>Pilih letaknya: <b>Kuadran I–IV</b>, <b>sumbu-x</b>, atau <b>sumbu-y</b>.</li><li>15 soal. Benar <b>+10</b>, jawab di bawah 3 detik <b>+5</b> bonus kilat ${I("bolt")}.</li></ul>`,
     start() {
       const plane = new Plane(canvas, { range: 9, shade: false });
       const opts = ["kuadran I", "kuadran II", "kuadran III", "kuadran IV", "sumbu-x", "sumbu-y"];
@@ -106,7 +107,7 @@
         plane.draw();
         plane.point(p.x, p.y, { r: 10, label: `(${fmt(p.x)}, ${fmt(p.y)})` });
         midEl.innerHTML = `Soal <b>${Math.min(round + 1, 15)}</b>/15`;
-        rightEl.innerHTML = `✅ <b>${correct}</b>`;
+        rightEl.innerHTML = `${I("check")} <b>${correct}</b>`;
       };
       plane.onResize = draw;
       controls.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
@@ -115,7 +116,7 @@
         const ans = quadrantOf(p.x, p.y);
         const ok = b.dataset.a === ans;
         const fast = Date.now() - t0 < 3000;
-        if (ok) { correct++; setScore(score + 10 + (fast ? 5 : 0)); msg(fast ? "Benar! ⚡ Bonus kilat +5" : "Benar! +10", "ok"); }
+        if (ok) { correct++; setScore(score + 10 + (fast ? 5 : 0)); msg(fast ? "Benar! " + I("bolt") + " Bonus kilat +5" : "Benar! " + I("check") + " +10", "ok"); }
         else msg(`Belum tepat. (${fmt(p.x)}, ${fmt(p.y)}) ada di ${ans}.`, "no");
         b.classList.add(ok ? "btn-primary" : "btn-cyan");
         timers.push(setTimeout(() => {
@@ -133,7 +134,7 @@
   // 3. ROBOT HARTA KARUN
   // =====================================================================
   const robot = {
-    rules: `<ul><li>Harta karun <b>tersembunyi</b>: hanya koordinatnya yang diberitahu.</li><li>Susun langkah robot dengan tombol panah (1 langkah = 1 satuan), lalu tekan <b>▶ Jalankan</b>.</li><li>Hindari batu 🪨! 5 level. Berhasil pada percobaan pertama <b>+30</b>, rute terpendek <b>+10</b> bonus.</li></ul>`,
+    rules: `<ul><li>Harta karun <b>tersembunyi</b>: hanya koordinatnya yang diberitahu.</li><li>Susun langkah robot dengan tombol panah (1 langkah = 1 satuan), lalu tekan <b>Jalankan</b>.</li><li>Hindari batu ${I("rock")}! 5 level. Berhasil pada percobaan pertama <b>+30</b>, rute terpendek <b>+10</b> bonus.</li></ul>`,
     start() {
       const R = 6;
       const plane = new Plane(canvas, { range: R, shade: false });
@@ -170,29 +171,29 @@
       const draw = () => {
         plane.draw();
         trail.forEach((t) => plane.point(t.x, t.y, { color: "rgba(124,58,237,.35)", r: 4, ring: false }));
-        rocks.forEach((r) => plane.emoji("🪨", r.x, r.y, 0.95));
-        if (found) plane.emoji("💎", treasure.x, treasure.y, 1.1);
-        plane.emoji("🤖", pos.x, pos.y, 1.05);
+        rocks.forEach((r) => plane.sprite("rock", r.x, r.y, 1.05));
+        if (found) plane.sprite("gem", treasure.x, treasure.y, 1.2);
+        plane.sprite("robot", pos.x, pos.y, 1.25);
         plane.text(`(${fmt(pos.x)}, ${fmt(pos.y)})`, pos.x, pos.y + 0.85, { size: 12, color: "#5b21b6" });
-        midEl.innerHTML = `💎 Harta di <b>(${fmt(treasure.x)}, ${fmt(treasure.y)})</b>`;
+        midEl.innerHTML = `${I("gem")} Harta di <b>(${fmt(treasure.x)}, ${fmt(treasure.y)})</b>`;
         rightEl.innerHTML = `Level <b>${Math.min(level + 1, 5)}</b>/5`;
       };
       plane.onResize = draw;
-      const arrows = { R: "➡️", L: "⬅️", U: "⬆️", D: "⬇️" };
+      const arrows = { R: "→", L: "←", U: "↑", D: "↓" };
       controls.innerHTML = `
         <div class="program" id="rProg" aria-label="Program robot"></div>
         <div class="pad">
-          <button class="btn btn-ghost up" data-m="U" aria-label="Atas">⬆️</button>
-          <button class="btn btn-ghost left" data-m="L" aria-label="Kiri">⬅️</button>
-          <button class="btn btn-ghost down" data-m="D" aria-label="Bawah">⬇️</button>
-          <button class="btn btn-ghost right" data-m="R" aria-label="Kanan">➡️</button>
+          <button class="btn btn-ghost up" data-m="U" aria-label="Atas">↑</button>
+          <button class="btn btn-ghost left" data-m="L" aria-label="Kiri">←</button>
+          <button class="btn btn-ghost down" data-m="D" aria-label="Bawah">↓</button>
+          <button class="btn btn-ghost right" data-m="R" aria-label="Kanan">→</button>
         </div>
         <button class="btn btn-ghost" id="rUndo">⌫ Hapus</button>
-        <button class="btn btn-ghost" id="rClear">🗑️ Kosongkan</button>
-        <button class="btn btn-primary" id="rRun">▶ Jalankan</button>`;
+        <button class="btn btn-ghost" id="rClear">${I("warn")} Kosongkan</button>
+        <button class="btn btn-primary" id="rRun">${I("play")} Jalankan</button>`;
       const progEl = document.getElementById("rProg");
       const renderProgram = () => {
-        progEl.innerHTML = program.length ? program.map((m) => arrows[m]).join(" ") : '<span class="muted" style="font-size:.9rem">Program kosong. Tekan tombol panah.</span>';
+        progEl.innerHTML = program.length ? program.map((m) => `<span class="step">${arrows[m]}</span>`).join("") : '<span class="muted" style="font-size:.9rem">Program kosong. Tekan tombol panah.</span>';
       };
       controls.querySelectorAll("[data-m]").forEach((b) => b.addEventListener("click", () => {
         if (running || program.length >= 30) return;
@@ -218,11 +219,11 @@
               const pts = tries === 1 ? 30 : tries === 2 ? 20 : 10;
               const bonus = program.length === shortest() ? 10 : 0;
               setScore(score + pts + bonus);
-              msg(`💎 Harta ditemukan! +${pts}${bonus ? " +10 rute terpendek" : ""}`, "ok");
+              msg(`${I("gem")} Harta ditemukan! +${pts}${bonus ? " +10 rute terpendek" : ""}`, "ok");
               level++;
-              timers.push(setTimeout(() => (level >= 5 ? (controls.innerHTML = "", finish("Kamu menemukan kelima harta karun! 💎")) : setup()), 1600));
+              timers.push(setTimeout(() => (level >= 5 ? (controls.innerHTML = "", finish("Kamu menemukan kelima harta karun! " + I("gem"))) : setup()), 1600));
             } else if (crashed) {
-              msg(`💥 Robot ${crashed}. Perbaiki programmu lalu jalankan lagi.`, "no");
+              msg(`${I("warn")} Robot ${crashed}. Perbaiki programmu lalu jalankan lagi.`, "no");
             } else {
               msg(`Robot berhenti di (${fmt(pos.x)}, ${fmt(pos.y)}), belum di (${fmt(treasure.x)}, ${fmt(treasure.y)}). Coba lagi!`, "no");
             }
@@ -238,7 +239,7 @@
   // 4. KAPAL KOORDINAT
   // =====================================================================
   const kapal = {
-    rules: `<ul><li>Ada <b>3 kapal</b> tersembunyi (panjang 3, 2, dan 2 titik) pada bidang −5 sampai 5.</li><li>Ketik koordinat (x, y) lalu tekan <b>🔥 Tembak</b>. Mengetuk bidang juga mengisi koordinat.</li><li>Kena <b>+15</b>. Tenggelamkan semua kapal: bonus sisa peluru ×5. Kamu punya <b>25 peluru</b>.</li></ul>`,
+    rules: `<ul><li>Ada <b>3 kapal</b> tersembunyi (panjang 3, 2, dan 2 titik) pada bidang −5 sampai 5.</li><li>Ketik koordinat (x, y) lalu tekan <b>Tembak</b>. Mengetuk bidang juga mengisi koordinat.</li><li>Kena <b>+15</b>. Tenggelamkan semua kapal: bonus sisa peluru ×5. Kamu punya <b>25 peluru</b>.</li></ul>`,
     start() {
       const R = 5;
       const plane = new Plane(canvas, { range: R, shade: true });
@@ -256,18 +257,18 @@
       const sunk = (s) => s.cells.every((c) => shots.get(key(c.x, c.y)) === "hit");
       const draw = () => {
         plane.draw();
-        if (over) ships.forEach((s) => s.cells.forEach((c) => { if (!shots.has(key(c.x, c.y))) plane.emoji("🚢", c.x, c.y, 0.8); }));
-        shots.forEach((v, k) => { const [x, y] = k.split(",").map(Number); plane.emoji(v === "hit" ? "🔥" : "💧", x, y, 0.85); });
+        if (over) ships.forEach((s) => s.cells.forEach((c) => { if (!shots.has(key(c.x, c.y))) plane.sprite("ship", c.x, c.y, 0.95); }));
+        shots.forEach((v, k) => { const [x, y] = k.split(",").map(Number); plane.sprite(v === "hit" ? "fire" : "drop", x, y, 0.95); });
         if (aim && !over) plane.point(aim.x, aim.y, { color: "rgba(124,58,237,.5)", r: 12, ring: false });
         const left = ships.filter((s) => !sunk(s)).length;
-        midEl.innerHTML = `🚢 Sisa kapal <b>${left}</b>/3`;
-        rightEl.innerHTML = `💣 Peluru <b>${ammo}</b>`;
+        midEl.innerHTML = `${I("ship")} Sisa kapal <b>${left}</b>/3`;
+        rightEl.innerHTML = `${I("fire")} Peluru <b>${ammo}</b>`;
       };
       plane.onResize = draw;
       controls.innerHTML = `<form class="coord-form" id="kForm">
           <label>x<input type="number" id="kx" min="-5" max="5" step="1" required></label>
           <label>y<input type="number" id="ky" min="-5" max="5" step="1" required></label>
-          <button class="btn btn-primary" type="submit">🔥 Tembak</button></form>`;
+          <button class="btn btn-primary" type="submit">${I("fire")} Tembak</button></form>`;
       const kx = document.getElementById("kx"), ky = document.getElementById("ky");
       const tap = (e) => {
         e.preventDefault();
@@ -275,7 +276,7 @@
         const w = plane.eventToWorld(e);
         aim = { x: Math.max(-R, Math.min(R, Math.round(w.x))), y: Math.max(-R, Math.min(R, Math.round(w.y))) };
         kx.value = aim.x; ky.value = aim.y; draw();
-        msg(`Bidikan di (${fmt(aim.x)}, ${fmt(aim.y)}). Tekan 🔥 Tembak!`);
+        msg(`Bidikan di (${fmt(aim.x)}, ${fmt(aim.y)}). Tekan Tembak!`);
       };
       canvas.onmousedown = tap; canvas.ontouchstart = tap;
       document.getElementById("kForm").addEventListener("submit", (e) => {
@@ -288,19 +289,19 @@
         const ship = ships.find((s) => s.cells.some((c) => c.x === x && c.y === y));
         if (ship) {
           shots.set(key(x, y), "hit"); setScore(score + 15);
-          msg(sunk(ship) ? `💥 Kapal sepanjang ${ship.len} tenggelam! (+15)` : `🔥 Kena di (${fmt(x)}, ${fmt(y)})! +15. Coba titik di sekitarnya.`, "ok");
+          msg(sunk(ship) ? `${I("trophy")} Kapal sepanjang ${ship.len} tenggelam! (+15)` : `${I("fire")} Kena di (${fmt(x)}, ${fmt(y)})! +15. Coba titik di sekitarnya.`, "ok");
         } else {
           shots.set(key(x, y), "miss");
           const rest = ships.filter((s) => !sunk(s)).flatMap((s) => s.cells.filter((c) => !shots.has(key(c.x, c.y))));
           const near = rest.sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0];
-          msg(`💧 Meleset di (${fmt(x)}, ${fmt(y)}). Petunjuk: bagian kapal terdekat ada di ${quadrantOf(near.x, near.y)}.`, "no");
+          msg(`${I("drop")} Meleset di (${fmt(x)}, ${fmt(y)}). Petunjuk: bagian kapal terdekat ada di ${quadrantOf(near.x, near.y)}.`, "no");
         }
         const allSunk = ships.every(sunk);
         if (allSunk || ammo <= 0) {
           over = true; canvas.onmousedown = canvas.ontouchstart = null;
           if (allSunk) setScore(score + ammo * 5);
           draw(); controls.innerHTML = "";
-          timers.push(setTimeout(() => finish(allSunk ? `Semua kapal tenggelam! Bonus sisa peluru: ${ammo} × 5.` : "Peluru habis. Kapal yang tersisa ditampilkan 🚢."), 1200));
+          timers.push(setTimeout(() => finish(allSunk ? `Semua kapal tenggelam! Bonus sisa peluru: ${ammo} × 5.` : "Peluru habis. Kapal yang tersisa ditampilkan " + I("ship")), 1200));
           return;
         }
         draw(); kx.focus();

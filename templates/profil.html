@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}Profil{% endblock %}
 {% block content %}
 <section class="profile-grid">
@@ -15,11 +15,11 @@
         <small>{{ user.xp }} XP{% if lvl.next %} · target {{ lvl.next }} XP{% endif %}</small>
       </div>
     </div>
-    <a class="btn btn-ghost btn-sm" href="{{ url_for('logout') }}">🚪 Keluar</a>
+    <a class="btn btn-ghost btn-sm" href="{{ url_for('logout') }}">{{ icon('logout') }} Keluar</a>
   </div>
 
   <form class="card" method="post">
-    <h2>✏️ Ubah Profil</h2>
+    <h2>{{ icon('pencil') }} Ubah Profil</h2>
     <label>Nama lengkap<input name="name" value="{{ user.name }}" required minlength="2" maxlength="60"></label>
     <div class="row2">
       <label>Kelas<input name="kelas" value="{{ user.kelas }}" maxlength="20"></label>
@@ -28,7 +28,7 @@
     <fieldset class="avatar-pick">
       <legend>Avatar</legend>
       {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
-        <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if user.avatar == key }}><span>{{ emo }}</span></label>
+        <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if user.avatar == key }}><span>{{ icon('av-' ~ key) }}</span></label>
       {% endfor %}
     </fieldset>
     <button class="btn btn-primary" type="submit">Simpan</button>
@@ -36,11 +36,11 @@
 </section>
 
 <section class="card">
-  <h2>🏅 Koleksi Badge ({{ owned|length }}/{{ badges|length }})</h2>
+  <h2>{{ icon('medal') }} Koleksi Badge ({{ owned|length }}/{{ badges|length }})</h2>
   <div class="badge-grid">
     {% for code, b in badges.items() %}
       <div class="badge {{ 'owned' if code in owned else 'locked' }}" title="{{ b.desc }}">
-        <span class="b-icon">{{ b.icon if code in owned else '🔒' }}</span>
+        <span class="b-icon">{{ icon(b.icon if code in owned else 'lock') }}</span>
         <b>{{ b.name }}</b><small>{{ b.desc }}</small>
       </div>
     {% endfor %}
@@ -48,7 +48,7 @@
 </section>
 
 <section class="card">
-  <h2>🪜 Tangga Level</h2>
+  <h2>{{ icon('ladder') }} Tangga Level</h2>
   <ol class="level-ladder">
     {% for need, name in levels %}
       <li class="{{ 'reached' if user.xp >= need }}"><span>Lv {{ loop.index }}</span><b>{{ name }}</b><small>{{ need }} XP</small></li>
@@ -57,7 +57,7 @@
 </section>
 
 <section class="card">
-  <h2>📜 Riwayat Aktivitas</h2>
+  <h2>{{ icon('scroll') }} Riwayat Aktivitas</h2>
   {% if history %}
   <div class="table-scroll">
     <table class="tbl">

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}Profil{% endblock %}
 {% block content %}
 <div data-need-profile>
 <section class="profile-grid">
   <div class="card profile-card">
-    <span class="big-avatar xl" data-fill="avatar">🤖</span>
+    <span class="big-avatar xl" data-fill="avatar">{{ icon('av-robot', cls='av') }}</span>
     <h1 data-fill="name">Siswa</h1>
     <p class="muted"><span data-fill="handle"></span> · <span data-fill="kelasline">Kelas VIII</span></p>
     <div class="level-box">
@@ -17,13 +17,13 @@
       </div>
     </div>
     <div class="next-actions" style="justify-content:center">
-      <button class="btn btn-ghost btn-sm" id="lpLogout">🚪 Keluar</button>
-      <button class="btn btn-ghost btn-sm" id="lpReset">🗑️ Hapus akun</button>
+      <button class="btn btn-ghost btn-sm" id="lpLogout">{{ icon('logout') }} Keluar</button>
+      <button class="btn btn-ghost btn-sm" id="lpReset">{{ icon('warn') }} Hapus akun</button>
     </div>
   </div>
 
   <form class="card" id="lpForm">
-    <h2>✏️ Ubah Profil</h2>
+    <h2>{{ icon('pencil') }} Ubah Profil</h2>
     <label>Nama lengkap<input name="name" required minlength="2" maxlength="60"></label>
     <div class="row2">
       <label>Kelas<input name="kelas" maxlength="20"></label>
@@ -32,7 +32,7 @@
     <fieldset class="avatar-pick">
       <legend>Avatar</legend>
       {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
-        <label><input type="radio" name="avatar" value="{{ key }}"><span>{{ emo }}</span></label>
+        <label><input type="radio" name="avatar" value="{{ key }}"><span>{{ icon('av-' ~ key) }}</span></label>
       {% endfor %}
     </fieldset>
     <button class="btn btn-primary" type="submit">Simpan</button>
@@ -40,17 +40,17 @@
 </section>
 
 <section class="card">
-  <h2>🏅 Koleksi Badge (<span id="lpBadgeCount">0</span>/{{ badges|length }})</h2>
+  <h2>{{ icon('medal') }} Koleksi Badge (<span id="lpBadgeCount">0</span>/{{ badges|length }})</h2>
   <div class="badge-grid" id="lpBadges"></div>
 </section>
 
 <section class="card">
-  <h2>🪜 Tangga Level</h2>
+  <h2>{{ icon('ladder') }} Tangga Level</h2>
   <ol class="level-ladder" id="lpLadder"></ol>
 </section>
 
 <section class="card">
-  <h2>📜 Riwayat Aktivitas</h2>
+  <h2>{{ icon('scroll') }} Riwayat Aktivitas</h2>
   <div id="lpHistory"></div>
 </section>
 </div>

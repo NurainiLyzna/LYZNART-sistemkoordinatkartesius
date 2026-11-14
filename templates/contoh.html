@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg, icon %}
 {% block title %}Contoh Soal{% endblock %}
 {% block content %}
 {% set examples = [
@@ -30,7 +30,7 @@
 ] %}
 <section class="page-head">
   <div>
-    <span class="pill">💡 Contoh Soal &amp; Pembahasan</span>
+    <span class="pill">{{ icon('bulb') }} Contoh Soal &amp; Pembahasan</span>
     <h1>Contoh Soal dan Pembahasan</h1>
     <p class="lead">Coba pikirkan jawabannya dulu, lalu tekan <b>“Lihat pembahasan”</b> untuk mengecek langkah-langkahnya.</p>
   </div>
@@ -44,10 +44,10 @@
     <div class="lesson-split">
       <div>
         <p class="ex-q">{{ e.q }}</p>
-        <button class="btn btn-ghost btn-sm reveal" aria-expanded="false">👀 Lihat pembahasan</button>
+        <button class="btn btn-ghost btn-sm reveal" aria-expanded="false">{{ icon('eye') }} Lihat pembahasan</button>
         <div class="solution" hidden>
           <ol>{% for s in e.s %}<li>{{ s }}</li>{% endfor %}</ol>
-          <p class="answer">✅ <b>Jawaban:</b> {{ e.a }}</p>
+          <p class="answer">{{ icon('check') }} <b>Jawaban:</b> {{ e.a }}</p>
         </div>
       </div>
       <figure>{{ plot_svg(e.plot, 220) }}</figure>
@@ -59,6 +59,6 @@
 <div class="card center done-box">
   <p>Sudah memahami semua contoh?</p>
   <button class="btn btn-primary mark-done" data-item="contoh">Tandai selesai (+10 XP)</button>
-  <a class="btn btn-cyan" href="{{ url_for('quiz', kind='latihan') }}">✏️ Lanjut Latihan</a>
+  <a class="btn btn-cyan" href="{{ url_for('quiz', kind='latihan') }}">{{ icon('pencil') }} Lanjut Latihan</a>
 </div>
 {% endblock %}

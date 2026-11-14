@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}Instal Aplikasi{% endblock %}
 {% block content %}
 <section class="page-head">
   <div>
-    <span class="pill">📲 Progressive Web App</span>
+    <span class="pill">{{ icon('install') }} Progressive Web App</span>
     <h1>Pasang LYZNART di Perangkatmu</h1>
     <p class="lead">LYZNART bisa dipasang seperti aplikasi: ikonnya muncul di layar utama, terbuka layar penuh, dan halaman yang pernah dibuka tetap bisa diakses saat sinyal lemah. <b>Instalasi tidak wajib</b>, karena LYZNART tetap bisa dipakai langsung lewat browser.</p>
-    <button class="btn btn-cyan btn-lg install-btn" hidden>📲 Install LYZNART Sekarang</button>
+    <button class="btn btn-cyan btn-lg install-btn" hidden>{{ icon('install') }} Install LYZNART Sekarang</button>
     <p id="installState" class="muted"></p>
   </div>
   {{ mascot(120, "bob") }}
@@ -15,25 +15,25 @@
 
 <div class="cards-3 install-steps">
   <div class="card">
-    <h2>🤖 Android (Chrome)</h2>
+    <h2>{{ icon('robot') }} Android (Chrome)</h2>
     <ol>
       <li>Buka LYZNART di <b>Google Chrome</b>.</li>
-      <li>Tekan tombol <b>📲 Install LYZNART</b> di atas, <i>atau</i> ketuk menu <b>⋮</b> di kanan atas.</li>
+      <li>Tekan tombol <b>{{ icon('install') }} Install LYZNART</b> di atas, <i>atau</i> ketuk menu <b>⋮</b> di kanan atas.</li>
       <li>Pilih <b>“Instal aplikasi”</b> / <b>“Tambahkan ke layar utama”</b>.</li>
       <li>Tekan <b>Instal</b>. Ikon LYZNART muncul di layar utama HP.</li>
     </ol>
   </div>
   <div class="card">
-    <h2>💻 Laptop/PC (Chrome/Edge)</h2>
+    <h2>{{ icon('pointer') }} Laptop/PC (Chrome/Edge)</h2>
     <ol>
       <li>Buka LYZNART di <b>Chrome</b> atau <b>Microsoft Edge</b>.</li>
-      <li>Klik tombol <b>📲 Install LYZNART</b>, <i>atau</i> ikon <b>⊕ / monitor dengan panah</b> di ujung kanan kolom alamat.</li>
+      <li>Klik tombol <b>{{ icon('install') }} Install LYZNART</b>, <i>atau</i> ikon <b>⊕ / monitor dengan panah</b> di ujung kanan kolom alamat.</li>
       <li>Klik <b>Instal</b>.</li>
       <li>LYZNART terbuka di jendela sendiri dan bisa dicari di menu Start/Launchpad.</li>
     </ol>
   </div>
   <div class="card">
-    <h2>🍎 iPhone/iPad (Safari)</h2>
+    <h2>{{ icon('install') }} iPhone/iPad (Safari)</h2>
     <ol>
       <li>Buka LYZNART di <b>Safari</b>.</li>
       <li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas).</li>
@@ -44,7 +44,7 @@
 </div>
 
 <section class="card">
-  <h2>❓ Pertanyaan Umum</h2>
+  <h2>{{ icon('question') }} Pertanyaan Umum</h2>
   <details><summary>Apakah wajib menginstal?</summary><p>Tidak. Semua fitur bisa dipakai langsung di browser. Instalasi hanya membuat akses lebih cepat.</p></details>
   <details><summary>Tombol Install tidak muncul?</summary><p>Tombol hanya muncul di browser yang mendukung (Chrome, Edge, Samsung Internet) dan saat situs dibuka lewat HTTPS. Jika LYZNART sudah terpasang, tombol juga tidak muncul. Gunakan menu browser seperti pada petunjuk di atas.</p></details>
   <details><summary>Apakah progres tersimpan di aplikasi?</summary><p>Progres tersimpan di server LYZNART pada akunmu, jadi tetap aman baik dibuka lewat browser maupun aplikasi, bahkan di perangkat lain.</p></details>

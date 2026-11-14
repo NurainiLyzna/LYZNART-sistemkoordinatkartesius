@@ -21,7 +21,7 @@
     }
     plane.point(x, y, { r: 10, label: t >= 1 ? `(${fmt(to.x)}, ${fmt(to.y)})` : "" });
     if (t < 1) requestAnimationFrame(frame);
-    else if (bubble) bubble.innerHTML = `Titik <b>(${fmt(to.x)}, ${fmt(to.y)})</b> ada di <b>${quadrantOf(to.x, to.y)}</b>! ✨`;
+    else if (bubble) bubble.innerHTML = `Titik <b>(${fmt(to.x)}, ${fmt(to.y)})</b> ada di <b>${quadrantOf(to.x, to.y)}</b>! ${window.LYZ.icon('sparkle')}`;
   }
   function next() {
     from = to; i = (i + 1) % pts.length; to = { x: pts[i][0], y: pts[i][1] }; t = 0;

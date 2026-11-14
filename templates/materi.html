@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg, icon %}
 {% block title %}Materi{% endblock %}
 {% block content %}
 <section class="page-head">
   <div>
-    <span class="pill">📘 Bab Sistem Koordinat Kartesius</span>
+    <span class="pill">{{ icon('book') }} Bab Sistem Koordinat Kartesius</span>
     <h1>Materi Sistem Koordinat Kartesius</h1>
-    <p class="lead">Baca setiap bagian, lalu tekan <b>“Tandai selesai”</b> untuk mendapatkan XP. Selesaikan keenamnya untuk badge <b>Pembaca Rajin 📘</b>.</p>
+    <p class="lead">Baca setiap bagian, lalu tekan <b>“Tandai selesai”</b> untuk mendapatkan XP. Selesaikan keenamnya untuk badge <b>Pembaca Rajin {{ icon('book') }}</b>.</p>
   </div>
   {{ mascot(120, "bob") }}
 </section>
@@ -14,19 +14,19 @@
 <div class="materi-layout">
   <aside class="toc card">
     <b>Daftar Isi</b>
-    <a href="#tujuan">🎯 Tujuan Pembelajaran</a>
+    <a href="#tujuan">{{ icon('target') }} Tujuan Pembelajaran</a>
     <a href="#m1">1. Bidang Kartesius</a>
     <a href="#m2">2. Kuadran</a>
     <a href="#m3">3. Posisi terhadap Sumbu</a>
     <a href="#m4">4. Posisi terhadap Titik Acuan</a>
     <a href="#m5">5. Garis Sejajar &amp; Tegak Lurus Sumbu</a>
     <a href="#m6">6. Jarak &amp; Bangun Datar</a>
-    <a href="#rangkuman">📌 Rangkuman</a>
+    <a href="#rangkuman">{{ icon('pin') }} Rangkuman</a>
   </aside>
 
   <div class="materi-body">
     <article id="tujuan" class="card lesson goal">
-      <h2>🎯 Tujuan Pembelajaran</h2>
+      <h2>{{ icon('target') }} Tujuan Pembelajaran</h2>
       <p>Setelah mempelajari bab ini, kamu diharapkan mampu:</p>
       <ol>
         <li>Menjelaskan unsur-unsur bidang koordinat Kartesius: sumbu-x, sumbu-y, titik asal, absis, dan ordinat.</li>
@@ -37,7 +37,7 @@
         <li>Menentukan posisi garis yang sejajar, tegak lurus, atau memotong sumbu koordinat.</li>
         <li>Menyelesaikan masalah sehari-hari (peta, denah, permainan) menggunakan koordinat Kartesius.</li>
       </ol>
-      <div class="tip">💬 <b>Tahukah kamu?</b> Sistem koordinat ini dinamai dari <b>René Descartes</b> (1596–1650), matematikawan Prancis. Konon, ia mendapat ide ini saat mengamati seekor lalat yang hinggap di langit-langit kamarnya!</div>
+      <div class="tip">{{ icon('chat') }} <b>Tahukah kamu?</b> Sistem koordinat ini dinamai dari <b>René Descartes</b> (1596–1650), matematikawan Prancis. Konon, ia mendapat ide ini saat mengamati seekor lalat yang hinggap di langit-langit kamarnya!</div>
     </article>
 
     <article id="m1" class="card lesson">
@@ -57,7 +57,7 @@
           </ul>
           <div class="formula">Titik A(x, y) → absis = x, ordinat = y</div>
           <p><b>Cara menggambar titik A(2, 3):</b> mulai dari O, bergerak <b>2 satuan ke kanan</b>, lalu <b>3 satuan ke atas</b>. Ingat: <i>“jalan dulu (x), baru naik/turun (y)”</i>.</p>
-          <div class="warn">⚠️ Urutan itu penting! (2, 3) dan (3, 2) adalah dua titik yang <b>berbeda</b>.</div>
+          <div class="warn">{{ icon('warn') }} Urutan itu penting! (2, 3) dan (3, 2) adalah dua titik yang <b>berbeda</b>.</div>
         </div>
         <figure>{{ plot_svg([[2,3,"A(2,3)"],[3,2,"B(3,2)"],[-4,1,"C"],[0,0,"O"]], 260) }}<figcaption>Titik A(2, 3) dan B(3, 2) letaknya berbeda.</figcaption></figure>
       </div>
@@ -78,7 +78,7 @@
               <tr><td><b>IV</b></td><td>kanan bawah</td><td>+</td><td>−</td><td>(3, −5)</td></tr>
             </tbody>
           </table></div>
-          <div class="warn">⚠️ Titik yang terletak <b>tepat pada sumbu</b>, misalnya (0, 4) atau (−2, 0), <b>tidak termasuk kuadran mana pun</b>.</div>
+          <div class="warn">{{ icon('warn') }} Titik yang terletak <b>tepat pada sumbu</b>, misalnya (0, 4) atau (−2, 0), <b>tidak termasuk kuadran mana pun</b>.</div>
           <ul>
             <li>Titik pada <b>sumbu-x</b> selalu berordinat 0 → (x, 0).</li>
             <li>Titik pada <b>sumbu-y</b> selalu berabsis 0 → (0, y).</li>
@@ -103,7 +103,7 @@
             <li>berjarak <b>|3| = 3 satuan</b> dari sumbu-x (di <b>atas</b> sumbu-x),</li>
             <li>berjarak <b>|−4| = 4 satuan</b> dari sumbu-y (di <b>kiri</b> sumbu-y).</li>
           </ul>
-          <div class="tip">💡 Trik: jarak ke sumbu-<b>x</b> dilihat dari nilai <b>y</b>, jarak ke sumbu-<b>y</b> dilihat dari nilai <b>x</b>. Kebalikannya!</div>
+          <div class="tip">{{ icon('bulb') }} Trik: jarak ke sumbu-<b>x</b> dilihat dari nilai <b>y</b>, jarak ke sumbu-<b>y</b> dilihat dari nilai <b>x</b>. Kebalikannya!</div>
           <p><b>Kebalikannya:</b> jika titik Q di kuadran IV berjarak 2 satuan dari sumbu-x dan 5 satuan dari sumbu-y, maka |y| = 2 dan |x| = 5. Di kuadran IV x positif dan y negatif, sehingga <b>Q(5, −2)</b>.</p>
         </div>
         <figure>{{ plot_svg([[-4,3,"P(−4,3)"],[5,-2,"Q(5,−2)"]], 260) }}<figcaption>P berjarak 3 dari sumbu-x dan 4 dari sumbu-y.</figcaption></figure>
@@ -179,7 +179,7 @@
     </article>
 
     <article id="rangkuman" class="card lesson summary">
-      <h2>📌 Rangkuman</h2>
+      <h2>{{ icon('pin') }} Rangkuman</h2>
       <ul class="sum-list">
         <li>Bidang Kartesius terdiri atas <b>sumbu-x</b> (mendatar) dan <b>sumbu-y</b> (tegak) yang berpotongan tegak lurus di <b>O(0, 0)</b>.</li>
         <li>Titik ditulis <b>(x, y)</b>: x = <b>absis</b>, y = <b>ordinat</b>. Urutan tidak boleh tertukar.</li>
@@ -190,9 +190,9 @@
         <li>Jarak mendatar = |x₂ − x₁|, jarak tegak = |y₂ − y₁|, jarak miring memakai teorema Pythagoras.</li>
       </ul>
       <div class="next-actions">
-        <a class="btn btn-primary" href="{{ url_for('contoh') }}">💡 Lanjut ke Contoh Soal</a>
-        <a class="btn btn-cyan" href="{{ url_for('visualisasi') }}">🧭 Coba Visualisasi</a>
-        <a class="btn btn-ghost" href="{{ url_for('quiz', kind='latihan') }}">✏️ Latihan 40 Soal</a>
+        <a class="btn btn-primary" href="{{ url_for('contoh') }}">{{ icon('bulb') }} Lanjut ke Contoh Soal</a>
+        <a class="btn btn-cyan" href="{{ url_for('visualisasi') }}">{{ icon('compass') }} Coba Visualisasi</a>
+        <a class="btn btn-ghost" href="{{ url_for('quiz', kind='latihan') }}">{{ icon('pencil') }} Latihan 40 Soal</a>
       </div>
     </article>
   </div>

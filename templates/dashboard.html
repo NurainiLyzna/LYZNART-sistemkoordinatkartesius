@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg, icon %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
 <section class="dash-hero card">
   <div class="dash-hello">
     <span class="big-avatar">{{ avatar_emoji(user.avatar) }}</span>
     <div>
-      <h1>Hai, {{ user.name.split(' ')[0] }}! 👋</h1>
+      <h1>Hai, {{ user.name.split(' ')[0] }}! {{ icon('heart') }}</h1>
       <p class="muted">{{ user.kelas or 'Kelas VIII' }}{% if user.sekolah %} · {{ user.sekolah }}{% endif %}</p>
     </div>
   </div>
@@ -22,7 +22,7 @@
 
 <section class="dash-grid">
   <div class="card">
-    <h2>🗺️ Peta Belajarmu</h2>
+    <h2>{{ icon('map') }} Peta Belajarmu</h2>
     <ol class="path">
       {% for label, href, ok in steps %}
         <li class="{{ 'done' if ok }}"><a href="{{ href }}"><span class="dot">{{ '✓' if ok else loop.index }}</span>{{ label }}</a></li>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="card stat-cards">
-    <h2>📌 Ringkasan</h2>
+    <h2>{{ icon('pin') }} Ringkasan</h2>
     <div class="mini-stats">
       <div><span>Pre-test</span><b>{{ status.pretest.score if status.pretest else '–' }}</b></div>
       <div><span>Post-test</span><b>{{ status.posttest.score if status.posttest else '–' }}</b></div>
@@ -48,21 +48,21 @@
 
 <section class="dash-grid charts">
   <div class="card chart-card">
-    <h2>📊 Pre-test vs Post-test</h2>
+    <h2>{{ icon('chart') }} Pre-test vs Post-test</h2>
     <div class="chart" id="chartPrePost" data-empty="Kerjakan pre-test dan post-test untuk melihat perbandingannya."></div>
   </div>
   <div class="card chart-card">
-    <h2>📈 Riwayat Nilai Latihan</h2>
+    <h2>{{ icon('chartup') }} Riwayat Nilai Latihan</h2>
     <div class="chart" id="chartLatihan" data-empty="Belum ada nilai latihan. Ayo kerjakan 40 soal latihan!"></div>
   </div>
   <div class="card chart-card wide">
-    <h2>🎮 Skor Terbaik Game</h2>
+    <h2>{{ icon('gamepad') }} Skor Terbaik Game</h2>
     <div class="chart" id="chartGames" data-empty="Mainkan game untuk melihat skormu di sini."></div>
   </div>
 </section>
 
 <section class="card">
-  <h2>🏆 Papan Peringkat XP</h2>
+  <h2>{{ icon('trophy') }} Papan Peringkat XP</h2>
   <ol class="leaderboard">
     {% for l in leaders %}
       <li><span class="rank">{{ loop.index }}</span><span class="lb-av">{{ avatar_emoji(l.avatar) }}</span><span class="lb-name">{{ l.name }}<small>{{ l.kelas }}</small></span><b>{{ l.xp }} XP</b></li>

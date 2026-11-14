@@ -11,24 +11,24 @@ LEVELS = [
 ]
 
 BADGES = {
-    "welcome":    {"icon": "🚀", "name": "Langkah Pertama", "desc": "Bergabung dengan LYZNART"},
-    "reader":     {"icon": "📘", "name": "Pembaca Rajin", "desc": "Menyelesaikan semua bagian materi"},
-    "explorer":   {"icon": "🧭", "name": "Penjelajah Bidang", "desc": "Mencoba visualisasi koordinat interaktif"},
-    "pretest":    {"icon": "📝", "name": "Siap Belajar", "desc": "Menyelesaikan pre-test"},
-    "posttest":   {"icon": "🎓", "name": "Lulus Post-test", "desc": "Nilai post-test minimal 75"},
-    "improve":    {"icon": "📈", "name": "Makin Hebat", "desc": "Nilai post-test lebih tinggi dari pre-test"},
-    "practice":   {"icon": "💪", "name": "Pejuang Latihan", "desc": "Nilai latihan minimal 80"},
-    "perfect":    {"icon": "💯", "name": "Sempurna!", "desc": "Mendapat nilai 100 pada latihan atau tes"},
-    "gamer":      {"icon": "🎮", "name": "Gamer Koordinat", "desc": "Memainkan keempat game edukasi"},
-    "xp500":      {"icon": "⭐", "name": "Bintang 500 XP", "desc": "Mengumpulkan 500 XP"},
-    "master":     {"icon": "👑", "name": "Master Kartesius", "desc": "Mencapai level Master Kartesius"},
+    "welcome":    {"icon": "rocket", "name": "Langkah Pertama", "desc": "Bergabung dengan LYZNART"},
+    "reader":     {"icon": "book", "name": "Pembaca Rajin", "desc": "Menyelesaikan semua bagian materi"},
+    "explorer":   {"icon": "compass", "name": "Penjelajah Bidang", "desc": "Mencoba visualisasi koordinat interaktif"},
+    "pretest":    {"icon": "clipboard", "name": "Siap Belajar", "desc": "Menyelesaikan pre-test"},
+    "posttest":   {"icon": "cap", "name": "Lulus Post-test", "desc": "Nilai post-test minimal 75"},
+    "improve":    {"icon": "chartup", "name": "Makin Hebat", "desc": "Nilai post-test lebih tinggi dari pre-test"},
+    "practice":   {"icon": "dumbbell", "name": "Pejuang Latihan", "desc": "Nilai latihan minimal 80"},
+    "perfect":    {"icon": "hundred", "name": "Sempurna!", "desc": "Mendapat nilai 100 pada latihan atau tes"},
+    "gamer":      {"icon": "gamepad", "name": "Gamer Koordinat", "desc": "Memainkan keempat game edukasi"},
+    "xp500":      {"icon": "star", "name": "Bintang 500 XP", "desc": "Mengumpulkan 500 XP"},
+    "master":     {"icon": "crown", "name": "Master Kartesius", "desc": "Mencapai level Master Kartesius"},
 }
 
 GAMES = {
-    "titik":   {"name": "Tembak Titik", "icon": "🎯", "desc": "Klik posisi titik secepat mungkin sebelum waktu habis!", "color": "violet"},
-    "kuadran": {"name": "Kuadran Kilat", "icon": "⚡", "desc": "Tebak kuadran atau sumbu tempat titik berada.", "color": "cyan"},
-    "robot":   {"name": "Robot Harta Karun", "icon": "🤖", "desc": "Program robot agar sampai ke harta karun dengan langkah tepat.", "color": "sky"},
-    "kapal":   {"name": "Kapal Koordinat", "icon": "🚢", "desc": "Temukan kapal tersembunyi dengan menebak koordinatnya.", "color": "lavender"},
+    "titik":   {"name": "Tembak Titik", "icon": "target", "desc": "Klik posisi titik secepat mungkin sebelum waktu habis!", "color": "violet"},
+    "kuadran": {"name": "Kuadran Kilat", "icon": "bolt", "desc": "Tebak kuadran atau sumbu tempat titik berada.", "color": "cyan"},
+    "robot":   {"name": "Robot Harta Karun", "icon": "robot", "desc": "Program robot agar sampai ke harta karun dengan langkah tepat.", "color": "sky"},
+    "kapal":   {"name": "Kapal Koordinat", "icon": "ship", "desc": "Temukan kapal tersembunyi dengan menebak koordinatnya.", "color": "lavender"},
 }
 
 MATERI_SECTIONS = ["m1", "m2", "m3", "m4", "m5", "m6"]

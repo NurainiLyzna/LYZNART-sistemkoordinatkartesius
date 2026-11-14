@@ -1,10 +1,10 @@
-{% from "_macros.html" import mascot %}
+{% from "_macros.html" import mascot, icon %}
 <div class="gate-hero">
   <div class="gate-brand"><img src="{{ url_for('static', filename='icons/icon-192.png') }}" alt="" width="44" height="44"><span>LYZN<b>ART</b></span></div>
   <h1>Explore. Learn. Play. <span>Master!</span></h1>
   <p>Belajar <b>Sistem Koordinat Kartesius</b> kelas VIII lewat materi bergambar, visualisasi interaktif, latihan, dan game seru bersama Lyzy.</p>
-  <div class="gate-mascot">{{ mascot(160, "bob") }}<div class="gate-bubble">Halo! Masuk dulu yuk, petualangan koordinat menantimu! 🚀</div></div>
+  <div class="gate-mascot">{{ mascot(160, "bob") }}<div class="gate-bubble">Halo! Masuk dulu yuk, petualangan koordinat menantimu! {{ icon('rocket') }}</div></div>
   <ul class="gate-chips">
-    <li>📘 6 Materi</li><li>✏️ 40 Latihan</li><li>📝 Pre &amp; Post-test</li><li>🎮 4 Game</li><li>🏅 XP &amp; Badge</li>
+    <li>{{ icon('book') }} 6 Materi</li><li>{{ icon('pencil') }} 40 Latihan</li><li>{{ icon('clipboard') }} Pre &amp; Post-test</li><li>{{ icon('gamepad') }} 4 Game</li><li>{{ icon('medal') }} XP &amp; Badge</li>
   </ul>
 </div>

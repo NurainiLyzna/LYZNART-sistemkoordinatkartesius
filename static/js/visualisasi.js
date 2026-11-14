@@ -23,10 +23,10 @@
   let tracked = false;
 
   const HELP = {
-    titik: "📍 <b>Mode Titik.</b> Ketuk atau geser titik <b>P</b>. Lihat absis, ordinat, kuadran, dan jaraknya ke sumbu.",
-    acuan: "🎯 <b>Mode Titik Acuan.</b> Geser titik acuan <b style='color:#0891b2'>R</b> dan titik <b style='color:#7c3aed'>A</b>. Koordinat A terhadap R = (x − p, y − q).",
-    jarak: "📏 <b>Mode Jarak.</b> Geser titik <b style='color:#7c3aed'>A</b> dan <b style='color:#db2777'>B</b>. Lihat jarak mendatar, tegak, dan jarak lurusnya (Pythagoras).",
-    tantangan: "🏁 <b>Tantangan.</b> Ketuk posisi titik yang diminta. 10 soal, ayo dapatkan skor sempurna!",
+    titik: window.LYZ.icon("pin") + " <b>Mode Titik.</b> Ketuk atau geser titik <b>P</b>. Lihat absis, ordinat, kuadran, dan jaraknya ke sumbu.",
+    acuan: window.LYZ.icon("target") + " <b>Mode Titik Acuan.</b> Geser titik acuan <b style='color:#0891b2'>R</b> dan titik <b style='color:#7c3aed'>A</b>. Koordinat A terhadap R = (x − p, y − q).",
+    jarak: window.LYZ.icon("ruler") + " <b>Mode Jarak.</b> Geser titik <b style='color:#7c3aed'>A</b> dan <b style='color:#db2777'>B</b>. Lihat jarak mendatar, tegak, dan jarak lurusnya (Pythagoras).",
+    tantangan: window.LYZ.icon("flag") + " <b>Tantangan.</b> Ketuk posisi titik yang diminta. 10 soal, ayo dapatkan skor sempurna!",
   };
 
   function track() {
@@ -100,11 +100,11 @@
       if (ch.round < 10) {
         html = `<div class="big-coord">Ketuk (${fmt(ch.target.x)}, ${fmt(ch.target.y)})</div>` +
           row("Soal", `${ch.round + 1} / 10`) + row("Benar", ch.score) +
-          (ch.last ? `<div class="calc">${ch.last.ok ? "✅ Tepat sekali!" : `❌ Kamu mengetuk (${fmt(ch.last.x)}, ${fmt(ch.last.y)}). Ingat: x dulu (kanan/kiri), lalu y (atas/bawah).`}</div>` : "");
+          (ch.last ? `<div class="calc">${ch.last.ok ? window.LYZ.icon("check") + " Tepat sekali!" : `${window.LYZ.icon("drop")} Kamu mengetuk (${fmt(ch.last.x)}, ${fmt(ch.last.y)}). Ingat: x dulu (kanan/kiri), lalu y (atas/bawah).`}</div>` : "");
       } else {
         html = `<div class="big-coord">Skor ${ch.score}/10</div>` +
-          `<div class="calc">${ch.score === 10 ? "🏆 Sempurna! Kamu Master Titik!" : ch.score >= 7 ? "🎉 Hebat! Sedikit lagi sempurna." : "💪 Terus berlatih ya!"}</div>` +
-          `<button class="btn btn-primary btn-sm" id="chAgain">↺ Main lagi</button>`;
+          `<div class="calc">${ch.score === 10 ? window.LYZ.icon("trophy") + " Sempurna! Kamu Master Titik!" : ch.score >= 7 ? window.LYZ.icon("sparkle") + " Hebat! Sedikit lagi sempurna." : window.LYZ.icon("dumbbell") + " Terus berlatih ya!"}</div>` +
+          `<button class="btn btn-primary btn-sm" id="chAgain">${window.LYZ.icon("refresh")} Main lagi</button>`;
       }
     }
     out.innerHTML = html;
@@ -150,7 +150,7 @@
       const x = clamp(w.x), y = clamp(w.y);
       const ok = x === ch.target.x && y === ch.target.y;
       ch.score += ok; ch.last = { x, y, ok }; ch.prev = ch.target; ch.round++;
-      window.LYZ.toast(ok ? "Tepat! ✅" : `Belum tepat. Titik yang diminta (${fmt(ch.target.x)}, ${fmt(ch.target.y)})`);
+      window.LYZ.toast(ok ? window.LYZ.icon("check") + " Tepat!" : `${window.LYZ.icon("drop")} Belum tepat. Titik yang diminta (${fmt(ch.target.x)}, ${fmt(ch.target.y)})`, "", true);
       if (ch.round < 10) newTarget();
       render();
       return;

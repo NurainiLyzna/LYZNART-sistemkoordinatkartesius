@@ -163,7 +163,7 @@
     if (!hasUser()) return;
     const u = S.user, lv = levelInfo(u.xp);
     const set = (k, v) => $$(`[data-fill="${k}"]`).forEach((el) => (el.textContent = v));
-    set("avatar", AVA[u.avatar] || "🤖");
+    $$('[data-fill="avatar"]').forEach((el) => (el.innerHTML = LYZ.icon("av-" + (AVA[u.avatar] ? u.avatar : "robot"), "av")));
     set("first", u.name.split(" ")[0]);
     set("name", u.name);
     set("handle", "@" + (u.username || ALL.current));
@@ -182,16 +182,16 @@
     $$("a.btn", navEl).forEach((a) => a.remove());
     const u = S.user, lv = levelInfo(u.xp);
     const dash = document.createElement("a");
-    dash.href = page("/dashboard"); dash.textContent = "🏠 Dashboard";
+    dash.href = page("/dashboard"); dash.innerHTML = LYZ.icon("home") + " Dashboard";
     if (here === "/dashboard") dash.className = "active";
     const me = document.createElement("a");
     me.href = page("/profil"); me.className = "nav-user" + (here === "/profil" ? " active" : "");
     me.innerHTML = '<span class="nav-avatar"></span><span class="nav-meta"><b></b><small></small></span>';
-    me.querySelector(".nav-avatar").textContent = AVA[u.avatar] || "🤖";
+    me.querySelector(".nav-avatar").innerHTML = LYZ.icon("av-" + (AVA[u.avatar] ? u.avatar : "robot"), "av");
     me.querySelector("b").textContent = u.name.split(" ")[0];
     me.querySelector("small").textContent = `Lv ${lv.level} · ${u.xp} XP`;
     const out = document.createElement("a");
-    out.href = page("/masuk"); out.className = "nav-logout"; out.textContent = "🚪 Keluar";
+    out.href = page("/masuk"); out.className = "nav-logout"; out.innerHTML = LYZ.icon("logout") + " Keluar";
     out.addEventListener("click", (e) => { e.preventDefault(); logout(); });
     const install = $(".install-btn", navEl);
     navEl.insertBefore(dash, install); navEl.insertBefore(me, install); navEl.insertBefore(out, install);
@@ -302,7 +302,7 @@
       const own = !!S.badges[code];
       const d = document.createElement("div");
       d.className = "badge " + (own ? "owned" : "locked"); d.title = b.desc;
-      d.innerHTML = `<span class="b-icon">${own ? b.icon : "🔒"}</span><b></b><small></small>`;
+      d.innerHTML = `<span class="b-icon">${LYZ.icon(own ? b.icon : "lock")}</span><b></b><small></small>`;
       d.querySelector("b").textContent = b.name; d.querySelector("small").textContent = b.desc;
       grid.appendChild(d);
     });
@@ -322,5 +322,11 @@
 
   // halaman yang butuh profil
   if ($("[data-need-profile]") && !hasUser()) { location.replace(page("/masuk")); return; }
-  nav(); fillCommon(); markDone(); authPage(); dashboardPage(); profilPage();
+  function heroCta() {
+    const cta = $(".hero-cta");
+    if (!cta || !hasUser()) return;
+    cta.innerHTML = `<a class="btn btn-primary btn-lg" href="${page("/dashboard")}">${LYZ.icon("rocket")} Lanjut Belajar</a>` +
+      `<a class="btn btn-ghost btn-lg" href="${page("/materi")}">${LYZ.icon("book")} Lihat Materi</a>`;
+  }
+  nav(); fillCommon(); markDone(); authPage(); dashboardPage(); profilPage(); heroCta();
 })();

@@ -65,7 +65,7 @@
       const d = post - pre;
       const p = document.createElement("p");
       p.className = "muted center";
-      p.textContent = d > 0 ? `📈 Nilaimu naik ${d} poin. Keren!` : d === 0 ? "Nilaimu tetap. Ayo latihan lagi!" : `Nilaimu turun ${-d} poin. Pelajari lagi materinya, ya!`;
+      p.innerHTML = d > 0 ? `${window.LYZ.icon("chartup")} Nilaimu naik ${d} poin. Keren!` : d === 0 ? "Nilaimu tetap. Ayo latihan lagi!" : `Nilaimu turun ${-d} poin. Pelajari lagi materinya, ya!`;
       box.appendChild(p);
     }
   }

@@ -39,8 +39,12 @@
 </svg>
 {%- endmacro %}
 
+{% macro icon(name, size=None, cls="") -%}
+<svg class="ci {{ cls }}"{% if size %} width="{{ size }}" height="{{ size }}"{% endif %} aria-hidden="true" focusable="false"><use href="#ci-{{ name }}"/></svg>
+{%- endmacro %}
+
 {% macro avatar_emoji(a) -%}
-{{ {"robot": "🤖", "astronot": "🧑‍🚀", "kucing": "🐱", "burung": "🦉"}.get(a, "🤖") }}
+{{ icon("av-" ~ (a if a in ("robot", "astronot", "kucing", "burung") else "robot"), cls="av") }}
 {%- endmacro %}
 
 {% macro plot_svg(points, size=220) -%}

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}Visualisasi Koordinat{% endblock %}
 {% block content %}
 <section class="page-head">
   <div>
-    <span class="pill">🧭 Laboratorium Koordinat</span>
+    <span class="pill">{{ icon('compass') }} Laboratorium Koordinat</span>
     <h1>Visualisasi Koordinat Interaktif</h1>
     <p class="lead">Ketuk bidang untuk menaruh titik, lalu <b>geser</b> titiknya. Amati koordinat, kuadran, dan jaraknya berubah secara langsung!</p>
   </div>
@@ -14,10 +14,10 @@
 <div class="viz-layout">
   <div class="card viz-canvas-card">
     <div class="viz-toolbar" role="toolbar" aria-label="Mode visualisasi">
-      <button class="chip active" data-mode="titik">📍 Titik</button>
-      <button class="chip" data-mode="acuan">🎯 Titik Acuan</button>
-      <button class="chip" data-mode="jarak">📏 Jarak 2 Titik</button>
-      <button class="chip" data-mode="tantangan">🏁 Tantangan</button>
+      <button class="chip active" data-mode="titik">{{ icon('pin') }} Titik</button>
+      <button class="chip" data-mode="acuan">{{ icon('target') }} Titik Acuan</button>
+      <button class="chip" data-mode="jarak">{{ icon('ruler') }} Jarak 2 Titik</button>
+      <button class="chip" data-mode="tantangan">{{ icon('flag') }} Tantangan</button>
       <button class="chip chip-ghost" id="vizReset">↺ Reset</button>
     </div>
     <canvas id="vizCanvas" class="viz-canvas" width="640" height="640" aria-label="Bidang koordinat interaktif"></canvas>

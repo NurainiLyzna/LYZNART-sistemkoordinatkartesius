@@ -53,14 +53,14 @@
       }
     }
     submitBtn.disabled = true;
-    submitBtn.textContent = "⏳ Menilai...";
+    submitBtn.innerHTML = window.LYZ.icon("clock") + " Menilai...";
     let r;
     try {
       r = await window.LYZ.api("/api/quiz/" + kind, { answers: a });
     } catch (err) {
       window.LYZ.toast("Gagal mengirim jawaban. Periksa koneksi lalu coba lagi.");
       submitBtn.disabled = false;
-      submitBtn.textContent = "✅ Kirim Jawaban";
+      submitBtn.innerHTML = window.LYZ.icon("check") + " Kirim Jawaban";
       return;
     }
     graded = true;
@@ -82,7 +82,8 @@
       const fb = fs.querySelector(".feedback");
       fb.hidden = false;
       fb.className = "feedback " + (d.correct ? "ok" : "no");
-      const head = d.correct ? "✅ Benar!" : d.given === null ? "⚠️ Tidak dijawab." : "❌ Belum tepat.";
+      const ic = window.LYZ.icon;
+      const head = d.correct ? ic("check") + " Benar!" : d.given === null ? ic("warn") + " Tidak dijawab." : ic("drop") + " Belum tepat.";
       fb.innerHTML = `<b>${head}</b> `;
       fb.appendChild(document.createTextNode("Pembahasan: " + d.explanation));
     });
@@ -91,21 +92,22 @@
 
   function showResult(r) {
     const title = document.getElementById("rTitle");
-    const msg = r.score >= 90 ? "Luar biasa! 🏆" : r.score >= 75 ? "Hebat! 🎉" : r.score >= 50 ? "Bagus, terus berlatih! 💪" : "Jangan menyerah! 🌱";
-    title.textContent = msg;
+    const ic = window.LYZ.icon;
+    title.innerHTML = r.score >= 90 ? "Luar biasa! " + ic("trophy") : r.score >= 75 ? "Hebat! " + ic("sparkle") : r.score >= 50 ? "Bagus, terus berlatih! " + ic("dumbbell") : "Jangan menyerah! " + ic("heart");
     document.getElementById("rScore").textContent = r.score;
     document.getElementById("rDetail").textContent = `Benar ${r.correct} dari ${r.total} soal.`;
     const ring = document.getElementById("rRing");
     ring.style.stroke = r.score >= 75 ? "#059669" : r.score >= 50 ? "#7c3aed" : "#f59e0b";
     requestAnimationFrame(() => { ring.style.strokeDashoffset = String(326.7 * (1 - r.score / 100)); });
     const xp = document.getElementById("rXp");
-    if (r.saved) xp.textContent = r.xp_gained > 0 ? `+${r.xp_gained} XP ✨` : "Nilai tersimpan. XP diberikan jika kamu melampaui rekor sebelumnya.";
+    if (r.saved) xp.innerHTML = r.xp_gained > 0 ? `${ic("star")} +${r.xp_gained} XP` : "Nilai tersimpan. XP diberikan jika kamu melampaui rekor sebelumnya.";
     else xp.textContent = "Masuk/daftar agar nilai dan XP tersimpan.";
     const bd = document.getElementById("rBadges");
     bd.innerHTML = "";
     (r.new_badges || []).forEach((b) => {
       const s = document.createElement("span");
-      s.textContent = `${b.icon} ${b.name}`;
+      s.innerHTML = ic(b.icon) + " ";
+      s.appendChild(document.createTextNode(b.name));
       bd.appendChild(s);
     });
     if (r.level) window.LYZ.showRewards({ level: r.level });
@@ -127,7 +129,7 @@
     form.querySelectorAll(".feedback").forEach((f) => (f.hidden = true));
     submitBtn.hidden = false;
     submitBtn.disabled = false;
-    submitBtn.textContent = "✅ Kirim Jawaban";
+    submitBtn.innerHTML = window.LYZ.icon("check") + " Kirim Jawaban";
     updateProgress();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

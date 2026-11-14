@@ -118,12 +118,32 @@
       ctx.lineWidth = 4; ctx.strokeStyle = "rgba(255,255,255,.9)"; ctx.strokeText(str, this.sx(x), this.sy(y));
       ctx.fillStyle = o.color; ctx.fillText(str, this.sx(x), this.sy(y));
     }
+    // menggambar ikon kawaii dari sprite SVG (#ci-<name>) ke canvas
+    sprite(name, x, y, scale) {
+      const img = spriteImage(name, this.canvas);
+      const s = this.unit * (scale || 1.1);
+      if (img && img.complete && img.naturalWidth) this.ctx.drawImage(img, this.sx(x) - s / 2, this.sy(y) - s / 2, s, s);
+    }
     emoji(ch, x, y, scale) {
       const { ctx } = this;
       ctx.font = `${Math.round(this.unit * (scale || 1.1))}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
       ctx.fillText(ch, this.sx(x), this.sy(y));
     }
+  }
+
+  const spriteCache = {};
+  function spriteImage(name, canvas) {
+    if (spriteCache[name]) return spriteCache[name];
+    const sprite = document.getElementById("ci-sprite");
+    if (!sprite) return null;
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" viewBox="0 0 64 64">' +
+      sprite.innerHTML + '<use href="#ci-' + name + '" xlink:href="#ci-' + name + '" width="64" height="64"/></svg>';
+    const img = new Image();
+    img.onload = () => { const p = canvas && canvas._plane; if (p) { if (p.onResize) p.onResize(); else p.draw(); } };
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    spriteCache[name] = img;
+    return img;
   }
 
   function quadrantOf(x, y) {

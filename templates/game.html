@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}{{ game.name }}{% endblock %}
 {% block content %}
 <section class="game-head">
   <a href="{{ url_for('games') }}" class="btn btn-ghost btn-sm">← Semua game</a>
-  <h1>{{ game.icon }} {{ game.name }}</h1>
+  <h1>{{ icon(game.icon, cls='h-ico') }} {{ game.name }}</h1>
   <p class="muted">{{ game.desc }}{% if best is not none %} · Skor terbaikmu: <b>{{ best }}</b>{% endif %}</p>
 </section>
 
 <div class="game-shell card" id="gameShell" data-game="{{ gid }}">
   <div class="game-hud">
-    <div>⭐ Skor <b id="gScore">0</b></div>
+    <div>{{ icon('star') }} Skor <b id="gScore">0</b></div>
     <div id="gHudMid"></div>
     <div id="gHudRight"></div>
   </div>
@@ -26,7 +26,7 @@
   <div class="game-controls" id="gControls"></div>
   <p class="game-msg" id="gMsg" aria-live="polite"></p>
 </div>
-{% if not user %}<p class="warn center guest-only">🔒 Kamu bisa bermain tanpa akun, tetapi skor dan XP hanya tersimpan jika kamu <a href="{{ url_for('login', next=request.path) }}">masuk</a>.</p>{% endif %}
+{% if not user %}<p class="warn center guest-only">{{ icon('lock') }} Kamu bisa bermain tanpa akun, tetapi skor dan XP hanya tersimpan jika kamu <a href="{{ url_for('login', next=request.path) }}">masuk</a>.</p>{% endif %}
 {% endblock %}
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/plane.js') }}?v={{ app_version }}"></script>

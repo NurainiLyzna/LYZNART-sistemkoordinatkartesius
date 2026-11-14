@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji, plot_svg %}
+{% from "_macros.html" import mascot, avatar_emoji, plot_svg, icon %}
 {% block title %}Beranda{% endblock %}
 {% block content %}
 <section class="hero">
   <div class="hero-text">
-    <span class="pill">✨ Matematika Kelas VIII · Kurikulum Merdeka</span>
+    <span class="pill">{{ icon('sparkle') }} Matematika Kelas VIII · Kurikulum Merdeka</span>
     <h1>Jelajahi Dunia <span class="grad">Koordinat Kartesius</span> bersama Lyzy!</h1>
     <p class="tagline">Explore. Learn. Play. Master!</p>
     <p class="lead">Belajar letak titik, kuadran, dan jarak di bidang koordinat jadi seru: ada materi bergambar, visualisasi interaktif, 40 soal latihan, pre-test &amp; post-test, serta 4 game edukasi. Kumpulkan XP, naik level, dan raih badge!</p>
     <div class="hero-cta">
       {% if user %}
-        <a class="btn btn-primary btn-lg" href="{{ url_for('dashboard') }}">🚀 Lanjut Belajar</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('dashboard') }}">{{ icon('rocket') }} Lanjut Belajar</a>
       {% else %}
-        <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">🚀 Mulai Gratis</a>
-        <a class="btn btn-ghost btn-lg" href="{{ url_for('materi') }}">📘 Lihat Materi</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">{{ icon('rocket') }} Mulai Gratis</a>
+        <a class="btn btn-ghost btn-lg" href="{{ url_for('materi') }}">{{ icon('book') }} Lihat Materi</a>
       {% endif %}
     </div>
     <p class="hint">Tidak perlu instal. Langsung pakai di browser HP, tablet, atau laptop. <a href="{{ url_for('install') }}">Mau dipasang seperti aplikasi?</a></p>
@@ -22,7 +22,7 @@
     <div class="hero-plane">
       <canvas id="heroPlane" width="420" height="420" aria-label="Animasi bidang koordinat"></canvas>
       <div class="hero-mascot">{{ mascot(150, "bob") }}</div>
-      <div class="bubble">Halo! Aku <b>Lyzy</b>. Titik ungu itu ada di mana ya? 🤔</div>
+      <div class="bubble">Halo! Aku <b>Lyzy</b>. Titik ungu itu ada di mana ya? {{ icon('question') }}</div>
     </div>
   </div>
 </section>
@@ -37,23 +37,23 @@
 <section class="section">
   <h2 class="section-title">Apa saja yang ada di LYZNART?</h2>
   <div class="feature-grid">
-    <a class="feature card" href="{{ url_for('materi') }}"><span class="f-icon">📘</span><h3>Materi Lengkap</h3><p>Tujuan pembelajaran, konsep bergambar, dan rangkuman.</p></a>
-    <a class="feature card" href="{{ url_for('contoh') }}"><span class="f-icon">💡</span><h3>Contoh Soal</h3><p>Pembahasan langkah demi langkah yang mudah diikuti.</p></a>
-    <a class="feature card" href="{{ url_for('visualisasi') }}"><span class="f-icon">🧭</span><h3>Visualisasi Interaktif</h3><p>Klik dan geser titik untuk melihat kuadran &amp; jaraknya.</p></a>
-    <a class="feature card" href="{{ url_for('quiz', kind='latihan') }}"><span class="f-icon">✏️</span><h3>Latihan 40 Soal</h3><p>Dinilai otomatis lengkap dengan pembahasan.</p></a>
-    <a class="feature card" href="{{ url_for('quiz', kind='pretest') }}"><span class="f-icon">📝</span><h3>Pre-test &amp; Post-test</h3><p>Ukur kemampuan sebelum dan sesudah belajar.</p></a>
-    <a class="feature card" href="{{ url_for('games') }}"><span class="f-icon">🎮</span><h3>4 Game Edukasi</h3><p>Tembak titik, tebak kuadran, robot, dan kapal.</p></a>
-    <a class="feature card" href="{{ url_for('dashboard') }}"><span class="f-icon">📊</span><h3>Grafik Progres</h3><p>Lihat perkembangan nilaimu dalam grafik.</p></a>
-    <a class="feature card" href="{{ url_for('profil') }}"><span class="f-icon">🏅</span><h3>XP, Level &amp; Badge</h3><p>Naik level dari Penjelajah Pemula sampai Legenda!</p></a>
+    <a class="feature card" href="{{ url_for('materi') }}"><span class="f-icon">{{ icon('book') }}</span><h3>Materi Lengkap</h3><p>Tujuan pembelajaran, konsep bergambar, dan rangkuman.</p></a>
+    <a class="feature card" href="{{ url_for('contoh') }}"><span class="f-icon">{{ icon('bulb') }}</span><h3>Contoh Soal</h3><p>Pembahasan langkah demi langkah yang mudah diikuti.</p></a>
+    <a class="feature card" href="{{ url_for('visualisasi') }}"><span class="f-icon">{{ icon('compass') }}</span><h3>Visualisasi Interaktif</h3><p>Klik dan geser titik untuk melihat kuadran &amp; jaraknya.</p></a>
+    <a class="feature card" href="{{ url_for('quiz', kind='latihan') }}"><span class="f-icon">{{ icon('pencil') }}</span><h3>Latihan 40 Soal</h3><p>Dinilai otomatis lengkap dengan pembahasan.</p></a>
+    <a class="feature card" href="{{ url_for('quiz', kind='pretest') }}"><span class="f-icon">{{ icon('clipboard') }}</span><h3>Pre-test &amp; Post-test</h3><p>Ukur kemampuan sebelum dan sesudah belajar.</p></a>
+    <a class="feature card" href="{{ url_for('games') }}"><span class="f-icon">{{ icon('gamepad') }}</span><h3>4 Game Edukasi</h3><p>Tembak titik, tebak kuadran, robot, dan kapal.</p></a>
+    <a class="feature card" href="{{ url_for('dashboard') }}"><span class="f-icon">{{ icon('chart') }}</span><h3>Grafik Progres</h3><p>Lihat perkembangan nilaimu dalam grafik.</p></a>
+    <a class="feature card" href="{{ url_for('profil') }}"><span class="f-icon">{{ icon('medal') }}</span><h3>XP, Level &amp; Badge</h3><p>Naik level dari Penjelajah Pemula sampai Legenda!</p></a>
   </div>
 </section>
 
 <section class="section">
-  <h2 class="section-title">Pilih game favoritmu 🎮</h2>
+  <h2 class="section-title">Pilih game favoritmu {{ icon('gamepad') }}</h2>
   <div class="game-grid">
     {% for gid, gm in games.items() %}
       <a class="game-card card c-{{ gm.color }}" href="{{ url_for('game', gid=gid) }}">
-        <span class="g-icon">{{ gm.icon }}</span><h3>{{ gm.name }}</h3><p>{{ gm.desc }}</p><span class="btn btn-sm btn-primary">Main</span>
+        <span class="g-icon">{{ icon(gm.icon) }}</span><h3>{{ gm.name }}</h3><p>{{ gm.desc }}</p><span class="btn btn-sm btn-primary">Main</span>
       </a>
     {% endfor %}
   </div>
@@ -62,9 +62,9 @@
 <section class="section install-cta card">
   <div>{{ mascot(110) }}</div>
   <div>
-    <h2>Pasang LYZNART di perangkatmu 📲</h2>
+    <h2>Pasang LYZNART di perangkatmu {{ icon('install') }}</h2>
     <p>LYZNART bisa diinstal seperti aplikasi di HP Android, laptop, atau tablet. Ikon muncul di layar utama dan halaman yang pernah dibuka tetap bisa diakses saat sinyal lemah. Tetap bisa dipakai lewat browser tanpa instal!</p>
-    <button class="btn btn-cyan install-btn" hidden>📲 Install LYZNART</button>
+    <button class="btn btn-cyan install-btn" hidden>{{ icon('install') }} Install LYZNART</button>
     <a class="btn btn-ghost" href="{{ url_for('install') }}">Lihat Petunjuk Instalasi</a>
   </div>
 </section>

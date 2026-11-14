@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import mascot, avatar_emoji %}
+{% from "_macros.html" import mascot, avatar_emoji, icon %}
 {% block title %}{{ 'Daftar' if mode == 'register' else 'Masuk' }}{% endblock %}
 {% block body_class %}gate{% endblock %}
 {% block content %}
@@ -7,16 +7,16 @@
   {% include "_gate_hero.html" %}
   <div class="gate-panel">
     <nav class="auth-tabs" aria-label="Pilih masuk atau daftar">
-      <a href="{{ url_for('login', next=request.args.get('next')) }}" class="{{ 'active' if mode == 'login' }}">🔑 Masuk</a>
-      <a href="{{ url_for('register') }}" class="{{ 'active' if mode == 'register' }}">📝 Daftar</a>
+      <a href="{{ url_for('login', next=request.args.get('next')) }}" class="{{ 'active' if mode == 'login' }}">{{ icon('key') }} Masuk</a>
+      <a href="{{ url_for('register') }}" class="{{ 'active' if mode == 'register' }}">{{ icon('clipboard') }} Daftar</a>
     </nav>
     <form class="auth-card card" method="post" autocomplete="on">
       {% if mode == 'register' %}
-        <h2>Buat akun siswa ✨</h2>
+        <h2>Buat akun siswa {{ icon('sparkle') }}</h2>
         <p class="muted">Gratis! XP, badge, dan progres belajarmu akan tersimpan.</p>
         <label>Nama lengkap<input name="name" required minlength="2" maxlength="60" value="{{ form.name or '' }}" placeholder="contoh: Nuraini Lyzna"></label>
       {% else %}
-        <h2>Selamat datang kembali! 👋</h2>
+        <h2>Selamat datang kembali! {{ icon('heart') }}</h2>
         <p class="muted">Masuk untuk melanjutkan petualangan koordinatmu.</p>
       {% endif %}
       <label>Username<input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_.]{3,20}" autocapitalize="none" value="{{ form.username or '' }}" placeholder="contoh: lyzna08" autocomplete="username"></label>
@@ -28,12 +28,12 @@
         <fieldset class="avatar-pick">
           <legend>Pilih avatar</legend>
           {% for key, emo in [('robot','🤖'),('astronot','🧑‍🚀'),('kucing','🐱'),('burung','🦉')] %}
-            <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if (form.avatar or 'robot') == key }}><span>{{ emo }}</span></label>
+            <label><input type="radio" name="avatar" value="{{ key }}" {{ 'checked' if (form.avatar or 'robot') == key }}><span>{{ icon('av-' ~ key) }}</span></label>
           {% endfor %}
         </fieldset>
       {% endif %}
       <label>Kata sandi<input type="password" name="password" required minlength="6" autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}" placeholder="minimal 6 karakter"></label>
-      <button class="btn btn-primary btn-lg btn-block" type="submit">{{ 'Daftar & Mulai 🚀' if mode == 'register' else '🔑 Masuk' }}</button>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">{% if mode == 'register' %}Daftar &amp; Mulai {{ icon('rocket') }}{% else %}{{ icon('key') }} Masuk{% endif %}</button>
       <p class="muted center switch-line">
         {% if mode == 'register' %}Sudah punya akun? <a href="{{ url_for('login') }}">Masuk di sini</a>
         {% else %}Belum punya akun? <a href="{{ url_for('register') }}">Daftar gratis</a>{% endif %}
