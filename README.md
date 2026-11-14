@@ -70,28 +70,21 @@ Secara lokal data tersimpan di `instance/lyznart.db` (SQLite) dan **tidak hilang
 python -m unittest discover -s tests -v
 ```
 
-## 🌐 Deployment Online (Render + PostgreSQL Neon)
-
-Render menjalankan Flask dengan Gunicorn dan HTTPS otomatis. Disk paket gratis Render **tidak permanen**, jadi data siswa disimpan di **PostgreSQL Neon** (gratis, tidak kedaluwarsa) agar **tidak hilang saat restart/deploy ulang**.
-
-### 1) Buat database PostgreSQL (Neon)
-1. Daftar di **https://neon.tech** (bisa login dengan GitHub).
-2. **Create project** → nama `lyznart`, region **Asia Pacific (Singapore)**.
-3. Salin **Connection string** (format `postgresql://user:password@host/neondb?sslmode=require`).
-
-### 2) Deploy ke Render
+## 🌐 Deployment Online (Render, satu klik)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/NurainiLyzna/LYZNART-sistemkoordinatkartesius)
 
-1. Daftar/login di **https://render.com** dengan akun GitHub, lalu klik tombol di atas, *atau*
-2. **New → Blueprint** → hubungkan repository `LYZNART-sistemkoordinatkartesius`.
-3. Render membaca `render.yaml`. Saat diminta, tempel connection string Neon ke **`DATABASE_URL`**. `SECRET_KEY` dibuat otomatis.
-4. Klik **Apply / Deploy**. Setelah selesai, website aktif di `https://lyznart.onrender.com` (atau nama lain yang diberikan Render).
-5. Cek kesehatan: buka `https://<nama>.onrender.com/healthz`, hasilnya harus `"db": "PostgreSQL"`.
+Render menjalankan Flask dengan Gunicorn dan HTTPS otomatis. File `render.yaml` sekaligus membuat **database PostgreSQL Render** (`lyznart-db`), sehingga akun dan progres siswa **tidak hilang saat aplikasi restart atau di-deploy ulang**. Tidak ada isian manual.
 
-> Paket gratis Render "tidur" setelah ±15 menit tanpa pengunjung; akses pertama bisa butuh ±30–60 detik. Data tetap aman di Neon.
+1. Klik tombol **Deploy to Render** di atas, lalu login dengan akun GitHub.
+2. Izinkan Render mengakses repository `LYZNART-sistemkoordinatkartesius`.
+3. Klik **Apply**. Tunggu ±5 menit sampai status **Live**.
+4. Website aktif di `https://lyznart.onrender.com` (atau nama lain yang diberikan Render).
+5. Cek kesehatan: `https://<nama>.onrender.com/healthz` harus menampilkan `"db": "PostgreSQL"`.
 
-### 3) Memperbarui website
+> **Catatan paket gratis Render:** web service "tidur" setelah ±15 menit tanpa pengunjung (akses pertama ±30–60 detik), dan database gratis berlaku **30 hari**. Agar data permanen, upgrade database ke paket berbayar di Render, atau ganti `DATABASE_URL` dengan PostgreSQL gratis permanen seperti Neon (https://neon.tech).
+
+### Memperbarui website
 `autoDeploy: true` sudah aktif. Setiap push ke branch `main` akan otomatis di-deploy ulang oleh Render.
 
 ```powershell

@@ -1,5 +1,6 @@
 # Render Blueprint - LYZNART
-# Render > New > Blueprint > pilih repository ini. Isi DATABASE_URL saat diminta.
+# Klik: https://render.com/deploy?repo=https://github.com/NurainiLyzna/LYZNART-sistemkoordinatkartesius
+# Render otomatis membuat web service + database PostgreSQL, tanpa isian manual.
 services:
   - type: web
     name: lyznart
@@ -19,4 +20,13 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        sync: false   # tempel connection string PostgreSQL (Neon) di dashboard Render
+        fromDatabase:
+          name: lyznart-db
+          property: connectionString
+
+databases:
+  - name: lyznart-db
+    plan: free
+    region: singapore
+    databaseName: lyznart
+    user: lyznart
