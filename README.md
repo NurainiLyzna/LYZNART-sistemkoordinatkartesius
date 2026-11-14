@@ -80,7 +80,10 @@ Render menjalankan Flask dengan Gunicorn dan HTTPS otomatis. Disk paket gratis R
 3. Salin **Connection string** (format `postgresql://user:password@host/neondb?sslmode=require`).
 
 ### 2) Deploy ke Render
-1. Daftar/login di **https://render.com** dengan akun GitHub.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/NurainiLyzna/LYZNART-sistemkoordinatkartesius)
+
+1. Daftar/login di **https://render.com** dengan akun GitHub, lalu klik tombol di atas, *atau*
 2. **New → Blueprint** → hubungkan repository `LYZNART-sistemkoordinatkartesius`.
 3. Render membaca `render.yaml`. Saat diminta, tempel connection string Neon ke **`DATABASE_URL`**. `SECRET_KEY` dibuat otomatis.
 4. Klik **Apply / Deploy**. Setelah selesai, website aktif di `https://lyznart.onrender.com` (atau nama lain yang diberikan Render).
