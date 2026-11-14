@@ -75,7 +75,8 @@ python -m unittest discover -s tests -v
 LYZNART online di **https://nurainilyzna.github.io/LYZNART-sistemkoordinatkartesius/**, gratis dengan HTTPS dari GitHub Pages (branch `gh-pages`).
 
 Versi GitHub Pages adalah hasil build statis dari aplikasi Flask yang sama (`tools/build_static.py`). Karena tidak ada server Python di GitHub Pages:
-- profil siswa dibuat tanpa kata sandi dan **disimpan di browser perangkat itu** (localStorage); data tetap ada saat halaman ditutup/dibuka ulang, tetapi tidak berpindah ke perangkat/browser lain;
+- saat website dibuka, pengunjung langsung melihat halaman **Masuk / Daftar**; isi website baru terbuka setelah masuk;
+- akun siswa (username + kata sandi ter-hash SHA-256) dan progresnya **disimpan di browser perangkat itu** (localStorage). Satu perangkat bisa dipakai beberapa siswa dengan akun masing-masing. Data tetap ada saat halaman ditutup/dibuka ulang, tetapi tidak berpindah ke perangkat/browser lain;
 - penilaian, XP, level, badge, dan grafik dihitung langsung di browser (`static/js/local.js`).
 
 **Memperbarui website online** setelah mengubah kode:
