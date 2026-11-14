@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Materi · Explore. Learn. Play. Master!</title>
+  <meta name="description" content="LYZNART: media belajar interaktif Sistem Koordinat Kartesius untuk siswa kelas VIII SMP/MTs. Materi, latihan, pre-test, post-test, dan game edukasi.">
+  <meta name="theme-color" content="#7c3aed">
+  <link rel="manifest" href="/LYZNART-sistemkoordinatkartesius/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="/LYZNART-sistemkoordinatkartesius/static/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/LYZNART-sistemkoordinatkartesius/static/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="LYZNART">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/LYZNART-sistemkoordinatkartesius/static/css/style.css?v=1.4.0">
+  <script>
+    /* gerbang masuk versi statis: tanpa akun aktif → halaman Masuk */
+    (function () { try {
+      var b = "/LYZNART-sistemkoordinatkartesius", p = location.pathname.slice(b.length).replace(/\/$/, "") || "/";
+      var open = ["/masuk", "/daftar", "/instal", "/offline"];
+      var s = JSON.parse(localStorage.getItem("lyznart:v2") || "null");
+      var ok = s && s.current && s.accounts && s.accounts[s.current];
+      if (!ok && open.indexOf(p) < 0) { document.documentElement.style.visibility = "hidden"; location.replace(b + "/masuk/"); }
+    } catch (e) {} })();
+  </script>
+  
+</head>
+<body class="">
+  <svg id="ci-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+<defs><linearGradient id="t-v" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b794ff"/><stop offset="1" stop-color="#6d28d9"/></linearGradient><linearGradient id="t-c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5ee7f7"/><stop offset="1" stop-color="#0e93b5"/></linearGradient><linearGradient id="t-s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#3b6cf0"/></linearGradient><linearGradient id="t-p" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa9d6"/><stop offset="1" stop-color="#e0337f"/></linearGradient><linearGradient id="t-m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7beac0"/><stop offset="1" stop-color="#0a9b6b"/></linearGradient><linearGradient id="t-y" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd66b"/><stop offset="1" stop-color="#f08c00"/></linearGradient><linearGradient id="t-o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb57a"/><stop offset="1" stop-color="#f2622b"/></linearGradient><linearGradient id="t-i" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#aab4ff"/><stop offset="1" stop-color="#4f46e5"/></linearGradient><linearGradient id="t-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d5dbe5"/><stop offset="1" stop-color="#7b8798"/></linearGradient><linearGradient id="t-l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d6c8ff"/><stop offset="1" stop-color="#8b6cf0"/></linearGradient>
+<linearGradient id="a-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+<linearGradient id="a-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+<linearGradient id="a-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient>
+<linearGradient id="a-p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdf2f8"/><stop offset="1" stop-color="#f9a8d4"/></linearGradient>
+<linearGradient id="a-o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#fdba74"/></linearGradient>
+<linearGradient id="o-rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2e8f0"/><stop offset="1" stop-color="#94a3b8"/></linearGradient>
+<linearGradient id="o-gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a5f3fc"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+<linearGradient id="o-fire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#e11d48"/></linearGradient>
+<linearGradient id="o-drop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+<linearGradient id="o-sail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+<linearGradient id="o-hull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+</defs>
+<symbol id="ci-book" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#6d28d9" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-v)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-book" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-book" color="#ffffff"/></symbol>
+<symbol id="gl-book" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 22 C27 18 20 17 14 18 V45 C20 44 27 45 32 49 C37 45 44 44 50 45 V18 C44 17 37 18 32 22 Z M32 22 V49"/></symbol>
+<symbol id="ci-compass" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-compass" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-compass" color="#ffffff"/></symbol>
+<symbol id="gl-compass" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M20 46 H50 M24 50 V16"/><path d="M40 26 V46 M40 26 H24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-dasharray="2.5 4" stroke-linecap="round"/><circle cx="40" cy="26" r="5.5" fill="#ffe27a" stroke="currentColor" stroke-width="3"/></symbol>
+<symbol id="ci-pencil" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-pencil" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-pencil" color="#ffffff"/></symbol>
+<symbol id="gl-pencil" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M40 15 L49 24 L27 46 L15 49 L18 37 Z M35 20 L44 29"/></symbol>
+<symbol id="ci-gamepad" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#4f46e5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-i)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-gamepad" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-gamepad" color="#ffffff"/></symbol>
+<symbol id="gl-gamepad" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M23 23 H41 a11 11 0 0 1 11 11 v4 a6 6 0 0 1 -11 3.5 L38 37 H26 l-3 4.5 A6 6 0 0 1 12 38 v-4 a11 11 0 0 1 11 -11 Z M23 29 v8 M19 33 h8"/><circle cx="40" cy="30.5" r="2.4" fill="currentColor"/><circle cx="45" cy="35.5" r="2.4" fill="currentColor"/></symbol>
+<symbol id="ci-home" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#3b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-s)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-home" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-home" color="#ffffff"/></symbol>
+<symbol id="gl-home" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 31 L32 17 L49 31 M20 27 V47 H44 V27 M28 47 V37 H36 V47"/></symbol>
+<symbol id="ci-logout" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f2622b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-o)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-logout" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-logout" color="#ffffff"/></symbol>
+<symbol id="gl-logout" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M30 16 H21 a4 4 0 0 0 -4 4 V44 a4 4 0 0 0 4 4 H30 M27 32 H49 M42 25 L49 32 L42 39"/></symbol>
+<symbol id="ci-install" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-install" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-install" color="#ffffff"/></symbol>
+<symbol id="gl-install" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 15 V37 M24 29 L32 37 L40 29 M17 39 V44 a4 4 0 0 0 4 4 H43 a4 4 0 0 0 4 -4 V39"/></symbol>
+<symbol id="ci-bulb" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-bulb" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-bulb" color="#ffffff"/></symbol>
+<symbol id="gl-bulb" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M26 39 a12.5 12.5 0 1 1 12 0 V43 H26 Z M27 48 H37"/><path d="M32 23 l-3 7 h6 l-3 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="ci-clipboard" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#3b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-s)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-clipboard" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-clipboard" color="#ffffff"/></symbol>
+<symbol id="gl-clipboard" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M25 18 H21 a4 4 0 0 0 -4 4 V45 a4 4 0 0 0 4 4 H43 a4 4 0 0 0 4 -4 V22 a4 4 0 0 0 -4 -4 H39 M26 14 H38 V21 H26 Z M25 35 L30 40 L39 30"/></symbol>
+<symbol id="ci-cap" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#6d28d9" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-v)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-cap" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-cap" color="#ffffff"/></symbol>
+<symbol id="gl-cap" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M10 28 L32 18 L54 28 L32 38 Z M20 33 V42 C26 47 38 47 44 42 V33 M50 30 V40"/><circle cx="50" cy="42" r="2.5" fill="#ffe27a"/></symbol>
+<symbol id="ci-chart" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-chart" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-chart" color="#ffffff"/></symbol>
+<symbol id="gl-chart" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M16 47 H48"/><path d="M23 40 V32 M32 40 V22 M41 40 V27" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></symbol>
+<symbol id="ci-chartup" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0a9b6b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-m)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-chartup" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-chartup" color="#ffffff"/></symbol>
+<symbol id="gl-chartup" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 45 L26 33 L34 39 L48 23 M40 23 H48 V31"/></symbol>
+<symbol id="ci-medal" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-medal" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-medal" color="#ffffff"/></symbol>
+<symbol id="gl-medal" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M24 13 L29 27 M40 13 L35 27"/><circle cx="32" cy="38" r="11" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 32 l1.9 3.8 4.2 .6 -3 3 .7 4.2 -3.8 -2 -3.8 2 .7 -4.2 -3 -3 4.2 -.6 Z" fill="currentColor"/></symbol>
+<symbol id="ci-star" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-star" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-star" color="#ffffff"/></symbol>
+<symbol id="gl-star" viewBox="0 0 64 64"><path d="M32 16 L36.6 26.6 L48 27.8 L39.4 35.4 L41.9 46.6 L32 40.8 L22.1 46.6 L24.6 35.4 L16 27.8 L27.4 26.6 Z" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></symbol>
+<symbol id="ci-target" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-target" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-target" color="#ffffff"/></symbol>
+<symbol id="gl-target" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="6.5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="2" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 11 V17 M32 47 V53 M11 32 H17 M47 32 H53"/></symbol>
+<symbol id="ci-bolt" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-bolt" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-bolt" color="#ffffff"/></symbol>
+<symbol id="gl-bolt" viewBox="0 0 64 64"><rect x="16" y="16" width="12" height="12" rx="3" fill="currentColor" opacity=".35"/><rect x="36" y="36" width="12" height="12" rx="3" fill="currentColor" opacity=".35"/><path d="M35 13 L21 35 H31 L28 51 L43 28 H33 Z" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+<symbol id="ci-robot" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#3b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-s)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-robot" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-robot" color="#ffffff"/></symbol>
+<symbol id="gl-robot" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 23 V16"/><circle cx="32" cy="14" r="3" fill="currentColor"/><rect x="16" y="23" width="32" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="34" r="3.2" fill="currentColor"/><circle cx="38" cy="34" r="3.2" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M28 41 H36 M12 31 V39 M52 31 V39"/></symbol>
+<symbol id="ci-ship" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-ship" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-ship" color="#ffffff"/></symbol>
+<symbol id="gl-ship" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M31 14 V40"/><path d="M34 15 L47 37 H34 Z M29 20 L18 37 H29 Z" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M13 41 H51 L45.5 49 H18.5 Z"/></symbol>
+<symbol id="ci-trophy" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-trophy" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-trophy" color="#ffffff"/></symbol>
+<symbol id="gl-trophy" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M22 16 H42 V26 a10 10 0 0 1 -20 0 Z M22 19 H16 a5.5 5.5 0 0 0 6.5 9.5 M42 19 H48 a5.5 5.5 0 0 1 -6.5 9.5 M32 36 V43 M24 48 H40"/></symbol>
+<symbol id="ci-map" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0a9b6b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-m)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-map" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-map" color="#ffffff"/></symbol>
+<symbol id="gl-map" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14 20 L25 16 L39 20 L50 16 V44 L39 48 L25 44 L14 48 Z M25 16 V44 M39 20 V48"/></symbol>
+<symbol id="ci-pin" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-pin" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-pin" color="#ffffff"/></symbol>
+<symbol id="gl-pin" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 50 C24 40 19 34 19 27 a13 13 0 0 1 26 0 c0 7 -5 13 -13 23 Z"/><circle cx="32" cy="27" r="4.5" fill="currentColor"/></symbol>
+<symbol id="ci-rocket" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#6d28d9" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-v)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-rocket" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-rocket" color="#ffffff"/></symbol>
+<symbol id="gl-rocket" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 12 C39.5 17 42.5 27 39 38 H25 C21.5 27 24.5 17 32 12 Z M25 31 L18 39 L25 41 M39 31 L46 39 L39 41"/><circle cx="32" cy="25" r="3.5" fill="currentColor"/><path d="M28.5 43 L32 51 L35.5 43 Z" fill="#ffe27a"/></symbol>
+<symbol id="ci-key" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-key" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-key" color="#ffffff"/></symbol>
+<symbol id="gl-key" viewBox="0 0 64 64"><circle cx="24" cy="27" r="8.5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M30 33 L47 50 M41 44 L45.5 39.5 M45 48 L49.5 43.5"/></symbol>
+<symbol id="ci-user" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#8b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-l)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-user" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-user" color="#ffffff"/></symbol>
+<symbol id="gl-user" viewBox="0 0 64 64"><circle cx="32" cy="25" r="8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M17 49 a15 12 0 0 1 30 0"/></symbol>
+<symbol id="ci-check" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0a9b6b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-m)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-check" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-check" color="#ffffff"/></symbol>
+<symbol id="gl-check" viewBox="0 0 64 64"><path d="M18 33 L28 43 L46 22" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="ci-folder" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-folder" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-folder" color="#ffffff"/></symbol>
+<symbol id="gl-folder" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14 22 a3 3 0 0 1 3 -3 H27 l4 4 H47 a3 3 0 0 1 3 3 V44 a3 3 0 0 1 -3 3 H17 a3 3 0 0 1 -3 -3 Z"/></symbol>
+<symbol id="ci-clock" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-clock" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-clock" color="#ffffff"/></symbol>
+<symbol id="gl-clock" viewBox="0 0 64 64"><circle cx="32" cy="33" r="16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 24 V33 L38 37 M27 13 H37"/></symbol>
+<symbol id="ci-gem" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-gem" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-gem" color="#ffffff"/></symbol>
+<symbol id="gl-gem" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M20 26 L26 17 H38 L44 26 L32 48 Z"/><path d="M20 26 H44 M28 26 L32 48 L36 26 M26 17 L28 26 M38 17 L36 26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></symbol>
+<symbol id="ci-rock" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#7b8798" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-g)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-rock" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-rock" color="#ffffff"/></symbol>
+<symbol id="gl-rock" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M16 44 C14 36 20 29 27 30 C31 23 42 25 44 33 C50 35 50 44 44 45 H19 Z"/></symbol>
+<symbol id="ci-fire" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f2622b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-o)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-fire" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-fire" color="#ffffff"/></symbol>
+<symbol id="gl-fire" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 13 C36 21 44 26 44 36 a12 12 0 0 1 -24 0 C20 30 24 26 26 21 C28 26 30 27 32 13 Z"/><path d="M32 33 c2 3 5 4.5 5 8 a5 5 0 0 1 -10 0 c0 -3 3 -4.5 5 -8 Z" fill="currentColor"/></symbol>
+<symbol id="ci-drop" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#3b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-s)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-drop" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-drop" color="#ffffff"/></symbol>
+<symbol id="gl-drop" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 14 C38 24 44 30 44 37 a12 12 0 0 1 -24 0 C20 30 26 24 32 14 Z"/><path d="M26 38 a6 6 0 0 0 4 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+<symbol id="ci-sparkle" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-sparkle" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-sparkle" color="#ffffff"/></symbol>
+<symbol id="gl-sparkle" viewBox="0 0 64 64"><path d="M28 13 C29 23 31 25 41 26 C31 27 29 29 28 39 C27 29 25 27 15 26 C25 25 27 23 28 13 Z" fill="currentColor"/><path d="M44 35 c.6 4.4 1.6 5.4 6 6 c-4.4 .6 -5.4 1.6 -6 6 c-.6 -4.4 -1.6 -5.4 -6 -6 c4.4 -.6 5.4 -1.6 6 -6 Z" fill="currentColor"/></symbol>
+<symbol id="ci-lock" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#7b8798" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-g)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-lock" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-lock" color="#ffffff"/></symbol>
+<symbol id="gl-lock" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M24 30 V24 a8 8 0 0 1 16 0 V30"/><rect x="18" y="30" width="28" height="19" rx="5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="39.5" r="2.6" fill="currentColor"/></symbol>
+<symbol id="ci-crown" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-crown" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-crown" color="#ffffff"/></symbol>
+<symbol id="gl-crown" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M16 42 L18 22 L26 31 L32 18 L38 31 L46 22 L48 42 Z M18 48 H46"/></symbol>
+<symbol id="ci-dumbbell" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#6d28d9" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-v)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-dumbbell" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-dumbbell" color="#ffffff"/></symbol>
+<symbol id="gl-dumbbell" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M22 32 H42"/><rect x="16" y="23" width="7" height="18" rx="2.5" fill="currentColor"/><rect x="41" y="23" width="7" height="18" rx="2.5" fill="currentColor"/><rect x="10" y="27" width="5" height="10" rx="2" fill="currentColor"/><rect x="49" y="27" width="5" height="10" rx="2" fill="currentColor"/></symbol>
+<symbol id="ci-hundred" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-hundred" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-hundred" color="#ffffff"/></symbol>
+<symbol id="gl-hundred" viewBox="0 0 64 64"><text x="32" y="38" text-anchor="middle" font-family="Baloo 2, Nunito, Arial, sans-serif" font-weight="800" font-size="20" fill="currentColor">100</text><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 44 H45"/></symbol>
+<symbol id="ci-heart" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-heart" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-heart" color="#ffffff"/></symbol>
+<symbol id="gl-heart" viewBox="0 0 64 64"><path d="M32 47 C20 39 15 33 15 26 a8.5 8.5 0 0 1 17 -3.5 a8.5 8.5 0 0 1 17 3.5 c0 7 -5 13 -17 21 Z" fill="currentColor"/></symbol>
+<symbol id="ci-warn" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f2622b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-o)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-warn" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-warn" color="#ffffff"/></symbol>
+<symbol id="gl-warn" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M32 15 L49 46 H15 Z M32 26 V35"/><circle cx="32" cy="41" r="2.4" fill="currentColor"/></symbol>
+<symbol id="ci-chat" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-chat" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-chat" color="#ffffff"/></symbol>
+<symbol id="gl-chat" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M16 20 a4 4 0 0 1 4 -4 H44 a4 4 0 0 1 4 4 V36 a4 4 0 0 1 -4 4 H28 L20 47 V40 a4 4 0 0 1 -4 -4 Z"/><circle cx="25" cy="28" r="2.4" fill="currentColor"/><circle cx="32" cy="28" r="2.4" fill="currentColor"/><circle cx="39" cy="28" r="2.4" fill="currentColor"/></symbol>
+<symbol id="ci-eye" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#8b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-l)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-eye" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-eye" color="#ffffff"/></symbol>
+<symbol id="gl-eye" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M11 32 C18 21 46 21 53 32 C46 43 18 43 11 32 Z"/><circle cx="32" cy="32" r="5.5" fill="currentColor"/></symbol>
+<symbol id="ci-refresh" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-refresh" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-refresh" color="#ffffff"/></symbol>
+<symbol id="gl-refresh" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M45 25 A14 14 0 1 0 46.5 37 M46 15 V25 H36"/></symbol>
+<symbol id="ci-play" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0a9b6b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-m)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-play" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-play" color="#ffffff"/></symbol>
+<symbol id="gl-play" viewBox="0 0 64 64"><path d="M25 18 L46 32 L25 46 Z" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></symbol>
+<symbol id="ci-save" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#4f46e5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-i)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-save" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-save" color="#ffffff"/></symbol>
+<symbol id="gl-save" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M18 16 H40 L47 23 V46 a2 2 0 0 1 -2 2 H19 a2 2 0 0 1 -2 -2 V17 Z M24 16 V24 H37 V16 M24 48 V37 H40 V48"/></symbol>
+<symbol id="ci-signal" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#8b6cf0" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-l)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-signal" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-signal" color="#ffffff"/></symbol>
+<symbol id="gl-signal" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 28 a24 24 0 0 1 34 0 M21.5 34.5 a15 15 0 0 1 21 0 M28 41 a5.5 5.5 0 0 1 8 0"/><circle cx="32" cy="47" r="2.8" fill="currentColor"/></symbol>
+<symbol id="ci-question" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#0e93b5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-c)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-question" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-question" color="#ffffff"/></symbol>
+<symbol id="gl-question" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M25 25 a7 7 0 1 1 10 6.3 c-2 1 -3 2.5 -3 5"/><circle cx="32" cy="45" r="2.8" fill="currentColor"/></symbol>
+<symbol id="ci-ladder" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#6d28d9" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-v)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-ladder" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-ladder" color="#ffffff"/></symbol>
+<symbol id="gl-ladder" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 47 H25 V39 H34 V31 H43 V23 H49"/><path d="M43 12 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5 Z" fill="#ffe27a"/></symbol>
+<symbol id="ci-scroll" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f2622b" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-o)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-scroll" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-scroll" color="#ffffff"/></symbol>
+<symbol id="gl-scroll" viewBox="0 0 64 64"><rect x="17" y="14" width="30" height="36" rx="5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M24 24 H40 M24 32 H40 M24 40 H34"/></symbol>
+<symbol id="ci-pointer" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#4f46e5" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-i)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-pointer" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-pointer" color="#ffffff"/></symbol>
+<symbol id="gl-pointer" viewBox="0 0 64 64"><path d="M21 15 L45 33 L34 35.5 L40 47.5 L35 50 L29 38 L21 45 Z" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+<symbol id="ci-ruler" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#f08c00" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-y)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-ruler" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-ruler" color="#ffffff"/></symbol>
+<symbol id="gl-ruler" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14 38 L38 14 L50 26 L26 50 Z"/><path d="M20 32 L24 36 M25.5 26.5 L28.5 29.5 M31 21 L35 25 M36.5 15.5 L39.5 18.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+<symbol id="ci-flag" viewBox="0 0 64 64"><rect x="3" y="4" width="58" height="58" rx="18" fill="#e0337f" opacity=".35"/><rect x="3" y="2" width="58" height="58" rx="18" fill="url(#t-p)"/><path d="M21 2 H43 A18 18 0 0 1 61 20 V22 C46 14 18 14 3 24 V20 A18 18 0 0 1 21 2 Z" fill="#fff" opacity=".18"/><rect x="4" y="3" width="56" height="56" rx="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><use href="#gl-flag" color="#1e1b4b" opacity=".22" y="2"/><use href="#gl-flag" color="#ffffff"/></symbol>
+<symbol id="gl-flag" viewBox="0 0 64 64"><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M20 49 V15"/><path d="M20 16 C28 12 34 20 44 16 V33 C34 37 28 29 20 33 Z" fill="currentColor"/></symbol>
+
+<symbol id="ci-face" viewBox="0 0 20 12">
+  <ellipse cx="2.2" cy="8" rx="2" ry="1.2" fill="#f9a8d4"/><ellipse cx="17.8" cy="8" rx="2" ry="1.2" fill="#f9a8d4"/>
+  <ellipse cx="5.5" cy="4.2" rx="1.8" ry="2.2" fill="#2e1065"/><ellipse cx="14.5" cy="4.2" rx="1.8" ry="2.2" fill="#2e1065"/>
+  <circle cx="6.1" cy="3.4" r=".7" fill="#fff"/><circle cx="15.1" cy="3.4" r=".7" fill="#fff"/>
+  <path d="M8.4 7.2 q1.6 1.8 3.2 0" fill="none" stroke="#2e1065" stroke-width="1.2" stroke-linecap="round"/>
+</symbol>
+<symbol id="ci-av-robot" viewBox="0 0 64 64"><g stroke="#3b1a78" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M32 17 V10" fill="none"/><circle cx="32" cy="8" r="4" fill="url(#a-p)"/>
+  <rect x="5" y="28" width="7" height="13" rx="3.5" fill="url(#a-l)"/><rect x="52" y="28" width="7" height="13" rx="3.5" fill="url(#a-l)"/>
+  <rect x="21" y="49" width="22" height="10" rx="4" fill="url(#a-l)"/>
+  <rect x="11" y="17" width="42" height="34" rx="13" fill="url(#a-s)"/>
+  <rect x="17" y="24" width="30" height="19" rx="9" fill="#2e1065"/></g>
+  <ellipse cx="25.5" cy="32.5" rx="3" ry="3.6" fill="#67e8f9"/><ellipse cx="38.5" cy="32.5" rx="3" ry="3.6" fill="#67e8f9"/>
+  <circle cx="26.5" cy="31.3" r="1" fill="#fff"/><circle cx="39.5" cy="31.3" r="1" fill="#fff"/>
+  <path d="M29 38 q3 2.6 6 0" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="15" cy="44" rx="2.4" ry="1.4" fill="#f9a8d4"/><ellipse cx="49" cy="44" rx="2.4" ry="1.4" fill="#f9a8d4"/></symbol>
+<symbol id="ci-av-astronot" viewBox="0 0 64 64"><g stroke="#3b1a78" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M32 9 V4" fill="none"/><circle cx="32" cy="4" r="2.6" fill="#fcd34d" stroke-width="2"/>
+  <rect x="3" y="28" width="8" height="14" rx="4" fill="url(#a-p)"/><rect x="53" y="28" width="8" height="14" rx="4" fill="url(#a-p)"/>
+  <circle cx="32" cy="34" r="25" fill="#fff"/>
+  <rect x="13" y="22" width="38" height="27" rx="13.5" fill="url(#a-s)"/></g>
+  <path d="M19 31 a8 8 0 0 1 6 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <use href="#ci-face" x="22" y="30" width="20" height="12"/></symbol>
+<symbol id="ci-av-kucing" viewBox="0 0 64 64"><g stroke="#3b1a78" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M10 28 L12 6 L26 17 Q32 15 38 17 L52 6 L54 28 Q60 44 48 52 Q32 61 16 52 Q4 44 10 28 Z" fill="url(#a-o)"/>
+  <path d="M15 13 L16 22 L22 17 Z M49 13 L48 22 L42 17 Z" fill="#f9a8d4" stroke-width="1.6"/>
+  <path d="M5 38 h9 M6 44 l8 -2 M59 38 h-9 M58 44 l-8 -2" fill="none" stroke-width="2"/></g>
+  <use href="#ci-face" x="21" y="30" width="22" height="13"/></symbol>
+<symbol id="ci-av-burung" viewBox="0 0 64 64"><g stroke="#3b1a78" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M13 22 L10 6 L24 15 Z M51 22 L54 6 L40 15 Z" fill="url(#a-v)"/>
+  <ellipse cx="32" cy="36" rx="24" ry="23" fill="url(#a-v)"/>
+  <ellipse cx="32" cy="45" rx="13" ry="11" fill="url(#a-l)" stroke-width="2"/>
+  <circle cx="23" cy="30" r="8.5" fill="#fff" stroke-width="2.2"/><circle cx="41" cy="30" r="8.5" fill="#fff" stroke-width="2.2"/>
+  <path d="M28.5 37 H35.5 L32 42 Z" fill="#fcd34d" stroke-width="2"/></g>
+  <circle cx="24" cy="31" r="4.2" fill="#2e1065"/><circle cx="40" cy="31" r="4.2" fill="#2e1065"/>
+  <circle cx="25.4" cy="29.6" r="1.4" fill="#fff"/><circle cx="41.4" cy="29.6" r="1.4" fill="#fff"/>
+  <ellipse cx="14" cy="40" rx="2.6" ry="1.5" fill="#f9a8d4"/><ellipse cx="50" cy="40" rx="2.6" ry="1.5" fill="#f9a8d4"/></symbol>
+
+<symbol id="ci-obj-rock" viewBox="0 0 64 64">
+  <ellipse cx="32" cy="54" rx="22" ry="4" fill="#1e1b4b" opacity=".12"/>
+  <path d="M8 47 C6 35 15 25 25 27 C31 15 50 18 52 31 C60 35 59 50 48 52 H14 C10 52 8 50 8 47 Z" fill="url(#o-rock)"/>
+  <path d="M27 31 C30 24 40 23 45 29" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  <path d="M18 44 l6 -4 M38 46 l7 -3" stroke="#64748b" stroke-width="2" stroke-linecap="round" opacity=".6"/></symbol>
+<symbol id="ci-obj-gem" viewBox="0 0 64 64">
+  <ellipse cx="32" cy="58" rx="16" ry="3" fill="#1e1b4b" opacity=".12"/>
+  <path d="M12 22 L22 8 H42 L52 22 L32 56 Z" fill="url(#o-gem)"/>
+  <path d="M12 22 H52 L32 56 Z" fill="#0e7490" opacity=".25"/>
+  <path d="M22 8 L27 22 L32 56 M42 8 L37 22 L32 56 M27 22 L32 8 L37 22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7" stroke-linejoin="round"/>
+  <path d="M50 4 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z" fill="#fff"/></symbol>
+<symbol id="ci-obj-fire" viewBox="0 0 64 64">
+  <path d="M32 3 C41 17 54 23 52 41 C50 53 42 60 32 60 C22 60 14 53 12 41 C11 30 19 24 23 14 C26 23 30 25 32 3 Z" fill="url(#o-fire)"/>
+  <path d="M32 26 C37 33 43 37 42 46 C41 52 37 55 32 55 C27 55 23 52 22 46 C22 39 28 36 32 26 Z" fill="#ffe27a"/>
+  <path d="M32 40 c2.5 3.5 5 5 5 8.5 a5 5 0 0 1 -10 0 c0 -3.5 2.5 -5 5 -8.5 Z" fill="#fff" opacity=".85"/></symbol>
+<symbol id="ci-obj-drop" viewBox="0 0 64 64">
+  <path d="M32 4 C43 21 52 30 52 42 a20 20 0 0 1 -40 0 C12 30 21 21 32 4 Z" fill="url(#o-drop)"/>
+  <path d="M21 40 a11 11 0 0 0 5 10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  <circle cx="40" cy="30" r="3" fill="#fff" opacity=".6"/></symbol>
+<symbol id="ci-obj-ship" viewBox="0 0 64 64">
+  <path d="M31 6 V40" stroke="#4c1d95" stroke-width="3" stroke-linecap="round"/>
+  <path d="M34 8 L52 36 H34 Z" fill="url(#o-sail)"/><path d="M28 14 L13 36 H28 Z" fill="#ede9fe"/>
+  <path d="M6 40 H58 L50 54 H14 Z" fill="url(#o-hull)"/>
+  <path d="M10 44 H54" stroke="#fff" stroke-width="2.4" opacity=".6"/>
+  <path d="M2 60 q5 -4 10 0 t10 0 t10 0 t10 0 t10 0 t10 0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/></symbol>
+</svg>
+  <div class="bg-shapes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="/LYZNART-sistemkoordinatkartesius/" aria-label="LYZNART beranda">
+      <img src="/LYZNART-sistemkoordinatkartesius/static/icons/icon-192.png" alt="" width="38" height="38">
+      <span>LYZN<b>ART</b></span>
+    </a>
+    <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="mainnav">☰</button>
+    <nav id="mainnav" class="mainnav">
+      <a href="/LYZNART-sistemkoordinatkartesius/materi/" class="active"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-book"/></svg> Materi</a>
+      <a href="/LYZNART-sistemkoordinatkartesius/visualisasi/" class=""><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-compass"/></svg> Visualisasi</a>
+      <a href="/LYZNART-sistemkoordinatkartesius/kuis/latihan/" class=""><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-pencil"/></svg> Latihan</a>
+      <a href="/LYZNART-sistemkoordinatkartesius/game/" class=""><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-gamepad"/></svg> Game</a>
+      
+        <a href="/LYZNART-sistemkoordinatkartesius/masuk/" class="btn btn-ghost btn-sm">Masuk</a>
+        <a href="/LYZNART-sistemkoordinatkartesius/daftar/" class="btn btn-primary btn-sm">Daftar</a>
+      
+      <button class="btn btn-cyan btn-sm install-btn nav-install" hidden title="Install LYZNART"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-install"/></svg><span class="lbl"> Install LYZNART</span></button>
+    </nav>
+  </header>
+
+  <div class="flash-wrap">
+    
+  </div>
+
+  <main id="main">
+<section class="page-head">
+  <div>
+    <span class="pill"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-book"/></svg> Bab Sistem Koordinat Kartesius</span>
+    <h1>Materi Sistem Koordinat Kartesius</h1>
+    <p class="lead">Baca setiap bagian, lalu tekan <b>“Tandai selesai”</b> untuk mendapatkan XP. Selesaikan keenamnya untuk badge <b>Pembaca Rajin <svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-book"/></svg></b>.</p>
+  </div>
+  <svg class="mascot bob" width="120" height="120" viewBox="0 0 200 200" role="img" aria-label="Lyzy, maskot LYZNART">
+  <defs>
+    <linearGradient id="lyzyBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="lyzyBelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ecfeff"/><stop offset="1" stop-color="#cffafe"/>
+    </linearGradient>
+  </defs>
+  <!-- antena berbentuk sumbu koordinat -->
+  <line x1="100" y1="38" x2="100" y2="10" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+  <line x1="86" y1="24" x2="114" y2="24" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="100" cy="10" r="7" fill="#38bdf8"/>
+  <!-- telinga -->
+  <path d="M48 62 L40 28 L74 46 Z" fill="#8b5cf6"/>
+  <path d="M152 62 L160 28 L126 46 Z" fill="#8b5cf6"/>
+  <!-- badan -->
+  <ellipse cx="100" cy="112" rx="66" ry="72" fill="url(#lyzyBody)"/>
+  <ellipse cx="100" cy="136" rx="40" ry="38" fill="url(#lyzyBelly)"/>
+  <!-- grid kecil di perut -->
+  <g stroke="#67e8f9" stroke-width="2" opacity=".9">
+    <line x1="100" y1="108" x2="100" y2="166"/><line x1="70" y1="137" x2="130" y2="137"/>
+  </g>
+  <circle cx="114" cy="124" r="5" fill="#ec4899"/>
+  <!-- mata -->
+  <circle cx="74" cy="86" r="22" fill="#fff"/><circle cx="126" cy="86" r="22" fill="#fff"/>
+  <circle class="eye" cx="78" cy="88" r="10" fill="#1e1b4b"/><circle class="eye" cx="122" cy="88" r="10" fill="#1e1b4b"/>
+  <circle cx="82" cy="83" r="3.5" fill="#fff"/><circle cx="126" cy="83" r="3.5" fill="#fff"/>
+  <!-- paruh & pipi -->
+  <path d="M92 104 L108 104 L100 116 Z" fill="#fbbf24"/>
+  <ellipse cx="56" cy="110" rx="9" ry="5" fill="#f9a8d4" opacity=".8"/>
+  <ellipse cx="144" cy="110" rx="9" ry="5" fill="#f9a8d4" opacity=".8"/>
+  <!-- sayap -->
+  <path class="wing-l" d="M36 116 Q16 138 38 160 Q44 138 50 126 Z" fill="#6d28d9"/>
+  <path class="wing-r" d="M164 116 Q184 138 162 160 Q156 138 150 126 Z" fill="#6d28d9"/>
+  <!-- kaki -->
+  <path d="M80 182 l-8 10 h18 Z M120 182 l-8 10 h18 Z" fill="#fbbf24"/>
+</svg>
+</section>
+
+<div class="materi-layout">
+  <aside class="toc card">
+    <b>Daftar Isi</b>
+    <a href="#tujuan"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-target"/></svg> Tujuan Pembelajaran</a>
+    <a href="#m1">1. Bidang Kartesius</a>
+    <a href="#m2">2. Kuadran</a>
+    <a href="#m3">3. Posisi terhadap Sumbu</a>
+    <a href="#m4">4. Posisi terhadap Titik Acuan</a>
+    <a href="#m5">5. Garis Sejajar &amp; Tegak Lurus Sumbu</a>
+    <a href="#m6">6. Jarak &amp; Bangun Datar</a>
+    <a href="#rangkuman"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-pin"/></svg> Rangkuman</a>
+  </aside>
+
+  <div class="materi-body">
+    <article id="tujuan" class="card lesson goal">
+      <h2><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-target"/></svg> Tujuan Pembelajaran</h2>
+      <p>Setelah mempelajari bab ini, kamu diharapkan mampu:</p>
+      <ol>
+        <li>Menjelaskan unsur-unsur bidang koordinat Kartesius: sumbu-x, sumbu-y, titik asal, absis, dan ordinat.</li>
+        <li>Menentukan dan menggambar letak titik pada bidang koordinat Kartesius.</li>
+        <li>Menentukan kuadran tempat suatu titik berada berdasarkan tanda absis dan ordinatnya.</li>
+        <li>Menentukan posisi (jarak) titik terhadap sumbu-x dan sumbu-y.</li>
+        <li>Menentukan koordinat titik terhadap titik asal dan terhadap titik acuan tertentu.</li>
+        <li>Menentukan posisi garis yang sejajar, tegak lurus, atau memotong sumbu koordinat.</li>
+        <li>Menyelesaikan masalah sehari-hari (peta, denah, permainan) menggunakan koordinat Kartesius.</li>
+      </ol>
+      <div class="tip"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-chat"/></svg> <b>Tahukah kamu?</b> Sistem koordinat ini dinamai dari <b>René Descartes</b> (1596–1650), matematikawan Prancis. Konon, ia mendapat ide ini saat mengamati seekor lalat yang hinggap di langit-langit kamarnya!</div>
+    </article>
+
+    <article id="m1" class="card lesson">
+      <h2>1. Mengenal Bidang Kartesius</h2>
+      <div class="lesson-split">
+        <div>
+          <p><b>Bidang koordinat Kartesius</b> dibentuk oleh dua garis bilangan yang saling <b>tegak lurus</b>:</p>
+          <ul>
+            <li><b>Sumbu-x</b> (mendatar/horizontal). Ke kanan bernilai positif, ke kiri bernilai negatif.</li>
+            <li><b>Sumbu-y</b> (tegak/vertikal). Ke atas bernilai positif, ke bawah bernilai negatif.</li>
+            <li>Kedua sumbu berpotongan di <b>titik asal O(0, 0)</b>.</li>
+          </ul>
+          <p>Letak sebuah titik ditulis sebagai <b>pasangan berurutan (x, y)</b>:</p>
+          <ul>
+            <li><b>x</b> disebut <b>absis</b>: jarak mendatar dari sumbu-y.</li>
+            <li><b>y</b> disebut <b>ordinat</b>: jarak tegak dari sumbu-x.</li>
+          </ul>
+          <div class="formula">Titik A(x, y) → absis = x, ordinat = y</div>
+          <p><b>Cara menggambar titik A(2, 3):</b> mulai dari O, bergerak <b>2 satuan ke kanan</b>, lalu <b>3 satuan ke atas</b>. Ingat: <i>“jalan dulu (x), baru naik/turun (y)”</i>.</p>
+          <div class="warn"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-warn"/></svg> Urutan itu penting! (2, 3) dan (3, 2) adalah dua titik yang <b>berbeda</b>.</div>
+        </div>
+        <figure>
+
+<svg class="mini-plane" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Gambar bidang koordinat">
+  <rect width="260" height="260" rx="14" fill="#fff"/>
+  
+    <line x1="16.25" y1="16.25" x2="16.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="16.25" x2="243.75" y2="16.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="32.5" y1="16.25" x2="32.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="32.5" x2="243.75" y2="32.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="32.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-6</text>
+      <text x="126.0" y="230.5" font-size="8" text-anchor="end" fill="#6b7280">-6</text>
+    
+  
+    <line x1="48.75" y1="16.25" x2="48.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="48.75" x2="243.75" y2="48.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="65.0" y1="16.25" x2="65.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="65.0" x2="243.75" y2="65.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="65.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-4</text>
+      <text x="126.0" y="198.0" font-size="8" text-anchor="end" fill="#6b7280">-4</text>
+    
+  
+    <line x1="81.25" y1="16.25" x2="81.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="81.25" x2="243.75" y2="81.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="97.5" y1="16.25" x2="97.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="97.5" x2="243.75" y2="97.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="97.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-2</text>
+      <text x="126.0" y="165.5" font-size="8" text-anchor="end" fill="#6b7280">-2</text>
+    
+  
+    <line x1="113.75" y1="16.25" x2="113.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="113.75" x2="243.75" y2="113.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="130.0" y1="16.25" x2="130.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="130.0" x2="243.75" y2="130.0" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="146.25" y1="16.25" x2="146.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="146.25" x2="243.75" y2="146.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="162.5" y1="16.25" x2="162.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="162.5" x2="243.75" y2="162.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="162.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">2</text>
+      <text x="126.0" y="100.5" font-size="8" text-anchor="end" fill="#6b7280">2</text>
+    
+  
+    <line x1="178.75" y1="16.25" x2="178.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="178.75" x2="243.75" y2="178.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="195.0" y1="16.25" x2="195.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="195.0" x2="243.75" y2="195.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="195.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">4</text>
+      <text x="126.0" y="68.0" font-size="8" text-anchor="end" fill="#6b7280">4</text>
+    
+  
+    <line x1="211.25" y1="16.25" x2="211.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="211.25" x2="243.75" y2="211.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="227.5" y1="16.25" x2="227.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="227.5" x2="243.75" y2="227.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="227.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">6</text>
+      <text x="126.0" y="35.5" font-size="8" text-anchor="end" fill="#6b7280">6</text>
+    
+  
+    <line x1="243.75" y1="16.25" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="243.75" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+  <line x1="12.25" y1="130.0" x2="247.75" y2="130.0" stroke="#4c1d95" stroke-width="1.6"/>
+  <line x1="130.0" y1="247.75" x2="130.0" y2="12.25" stroke="#4c1d95" stroke-width="1.6"/>
+  <text x="245.75" y="125.0" font-size="9" fill="#4c1d95" font-weight="700">x</text>
+  <text x="135.0" y="16.25" font-size="9" fill="#4c1d95" font-weight="700">y</text>
+  
+    <circle cx="162.5" cy="81.25" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="168.5" y="75.25" font-size="10" font-weight="800" fill="#1e1b4b">A(2,3)</text>
+  
+    <circle cx="178.75" cy="97.5" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="184.75" y="91.5" font-size="10" font-weight="800" fill="#1e1b4b">B(3,2)</text>
+  
+    <circle cx="65.0" cy="113.75" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="71.0" y="107.75" font-size="10" font-weight="800" fill="#1e1b4b">C</text>
+  
+    <circle cx="130.0" cy="130.0" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="136.0" y="124.0" font-size="10" font-weight="800" fill="#1e1b4b">O</text>
+  
+</svg><figcaption>Titik A(2, 3) dan B(3, 2) letaknya berbeda.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done " data-item="m1">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="m2" class="card lesson">
+      <h2>2. Kuadran pada Bidang Kartesius</h2>
+      <div class="lesson-split">
+        <div>
+          <p>Sumbu-x dan sumbu-y membagi bidang menjadi <b>empat daerah</b> yang disebut <b>kuadran</b>. Penomorannya berlawanan arah jarum jam, dimulai dari kanan atas.</p>
+          <div class="table-scroll"><table class="tbl">
+            <thead><tr><th>Kuadran</th><th>Letak</th><th>Tanda x</th><th>Tanda y</th><th>Contoh</th></tr></thead>
+            <tbody>
+              <tr><td><b>I</b></td><td>kanan atas</td><td>+</td><td>+</td><td>(3, 5)</td></tr>
+              <tr><td><b>II</b></td><td>kiri atas</td><td>−</td><td>+</td><td>(−3, 5)</td></tr>
+              <tr><td><b>III</b></td><td>kiri bawah</td><td>−</td><td>−</td><td>(−3, −5)</td></tr>
+              <tr><td><b>IV</b></td><td>kanan bawah</td><td>+</td><td>−</td><td>(3, −5)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="warn"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-warn"/></svg> Titik yang terletak <b>tepat pada sumbu</b>, misalnya (0, 4) atau (−2, 0), <b>tidak termasuk kuadran mana pun</b>.</div>
+          <ul>
+            <li>Titik pada <b>sumbu-x</b> selalu berordinat 0 → (x, 0).</li>
+            <li>Titik pada <b>sumbu-y</b> selalu berabsis 0 → (0, y).</li>
+          </ul>
+        </div>
+        <figure class="quadrant-fig">
+          <div class="qgrid"><span class="q2">II<br><small>(−, +)</small></span><span class="q1">I<br><small>(+, +)</small></span><span class="q3">III<br><small>(−, −)</small></span><span class="q4">IV<br><small>(+, −)</small></span></div>
+          <figcaption>Ingat urutannya: I → II → III → IV berlawanan arah jarum jam.</figcaption>
+        </figure>
+      </div>
+      <button class="btn btn-primary mark-done " data-item="m2">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="m3" class="card lesson">
+      <h2>3. Posisi Titik terhadap Sumbu-x dan Sumbu-y</h2>
+      <div class="lesson-split">
+        <div>
+          <p>Jarak sebuah titik ke sumbu diukur <b>tegak lurus</b> terhadap sumbu tersebut. Karena jarak tidak pernah negatif, kita memakai nilai mutlak.</p>
+          <div class="formula">Titik P(x, y):<br>jarak P ke sumbu-x = |y|<br>jarak P ke sumbu-y = |x|</div>
+          <p><b>Contoh:</b> titik P(−4, 3)</p>
+          <ul>
+            <li>berjarak <b>|3| = 3 satuan</b> dari sumbu-x (di <b>atas</b> sumbu-x),</li>
+            <li>berjarak <b>|−4| = 4 satuan</b> dari sumbu-y (di <b>kiri</b> sumbu-y).</li>
+          </ul>
+          <div class="tip"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-bulb"/></svg> Trik: jarak ke sumbu-<b>x</b> dilihat dari nilai <b>y</b>, jarak ke sumbu-<b>y</b> dilihat dari nilai <b>x</b>. Kebalikannya!</div>
+          <p><b>Kebalikannya:</b> jika titik Q di kuadran IV berjarak 2 satuan dari sumbu-x dan 5 satuan dari sumbu-y, maka |y| = 2 dan |x| = 5. Di kuadran IV x positif dan y negatif, sehingga <b>Q(5, −2)</b>.</p>
+        </div>
+        <figure>
+
+<svg class="mini-plane" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Gambar bidang koordinat">
+  <rect width="260" height="260" rx="14" fill="#fff"/>
+  
+    <line x1="16.25" y1="16.25" x2="16.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="16.25" x2="243.75" y2="16.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="32.5" y1="16.25" x2="32.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="32.5" x2="243.75" y2="32.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="32.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-6</text>
+      <text x="126.0" y="230.5" font-size="8" text-anchor="end" fill="#6b7280">-6</text>
+    
+  
+    <line x1="48.75" y1="16.25" x2="48.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="48.75" x2="243.75" y2="48.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="65.0" y1="16.25" x2="65.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="65.0" x2="243.75" y2="65.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="65.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-4</text>
+      <text x="126.0" y="198.0" font-size="8" text-anchor="end" fill="#6b7280">-4</text>
+    
+  
+    <line x1="81.25" y1="16.25" x2="81.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="81.25" x2="243.75" y2="81.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="97.5" y1="16.25" x2="97.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="97.5" x2="243.75" y2="97.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="97.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-2</text>
+      <text x="126.0" y="165.5" font-size="8" text-anchor="end" fill="#6b7280">-2</text>
+    
+  
+    <line x1="113.75" y1="16.25" x2="113.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="113.75" x2="243.75" y2="113.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="130.0" y1="16.25" x2="130.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="130.0" x2="243.75" y2="130.0" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="146.25" y1="16.25" x2="146.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="146.25" x2="243.75" y2="146.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="162.5" y1="16.25" x2="162.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="162.5" x2="243.75" y2="162.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="162.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">2</text>
+      <text x="126.0" y="100.5" font-size="8" text-anchor="end" fill="#6b7280">2</text>
+    
+  
+    <line x1="178.75" y1="16.25" x2="178.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="178.75" x2="243.75" y2="178.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="195.0" y1="16.25" x2="195.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="195.0" x2="243.75" y2="195.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="195.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">4</text>
+      <text x="126.0" y="68.0" font-size="8" text-anchor="end" fill="#6b7280">4</text>
+    
+  
+    <line x1="211.25" y1="16.25" x2="211.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="211.25" x2="243.75" y2="211.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="227.5" y1="16.25" x2="227.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="227.5" x2="243.75" y2="227.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="227.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">6</text>
+      <text x="126.0" y="35.5" font-size="8" text-anchor="end" fill="#6b7280">6</text>
+    
+  
+    <line x1="243.75" y1="16.25" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="243.75" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+  <line x1="12.25" y1="130.0" x2="247.75" y2="130.0" stroke="#4c1d95" stroke-width="1.6"/>
+  <line x1="130.0" y1="247.75" x2="130.0" y2="12.25" stroke="#4c1d95" stroke-width="1.6"/>
+  <text x="245.75" y="125.0" font-size="9" fill="#4c1d95" font-weight="700">x</text>
+  <text x="135.0" y="16.25" font-size="9" fill="#4c1d95" font-weight="700">y</text>
+  
+    <circle cx="65.0" cy="81.25" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="71.0" y="75.25" font-size="10" font-weight="800" fill="#1e1b4b">P(−4,3)</text>
+  
+    <circle cx="211.25" cy="162.5" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="217.25" y="156.5" font-size="10" font-weight="800" fill="#1e1b4b">Q(5,−2)</text>
+  
+</svg><figcaption>P berjarak 3 dari sumbu-x dan 4 dari sumbu-y.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done " data-item="m3">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="m4" class="card lesson">
+      <h2>4. Posisi Titik terhadap Titik Asal dan Titik Acuan</h2>
+      <p>Koordinat (x, y) yang biasa kita tulis adalah posisi titik <b>terhadap titik asal O(0, 0)</b>. Kita juga bisa menentukan posisi titik terhadap <b>titik acuan lain</b>, misalnya P(p, q).</p>
+      <div class="formula">Koordinat A(x, y) terhadap titik acuan P(p, q) adalah (x − p, y − q)</div>
+      <div class="lesson-split">
+        <div>
+          <p><b>Contoh:</b> Taman berada di A(5, 4) dan rumah Lyzy di P(2, 1). Posisi taman terhadap rumah Lyzy:</p>
+          <div class="steps"><span>(5 − 2, 4 − 1)</span><span>= (3, 3)</span></div>
+          <p>Artinya dari rumah Lyzy, taman berada <b>3 satuan ke kanan</b> dan <b>3 satuan ke atas</b>.</p>
+          <p><b>Menggeser titik:</b> digeser <b>a</b> satuan ke kanan (atau ke kiri, berarti a negatif) dan <b>b</b> satuan ke atas (atau ke bawah, berarti b negatif), maka</p>
+          <div class="formula">(x, y) → (x + a, y + b)</div>
+          <p>Contoh: T(4, −2) digeser 3 ke kiri dan 5 ke atas → (4 − 3, −2 + 5) = <b>(1, 3)</b>.</p>
+        </div>
+        <figure>
+
+<svg class="mini-plane" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Gambar bidang koordinat">
+  <rect width="260" height="260" rx="14" fill="#fff"/>
+  
+    <line x1="16.25" y1="16.25" x2="16.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="16.25" x2="243.75" y2="16.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="32.5" y1="16.25" x2="32.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="32.5" x2="243.75" y2="32.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="32.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-6</text>
+      <text x="126.0" y="230.5" font-size="8" text-anchor="end" fill="#6b7280">-6</text>
+    
+  
+    <line x1="48.75" y1="16.25" x2="48.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="48.75" x2="243.75" y2="48.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="65.0" y1="16.25" x2="65.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="65.0" x2="243.75" y2="65.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="65.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-4</text>
+      <text x="126.0" y="198.0" font-size="8" text-anchor="end" fill="#6b7280">-4</text>
+    
+  
+    <line x1="81.25" y1="16.25" x2="81.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="81.25" x2="243.75" y2="81.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="97.5" y1="16.25" x2="97.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="97.5" x2="243.75" y2="97.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="97.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">-2</text>
+      <text x="126.0" y="165.5" font-size="8" text-anchor="end" fill="#6b7280">-2</text>
+    
+  
+    <line x1="113.75" y1="16.25" x2="113.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="113.75" x2="243.75" y2="113.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="130.0" y1="16.25" x2="130.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="130.0" x2="243.75" y2="130.0" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="146.25" y1="16.25" x2="146.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="146.25" x2="243.75" y2="146.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="162.5" y1="16.25" x2="162.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="162.5" x2="243.75" y2="162.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="162.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">2</text>
+      <text x="126.0" y="100.5" font-size="8" text-anchor="end" fill="#6b7280">2</text>
+    
+  
+    <line x1="178.75" y1="16.25" x2="178.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="178.75" x2="243.75" y2="178.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="195.0" y1="16.25" x2="195.0" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="195.0" x2="243.75" y2="195.0" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="195.0" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">4</text>
+      <text x="126.0" y="68.0" font-size="8" text-anchor="end" fill="#6b7280">4</text>
+    
+  
+    <line x1="211.25" y1="16.25" x2="211.25" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="211.25" x2="243.75" y2="211.25" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+    <line x1="227.5" y1="16.25" x2="227.5" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="227.5" x2="243.75" y2="227.5" stroke="#ede9fe" stroke-width="1"/>
+    
+      <text x="227.5" y="141.0" font-size="8" text-anchor="middle" fill="#6b7280">6</text>
+      <text x="126.0" y="35.5" font-size="8" text-anchor="end" fill="#6b7280">6</text>
+    
+  
+    <line x1="243.75" y1="16.25" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    <line x1="16.25" y1="243.75" x2="243.75" y2="243.75" stroke="#ede9fe" stroke-width="1"/>
+    
+  
+  <line x1="12.25" y1="130.0" x2="247.75" y2="130.0" stroke="#4c1d95" stroke-width="1.6"/>
+  <line x1="130.0" y1="247.75" x2="130.0" y2="12.25" stroke="#4c1d95" stroke-width="1.6"/>
+  <text x="245.75" y="125.0" font-size="9" fill="#4c1d95" font-weight="700">x</text>
+  <text x="135.0" y="16.25" font-size="9" fill="#4c1d95" font-weight="700">y</text>
+  
+    <circle cx="211.25" cy="65.0" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="217.25" y="59.0" font-size="10" font-weight="800" fill="#1e1b4b">A taman</text>
+  
+    <circle cx="162.5" cy="113.75" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+    <text x="168.5" y="107.75" font-size="10" font-weight="800" fill="#1e1b4b">P rumah</text>
+  
+</svg><figcaption>Dari P ke A: 3 ke kanan, 3 ke atas.</figcaption></figure>
+      </div>
+      <button class="btn btn-primary mark-done " data-item="m4">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="m5" class="card lesson">
+      <h2>5. Garis Sejajar, Tegak Lurus, dan Memotong Sumbu</h2>
+      <div class="cards-3">
+        <div class="mini card c-violet"><h3>Sejajar sumbu-x</h3><p>Semua titiknya memiliki <b>ordinat (y) sama</b>. Garisnya mendatar dan <b>tegak lurus sumbu-y</b>.</p><p class="ex">Contoh: A(−3, 2) dan B(4, 2)</p></div>
+        <div class="mini card c-cyan"><h3>Sejajar sumbu-y</h3><p>Semua titiknya memiliki <b>absis (x) sama</b>. Garisnya tegak dan <b>tegak lurus sumbu-x</b>.</p><p class="ex">Contoh: C(3, −4) dan D(3, 5)</p></div>
+        <div class="mini card c-sky"><h3>Memotong sumbu</h3><p>Absis berbeda <b>dan</b> ordinat berbeda. Garisnya miring dan memotong sumbu-x maupun sumbu-y.</p><p class="ex">Contoh: E(1, 2) dan F(3, 4)</p></div>
+      </div>
+      <figure class="center">
+        <svg viewBox="0 0 280 200" class="lines-fig" role="img" aria-label="Contoh garis sejajar sumbu-x, sejajar sumbu-y, dan garis miring">
+          <rect width="280" height="200" rx="14" fill="#fff"/>
+          <line x1="20" y1="120" x2="260" y2="120" stroke="#4c1d95" stroke-width="1.6"/><line x1="140" y1="190" x2="140" y2="10" stroke="#4c1d95" stroke-width="1.6"/>
+          <line x1="30" y1="70" x2="250" y2="70" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>
+          <line x1="210" y1="20" x2="210" y2="185" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+          <line x1="60" y1="180" x2="200" y2="40" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>
+          <text x="34" y="62" font-size="11" fill="#5b21b6" font-weight="700">sejajar sumbu-x</text>
+          <text x="216" y="30" font-size="11" fill="#0e7490" font-weight="700">sejajar</text><text x="216" y="43" font-size="11" fill="#0e7490" font-weight="700">sumbu-y</text>
+          <text x="60" y="165" font-size="11" fill="#0369a1" font-weight="700">memotong</text>
+        </svg>
+      </figure>
+      <button class="btn btn-primary mark-done " data-item="m5">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="m6" class="card lesson">
+      <h2>6. Jarak Dua Titik dan Bangun Datar</h2>
+      <div class="lesson-split">
+        <div>
+          <p><b>Dua titik segaris mendatar</b> (ordinat sama): jarak = |x₂ − x₁|.</p>
+          <p><b>Dua titik segaris tegak</b> (absis sama): jarak = |y₂ − y₁|.</p>
+          <div class="formula">A(1, 2) dan B(7, 2) → AB = |7 − 1| = 6 satuan</div>
+          <p><b>Pengayaan (Teorema Pythagoras, kelas VIII):</b> untuk dua titik sembarang,</p>
+          <div class="formula">jarak = √((x₂ − x₁)² + (y₂ − y₁)²)</div>
+          <p>Contoh: O(0, 0) ke Q(3, 4) → √(3² + 4²) = √25 = <b>5 satuan</b>.</p>
+          <p><b>Bangun datar:</b> titik-titik pada bidang Kartesius dapat dihubungkan menjadi bangun datar. Persegi panjang dengan titik sudut (1, 1), (6, 1), (6, 4), (1, 4) memiliki panjang 5, lebar 3, dan <b>luas 15 satuan luas</b>.</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Persegi panjang ABCD pada bidang koordinat">
+            <rect width="260" height="260" rx="14" fill="#fff"/>
+            <g stroke="#ede9fe"><line x1="30" y1="20" x2="30" y2="230"/><line x1="30" y1="22" x2="238" y2="22"/><line x1="56" y1="20" x2="56" y2="230"/><line x1="30" y1="48" x2="238" y2="48"/><line x1="82" y1="20" x2="82" y2="230"/><line x1="30" y1="74" x2="238" y2="74"/><line x1="108" y1="20" x2="108" y2="230"/><line x1="30" y1="100" x2="238" y2="100"/><line x1="134" y1="20" x2="134" y2="230"/><line x1="30" y1="126" x2="238" y2="126"/><line x1="160" y1="20" x2="160" y2="230"/><line x1="30" y1="152" x2="238" y2="152"/><line x1="186" y1="20" x2="186" y2="230"/><line x1="30" y1="178" x2="238" y2="178"/><line x1="212" y1="20" x2="212" y2="230"/><line x1="30" y1="204" x2="238" y2="204"/><line x1="238" y1="20" x2="238" y2="230"/><line x1="30" y1="230" x2="238" y2="230"/></g>
+            <line x1="30" y1="230" x2="245" y2="230" stroke="#4c1d95" stroke-width="1.6"/><line x1="30" y1="230" x2="30" y2="15" stroke="#4c1d95" stroke-width="1.6"/>
+            <polygon points="56,204 186,204 186,126 56,126" fill="#c4b5fd" fill-opacity=".45" stroke="#7c3aed" stroke-width="2.5"/>
+            <circle cx="56" cy="204" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/><text x="60" y="196" font-size="10" font-weight="800" fill="#1e1b4b">A(1,1)</text><circle cx="186" cy="204" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/><text x="190" y="196" font-size="10" font-weight="800" fill="#1e1b4b">B(6,1)</text><circle cx="186" cy="126" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/><text x="190" y="118" font-size="10" font-weight="800" fill="#1e1b4b">C(6,4)</text><circle cx="56" cy="126" r="4.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/><text x="60" y="118" font-size="10" font-weight="800" fill="#1e1b4b">D(1,4)</text>
+            <text x="105" y="222" font-size="11" fill="#5b21b6" font-weight="700">panjang 5</text><text x="192" y="168" font-size="11" fill="#5b21b6" font-weight="700">lebar 3</text>
+          </svg>
+          <figcaption>Luas = 5 × 3 = 15 satuan luas.</figcaption>
+        </figure>
+      </div>
+      <button class="btn btn-primary mark-done " data-item="m6">Tandai selesai (+15 XP)</button>
+    </article>
+
+    <article id="rangkuman" class="card lesson summary">
+      <h2><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-pin"/></svg> Rangkuman</h2>
+      <ul class="sum-list">
+        <li>Bidang Kartesius terdiri atas <b>sumbu-x</b> (mendatar) dan <b>sumbu-y</b> (tegak) yang berpotongan tegak lurus di <b>O(0, 0)</b>.</li>
+        <li>Titik ditulis <b>(x, y)</b>: x = <b>absis</b>, y = <b>ordinat</b>. Urutan tidak boleh tertukar.</li>
+        <li>Kuadran I (+, +), II (−, +), III (−, −), IV (+, −). Titik pada sumbu tidak termasuk kuadran mana pun.</li>
+        <li>Jarak titik (x, y) ke sumbu-x = <b>|y|</b>, ke sumbu-y = <b>|x|</b>.</li>
+        <li>Koordinat A(x, y) terhadap titik acuan P(p, q) = <b>(x − p, y − q)</b>.</li>
+        <li>Ordinat sama → garis <b>sejajar sumbu-x</b>; absis sama → garis <b>sejajar sumbu-y</b>.</li>
+        <li>Jarak mendatar = |x₂ − x₁|, jarak tegak = |y₂ − y₁|, jarak miring memakai teorema Pythagoras.</li>
+      </ul>
+      <div class="next-actions">
+        <a class="btn btn-primary" href="/LYZNART-sistemkoordinatkartesius/contoh-soal/"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-bulb"/></svg> Lanjut ke Contoh Soal</a>
+        <a class="btn btn-cyan" href="/LYZNART-sistemkoordinatkartesius/visualisasi/"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-compass"/></svg> Coba Visualisasi</a>
+        <a class="btn btn-ghost" href="/LYZNART-sistemkoordinatkartesius/kuis/latihan/"><svg class="ci " aria-hidden="true" focusable="false"><use href="#ci-pencil"/></svg> Latihan 40 Soal</a>
+      </div>
+    </article>
+  </div>
+</div>
+</main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="brand brand-foot"><img src="/LYZNART-sistemkoordinatkartesius/static/icons/icon-192.png" alt="" width="30" height="30"><span>LYZN<b>ART</b></span></div>
+        <p>Explore. Learn. Play. Master!<br>Media belajar Sistem Koordinat Kartesius untuk kelas VIII SMP/MTs.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/LYZNART-sistemkoordinatkartesius/materi/">Materi</a>
+        <a href="/LYZNART-sistemkoordinatkartesius/contoh-soal/">Contoh Soal</a>
+        <a href="/LYZNART-sistemkoordinatkartesius/kuis/pretest/">Pre-test</a>
+        <a href="/LYZNART-sistemkoordinatkartesius/kuis/posttest/">Post-test</a>
+        <a href="/LYZNART-sistemkoordinatkartesius/instal/">Cara Instal</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 LYZNART · v1.4.0 · Bisa dipakai langsung di browser, tanpa instal.</p>
+  </footer>
+
+  <div id="toast-zone" class="toast-zone" aria-live="polite"></div>
+  <script>window.LYZ = { loggedIn: false, base: "/LYZNART-sistemkoordinatkartesius", isStatic: true,
+    icon: function (n, c) { return '<svg class="ci ' + (c || '') + '" aria-hidden="true"><use href="#ci-' + n + '"/></svg>'; } };</script>
+  <script src="/LYZNART-sistemkoordinatkartesius/kunci.js?v=1.4.0"></script>
+  <script src="/LYZNART-sistemkoordinatkartesius/static/js/local.js?v=1.4.0"></script>
+  <script src="/LYZNART-sistemkoordinatkartesius/static/js/main.js?v=1.4.0"></script>
+  
+</body>
+</html>
